@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--注解驱动开启-->
+    <mvc:annotation-driven />
+
+    <!--扫描带注解的bean实现自动注入-->
+    <context:component-scan base-package="com.qianyuan.controller" />
+
+    <!--静态资源文件-->
+    <!--<mvc:resources location="/css/" mapping="/css/**" />-->
+    <!--<mvc:resources location="/js/" mapping="/js/**" />-->
+
+
+    <!--JSP 视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix"  value="/WEB-INF/jsps/"  />
+        <property name="suffix" value=".jsp" />
+    </bean>
+</beans>
