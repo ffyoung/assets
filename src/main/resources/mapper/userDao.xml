@@ -2,11 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qianyuan.user.dao.UserDao">
+    
+    <resultMap id="MyResutlMap" type="com.qianyuan.user.domain.User" >
+        <id property="id" column="id" javaType="" />
+        <result property="username" column="username" javaType="String" />
+        <result property="nickname" column="nickname" javaType="String" />
+        <result property="password" column="password" javaType="String" />
+    </resultMap>
+
+    <sql id="MyCommonSql" >
+        id,username,nickname,password
+    </sql>
+
+    <!--用户注册-->
     <insert id="addUser" parameterType="com.qianyuan.user.domain.User">
-        insert into t_user(username,password) values (#{username},#{password})
+        insert into t_user
+        (null,username,nickname,password)
+        values
+        (#{username,jdbcType=VARCHAR},#{nickname,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
     </insert>
-    <select id="findUser"  parameterType="map"  resultType="com.qianyuan.user.domain.User">
-        select * from t_user t where username=#{username}and password=#{password}
+
+    <!--登录验证-->
+    <select id="findUser" resultMap="MyResutlMap">
+         select
+         <include refid="MyCommonSql" />
+         from t_user
+         where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
     </select>
 
 </mapper>

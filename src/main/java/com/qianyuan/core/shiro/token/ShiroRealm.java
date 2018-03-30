@@ -1,5 +1,6 @@
 package com.qianyuan.core.shiro.token;
 
+import com.qianyuan.user.dao.UserDao;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -7,6 +8,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -19,8 +21,11 @@ public class ShiroRealm extends AuthorizingRealm {
         super();
     }
 
+    @Autowired
+    private UserDao userDao;
+
     /**
-     * 授权信息
+     * 授权信息（角色）
      * @param principalCollection
      * @return
      */
@@ -56,8 +61,11 @@ public class ShiroRealm extends AuthorizingRealm {
         String username = upToken.getUsername();
         /** 获取密码*/
         String password = String.valueOf(upToken.getPassword());
+
+        if(userDao.findUser(username,password) != null){
+            info = new SimpleAuthenticationInfo(username,password,getName());
+        }
         /** 获取用户信息*/
-        info = new SimpleAuthenticationInfo(username,password,getName());
         return info;
     }
 }

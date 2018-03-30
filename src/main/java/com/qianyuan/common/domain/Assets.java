@@ -1,4 +1,4 @@
-package com.qianyuan.user.domain;
+package com.qianyuan.common.domain;
 
 /**
  * Created by rock on 2018-03-29
