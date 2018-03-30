@@ -7,12 +7,13 @@
     <groupId>com.qianyuan</groupId>
     <artifactId>asset</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <url>http://maven.apache.org</url>
 
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <build>
         <plugins>
             <!--maven-compiler插件-->
@@ -26,10 +27,45 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!--
+            1.配置resources的目的在于，maven项目会默认加载src/main/jave或者src/main/resources/
+        或者test/main/java或者test/main/resources
+            2.如果一些资源文件不在maven默认的路径下，则需要自己添加
+        -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!--
+                    1. * 和 **/*的含义不同
+                    2. *代表resources目录下的所有资源文件，但不包括子目录
+                    3. **/*代表resources目录及其子目录下的所有资源文件
+                -->
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <!-- 替换 ${key} -->
+                <!-- true:替换 false:不替换 -->
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <!-- 根目录 -->
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude></exclude>
+                </excludes>
+                <!--
+                true与false相同点：
+                    exclude规定路径下的文件不被打包。
+                true与false不同点：
+                    true: 不在exclude规定路径下,其他的文件执行include过滤。
+                    false:不在exclude规定路径下,其他的文件不执行include过滤。
+                -->
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
-
-
     <dependencies>
+
         <!--Junit start-->
         <dependency>
             <groupId>junit</groupId>
@@ -61,6 +97,14 @@
             <version>3.4.4</version>
         </dependency>
         <!--Mybaties end-->
+
+        <!--PageHelper-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.6</version>
+        </dependency>
+        <!--PageHelper-->
 
         <!--Spring start-->
         <dependency>
@@ -130,6 +174,7 @@
         </dependency>
         <!--Log4j End-->
 
+        <!--Json工具类库-->
         <!--Json Start-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -162,6 +207,51 @@
             <classifier>jdk15</classifier>
         </dependency>
         <!--工具包 End-->
+
+        <!-- freemarker Start -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.20</version>
+        </dependency>
+        <!-- freemarker End -->
+
+        <!-- freemarker + shiro（标签） Start -->
+        <dependency>
+            <groupId>net.mingsoft</groupId>
+            <artifactId>shiro-freemarker-tags</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <!-- freemarker + shiro（标签） End -->
+
+
+        <!-- Shiro Start -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <!-- Shiro End -->
 
         <!--Ehacache start -->
         <dependency>
@@ -201,6 +291,26 @@
         <!-- /Spring 升级4+ 依赖的JSON包 -->
 
 
+        <!--poiEXCEL导入导出 Start-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <!--poiEXCEL导入导出 End-->
 
     </dependencies>
 

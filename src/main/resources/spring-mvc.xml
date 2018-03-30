@@ -14,17 +14,70 @@
     <mvc:annotation-driven />
 
     <!--扫描带注解的bean实现自动注入-->
-    <context:component-scan base-package="com.qianyuan.controller" />
+    <context:component-scan base-package="com.qianyuan.*.controller" />
 
     <!--静态资源文件-->
-    <!--<mvc:resources location="/css/" mapping="/css/**" />-->
-    <!--<mvc:resources location="/js/" mapping="/js/**" />-->
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/js/" mapping="/js/**" />
 
+    <!--
+                                    视图解析器  Start
+        1.视图解析器当web容器加载的时候 根据order先后进行，最高级为1顺序排列
+        2.当DispatcherServlet进行查找的时候，先查找后缀为.ftl的，随后查找.jsp的
+    -->
+    <!-- Freemarker配置 -->
+    <!--写一个自己的freemarkrConfigurerExtend继承freemarkConfigurer，用于加入Shiro标签库方便实用-->
+    <bean id="freemarkerConfig"
+          class="com.qianyuan.core.freemarker.FreemarkerConfigurerExtend">
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+        <property name="freemarkerSettings">
+            <props>
+                <!--默认编码-->
+                <prop key="defaultEncoding">UTF-8</prop>
+                <!--局部域设置-->
+                <prop key="locale">zh_CN</prop>
+                <!--默认boolean类型的实现方式为yes和no-->
+                <prop key="boolean_format">true,false</prop>
+                <!--格式化日期 start-->
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="time_format">HH:mm:ss</prop>
+                <!--格式化日期 end-->
+                <!--防止页面出现数字-->
+                <prop key="number_format">#</prop>
+            </props>
+        </property>
 
+    </bean>
     <!--JSP 视图解析器-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix"  value="/WEB-INF/jsps/"  />
         <property name="suffix" value=".jsp" />
+        <property name="order" value="2" />
     </bean>
+
+    <!--FreeMarker视图解析器-->
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="com.qianyuan.core.freemarker.FreeMarkerViewExtend" />
+        <property name="cache" value="true" />
+        <property name="prefix" value="" />
+        <property name="suffix" value=".ftl" />
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="order" value="0" />
+    </bean>
+
+    <bean id="viewResolverCommon"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsps/" />
+        <property name="suffix" value=".jsp" />
+        <!--			可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑-->
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.InternalResourceView
+            </value>
+        </property>
+        <property name="order" value="1" />
+    </bean>
+
+    <!--<bean name="springContextUtil" class="com.qianyuan.common.utils.SpringContextUtil" scope="singleton" />-->
 </beans>
