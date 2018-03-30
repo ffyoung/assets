@@ -5,37 +5,150 @@ package com.qianyuan.user.domain;
  */
 public class Assets {
 
+    /**
+     * id
+     */
     private Long id;
+    /**
+     * 存储日期
+     */
     private String storageDate;
+    /**
+     * 物品名称
+     */
     private String itemName;
+    /**
+     * 编码
+     */
     private String coding;
+    /**
+     * 规格
+     */
     private String standard;
+    /**
+     * 型号
+     */
     private String model;
-    private Long num;
+    /**
+     * 入库数量
+     */
+    private Long inCount;
+    /**
+     * 单位
+     */
     private String unit;
+    /**
+     * 价格
+     */
     private String price;
+    /**
+     * 估价
+     */
     private String value;
+    /**
+     * 产权单位
+     */
     private String propertyUnit;
+    /**
+     * 购置日期
+     */
     private String buyDate;
+    /**
+     * 出库日期
+     */
     private String outDate;
+
+    /**
+     * 出库数量
+     */
+    private String outCount;
+    /**
+     * 产地
+     */
     private String area;
+    /**
+     * 物品分类
+     */
     private String goodsType;
+    /**
+     * 物品属性
+     */
     private String goodsProperty;
+    /**
+     * 管理状态
+     */
     private String managerStatus;
+    /**
+     * 使用单位
+     */
     private String unitUse;
+    /**
+     * 管理责任人
+     */
     private String manager;
+    /**
+     * 信息录入
+     */
     private String inputMessage;
+    /**
+     * 录入日期
+     */
     private String inputDate;
+    /**
+     * 审核人
+     */
     private String auditor;
+    /**
+     * 审核日期
+     */
     private String auditorDate;
+    /**
+     * 核准人
+     */
     private String authorizer;
+    /**
+     * 核准日期
+     */
     private String authorizerDate;
+    /**
+     * 附图（链接）
+     */
     private String picture;
+    /**
+     * 用途
+     */
     private String useType;
+    /**
+     * 备注说明
+     */
     private String remark;
 
     public Assets() {
     }
+    public Long getInCount() {
+        return inCount;
+    }
+
+    public void setInCount(Long inCount) {
+        this.inCount = inCount;
+    }
+
+    public String getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(String outDate) {
+        this.outDate = outDate;
+    }
+
+    public String getOutCount() {
+        return outCount;
+    }
+
+    public void setOutCount(String outCount) {
+        this.outCount = outCount;
+    }
+
 
     public Long getId() {
         return id;
@@ -85,14 +198,6 @@ public class Assets {
         this.model = model;
     }
 
-    public Long getNum() {
-        return num;
-    }
-
-    public void setNum(Long num) {
-        this.num = num;
-    }
-
     public String getUnit() {
         return unit;
     }
@@ -131,14 +236,6 @@ public class Assets {
 
     public void setBuyDate(String buyDate) {
         this.buyDate = buyDate;
-    }
-
-    public String getOutDate() {
-        return outDate;
-    }
-
-    public void setOutDate(String outDate) {
-        this.outDate = outDate;
     }
 
     public String getArea() {
@@ -270,13 +367,14 @@ public class Assets {
                 ", coding='" + coding + '\'' +
                 ", standard='" + standard + '\'' +
                 ", model='" + model + '\'' +
-                ", num=" + num +
+                ", inCount=" + inCount +
                 ", unit='" + unit + '\'' +
                 ", price='" + price + '\'' +
                 ", value='" + value + '\'' +
                 ", propertyUnit='" + propertyUnit + '\'' +
                 ", buyDate='" + buyDate + '\'' +
                 ", outDate='" + outDate + '\'' +
+                ", outCount='" + outCount + '\'' +
                 ", area='" + area + '\'' +
                 ", goodsType='" + goodsType + '\'' +
                 ", goodsProperty='" + goodsProperty + '\'' +

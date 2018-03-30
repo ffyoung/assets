@@ -13,7 +13,7 @@ public class UserController {
 
     @RequestMapping("login")
     public String loginA(){
-        return "user/login";
+        return "test/login";
 
     }
 
