@@ -68,8 +68,6 @@
                 /css/**=anon
                 /js/**=anon
                 /user/**=anon
-                /coon/**=anon
-                /img/**=anon
                 /common/**=anon
                 <!-- 需要权限为add的用户才能访问此请求-->
                 <!-- 需要管理员角色才能访问此页面 -->
@@ -120,7 +118,7 @@
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <!--cookie的name，我故意取名叫xxxxbaidu -->
-        <constructor-arg value="v_v-s-baidu"/>
+        <constructor-arg value="rock"/>
         <property name="httpOnly" value="true"/>
         <!--cookie的有效时间 -->
         <property name="maxAge" value="-1"/>

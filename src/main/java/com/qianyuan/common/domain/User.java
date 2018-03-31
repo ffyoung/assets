@@ -1,9 +1,24 @@
-package com.qianyuan.user.domain;
+package com.qianyuan.common.domain;
 
+/**
+ * User实体类
+ */
 public class User {
+    /**
+     * id
+     */
     private Long id;
+    /**
+     * 用户名
+     */
     private String username;
+    /**
+     * 昵称
+     */
     private String nickname;
+    /**
+     * 密码
+     */
     private String password;
 
     public Long getId() {

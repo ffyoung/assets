@@ -39,7 +39,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="密 码" autocomplete="off"  />
                     </div>
                     <div>
-                        <button class="btn btn-default submit" id="login">登 录</button>
+                        <button class="btn btn-default submit" type="button" id="login">登 录</button>
                         <a class="reset_pass" href="#">忘 记 密 码 ?</a>
                     </div>
                     <div class="clearfix"></div>
@@ -102,7 +102,6 @@
 <script src="/js/common/jquery/jquery1.8.3.min.js"></script>
 <script src="/js/common/layer/layer.js"></script>
 <script src="/js/common/jquery-form.js"></script>
-<script src="/js/common/iconfont.js"></script>
 <script>
 
     jQuery(document).ready(function() {
@@ -135,7 +134,6 @@
             var pswd = password;
             data = {password: pswd, username: username};
             var load = layer.load();
-
             $.ajax({
                 url: "/user/loginDo",
                 data: data,
@@ -145,7 +143,7 @@
                     layer.msg('正在登陆，请注意信息提示。');
                 },
                 success: function (result) {
-                    console.log(result);
+                    console.log(result.msg);
                     layer.close(load);
                     if (result && result.status != 200) {
                         layer.msg("账号密码错误！");
@@ -165,18 +163,7 @@
                 }
             });
         });
-        $('.page-container form .username, .page-container form .password').keyup(function () {
-            $(this).parent().find('.error').fadeOut('fast');
-        });
-
     });
-
-
-    //注册
-    $("#register").click(function () {
-        window.location.href = "register";
-    });
-
 </script>
 </body>
 </html>

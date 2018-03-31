@@ -1,6 +1,7 @@
 package com.qianyuan.common.domain;
 
 /**
+ * 产品信息类
  * Created by rock on 2018-03-29
  */
 public class Assets {
