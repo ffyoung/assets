@@ -26,10 +26,10 @@ public interface UserDao {
 
     /**
      * 用户删除
-     * @param id
+     * @param user
      * @return
      */
-     int deleteUser(Long id);
+     int deleteUser(User user);
 
     /**
      * 更具用户内容修改信息

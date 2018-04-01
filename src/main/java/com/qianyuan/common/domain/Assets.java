@@ -1,5 +1,7 @@
 package com.qianyuan.common.domain;
 
+import java.util.Date;
+
 /**
  * 产品信息类
  * Created by rock on 2018-03-29
@@ -13,7 +15,7 @@ public class Assets {
     /**
      * 存储日期
      */
-    private String storageDate;
+    private Date storageDate;
     /**
      * 物品名称
      */
@@ -41,7 +43,7 @@ public class Assets {
     /**
      * 价格
      */
-    private String price;
+    private Double price;
     /**
      * 估价
      */
@@ -53,16 +55,16 @@ public class Assets {
     /**
      * 购置日期
      */
-    private String buyDate;
+    private Date buyDate;
     /**
      * 出库日期
      */
-    private String outDate;
+    private Date outDate;
 
     /**
      * 出库数量
      */
-    private String outCount;
+    private Long outCount;
     /**
      * 产地
      */
@@ -94,7 +96,7 @@ public class Assets {
     /**
      * 录入日期
      */
-    private String inputDate;
+    private Date inputDate;
     /**
      * 审核人
      */
@@ -102,7 +104,7 @@ public class Assets {
     /**
      * 审核日期
      */
-    private String auditorDate;
+    private Date auditorDate;
     /**
      * 核准人
      */
@@ -110,7 +112,7 @@ public class Assets {
     /**
      * 核准日期
      */
-    private String authorizerDate;
+    private Date authorizerDate;
     /**
      * 附图（链接）
      */
@@ -134,22 +136,14 @@ public class Assets {
         this.inCount = inCount;
     }
 
-    public String getOutDate() {
-        return outDate;
-    }
 
-    public void setOutDate(String outDate) {
-        this.outDate = outDate;
-    }
-
-    public String getOutCount() {
+    public Long getOutCount() {
         return outCount;
     }
 
-    public void setOutCount(String outCount) {
+    public void setOutCount(Long outCount) {
         this.outCount = outCount;
     }
-
 
     public Long getId() {
         return id;
@@ -159,13 +153,7 @@ public class Assets {
         this.id = id;
     }
 
-    public String getStorageDate() {
-        return storageDate;
-    }
 
-    public void setStorageDate(String storageDate) {
-        this.storageDate = storageDate;
-    }
 
     public String getItemName() {
         return itemName;
@@ -207,13 +195,7 @@ public class Assets {
         this.unit = unit;
     }
 
-    public String getPrice() {
-        return price;
-    }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
 
     public String getValue() {
         return value;
@@ -231,12 +213,12 @@ public class Assets {
         this.propertyUnit = propertyUnit;
     }
 
-    public String getBuyDate() {
-        return buyDate;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setBuyDate(String buyDate) {
-        this.buyDate = buyDate;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getArea() {
@@ -295,13 +277,7 @@ public class Assets {
         this.inputMessage = inputMessage;
     }
 
-    public String getInputDate() {
-        return inputDate;
-    }
 
-    public void setInputDate(String inputDate) {
-        this.inputDate = inputDate;
-    }
 
     public String getAuditor() {
         return auditor;
@@ -311,13 +287,7 @@ public class Assets {
         this.auditor = auditor;
     }
 
-    public String getAuditorDate() {
-        return auditorDate;
-    }
 
-    public void setAuditorDate(String auditorDate) {
-        this.auditorDate = auditorDate;
-    }
 
     public String getAuthorizer() {
         return authorizer;
@@ -327,11 +297,51 @@ public class Assets {
         this.authorizer = authorizer;
     }
 
-    public String getAuthorizerDate() {
+    public Date getStorageDate() {
+        return storageDate;
+    }
+
+    public void setStorageDate(Date storageDate) {
+        this.storageDate = storageDate;
+    }
+
+    public Date getBuyDate() {
+        return buyDate;
+    }
+
+    public void setBuyDate(Date buyDate) {
+        this.buyDate = buyDate;
+    }
+
+    public Date getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(Date outDate) {
+        this.outDate = outDate;
+    }
+
+    public Date getInputDate() {
+        return inputDate;
+    }
+
+    public void setInputDate(Date inputDate) {
+        this.inputDate = inputDate;
+    }
+
+    public Date getAuditorDate() {
+        return auditorDate;
+    }
+
+    public void setAuditorDate(Date auditorDate) {
+        this.auditorDate = auditorDate;
+    }
+
+    public Date getAuthorizerDate() {
         return authorizerDate;
     }
 
-    public void setAuthorizerDate(String authorizerDate) {
+    public void setAuthorizerDate(Date authorizerDate) {
         this.authorizerDate = authorizerDate;
     }
 
@@ -363,7 +373,7 @@ public class Assets {
     public String toString() {
         return "Assets{" +
                 "id=" + id +
-                ", storageDate='" + storageDate + '\'' +
+                ", storageDate=" + storageDate +
                 ", itemName='" + itemName + '\'' +
                 ", coding='" + coding + '\'' +
                 ", standard='" + standard + '\'' +
@@ -373,8 +383,8 @@ public class Assets {
                 ", price='" + price + '\'' +
                 ", value='" + value + '\'' +
                 ", propertyUnit='" + propertyUnit + '\'' +
-                ", buyDate='" + buyDate + '\'' +
-                ", outDate='" + outDate + '\'' +
+                ", buyDate=" + buyDate +
+                ", outDate=" + outDate +
                 ", outCount='" + outCount + '\'' +
                 ", area='" + area + '\'' +
                 ", goodsType='" + goodsType + '\'' +
@@ -383,11 +393,11 @@ public class Assets {
                 ", unitUse='" + unitUse + '\'' +
                 ", manager='" + manager + '\'' +
                 ", inputMessage='" + inputMessage + '\'' +
-                ", inputDate='" + inputDate + '\'' +
+                ", inputDate=" + inputDate +
                 ", auditor='" + auditor + '\'' +
-                ", auditorDate='" + auditorDate + '\'' +
+                ", auditorDate=" + auditorDate +
                 ", authorizer='" + authorizer + '\'' +
-                ", authorizerDate='" + authorizerDate + '\'' +
+                ", authorizerDate=" + authorizerDate +
                 ", picture='" + picture + '\'' +
                 ", useType='" + useType + '\'' +
                 ", remark='" + remark + '\'' +

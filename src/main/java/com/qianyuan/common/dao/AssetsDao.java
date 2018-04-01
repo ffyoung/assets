@@ -1,9 +1,12 @@
 package com.qianyuan.common.dao;
 
 
+import com.github.pagehelper.Page;
 import com.qianyuan.common.domain.Assets;
 import com.qianyuan.common.domain.User;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 产品信息Dao
@@ -23,21 +26,31 @@ public interface AssetsDao {
      * @param id
      * @return
      */
-    int deleteAssets(Long id);
+    int deleteAssetsById(Long id);
 
     /**
      * 更具项目内容修改信息
-     * @param id
+     * @param assets
      * @return
      */
-    Assets updateAssets(Long id);
+    Assets updateAssets(Assets assets);
 
     /**
      * 查询项目信息  by Id
      * @param id
      * @return
      */
-    Assets findById(Long id);
+    Assets findAssetById(Long id);
+
+
+    /**
+     * 查找所有
+     * @return
+     */
+    List<Assets> findAll();
+
+
+    List<Assets> findByContent(String findContent);
 
 
 

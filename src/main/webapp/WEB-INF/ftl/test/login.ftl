@@ -17,7 +17,6 @@
     <link href="/common/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
     <link href="/common/animate.css/animate.min.css" rel="stylesheet">
-
     <!-- Custom Theme Style -->
     <link href="/css/custom/custom.min.css" rel="stylesheet">
 </head>

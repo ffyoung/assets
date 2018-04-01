@@ -5,62 +5,208 @@
 <mapper namespace="com.qianyuan.common.dao.AssetsDao">
 
 
-    <!--<resultMap id="MyResutlMap" type="com.qianyuan.common.domain.Assets" >-->
-        <!--<id property="id" column="id" jdbcType="BIGINT" />-->
+    <resultMap id="MyResutlMap" type="com.qianyuan.common.domain.Assets">
 
-        <!--<result property="username" column="username" jdbcType="VARCHAR" />-->
-        <!--<result property="nickname" column="nickname" jdbcType="VARCHAR" />-->
-        <!--<result property="password" column="password" jdbcType="VARCHAR" />-->
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="storageDate" column="storageDate" jdbcType="DATE"/>
+        <result property="itemName" column="itemName" jdbcType="VARCHAR"/>
+        <result property="coding" column="coding" jdbcType="VARCHAR"/>
+        <result property="standard" column="standard" jdbcType="VARCHAR"/>
+        <result property="model" column="model" jdbcType="VARCHAR"/>
+        <result property="inCount" column="inCount" jdbcType="BIGINT"/>
+        <result property="unit" column="unit" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="DOUBLE"/>
+        <result property="value" column="value" jdbcType="VARCHAR"/>
+        <result property="propertyUnit" column="propertyUnit" jdbcType="VARCHAR"/>
+        <result property="propertyUnit" column="propertyUnit" jdbcType="VARCHAR"/>
+        <result property="buyDate" column="buyDate" jdbcType="DATE"/>
+        <result property="outDate" column="outDate" jdbcType="DATE"/>
+        <result property="outCount" column="outCount" jdbcType="BIGINT"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="goodsType" column="goodsType" jdbcType="VARCHAR"/>
+        <result property="goodsProperty" column="goodsProperty" jdbcType="VARCHAR"/>
+        <result property="managerStatus" column="managerStatus" jdbcType="VARCHAR"/>
+        <result property="unitUse" column="unitUse" jdbcType="VARCHAR"/>
+        <result property="manager" column="manager" jdbcType="VARCHAR"/>
+        <result property="inputMessage" column="inputMessage" jdbcType="VARCHAR"/>
+        <result property="inputDate" column="inputDate" jdbcType="DATE"/>
+        <result property="auditor" column="auditor" jdbcType="VARCHAR"/>
+        <result property="auditorDate" column="auditorDate" jdbcType="DATE"/>
+        <result property="authorizer" column="authorizer" jdbcType="VARCHAR"/>
+        <result property="authorizerDate" column="authorizerDate" jdbcType="DATE"/>
+        <result property="picture" column="picture" jdbcType="VARCHAR"/>
+        <result property="useType" column="useType" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+
+    </resultMap>
 
 
+    <sql id="MyCommonSql">
+        id,storageDate,itemName,coding,standard,model,inCount,unit,
+          price,value,propertyUnit,propertyUnit,buyDate,outDate,outCount,
+          area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
+          inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
+    </sql>
+
+    <!--产品插入-->
+    <insert id="addAssets" parameterType="com.qianyuan.common.domain.Assets">
+        insert into t_asset
+        (id,storageDate,itemName,coding,standard,model,inCount,unit,
+          price,value,propertyUnit,propertyUnit,buyDate,outDate,outCount,
+          area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
+          inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
+        )
+        VALUES
+        ( null,#{storagedate,jdbcType=DATE},#{itemname,jdbcType=VARCHAR},
+        #{coding,jdbcType=VARCHAR},#{standard,jdbcType=VARCHAR},#{model,jdbcType=VARCHAR},#{incount,jdbcType=BIGINT},
+        #{unit,jdbcType=VARCHAR},#{price,jdbcType=DOUBLE},#{value,jdbcType=VARCHAR},#{propertyunit,jdbcType=VARCHAR},
+        #{propertyunit,jdbcType=VARCHAR},#{buydate,jdbcType=DATE},#{outdate,jdbcType=DATE},#{outcount,jdbcType=BIGINT},
+        #{area,jdbcType=VARCHAR},#{goodstype,jdbcType=VARCHAR},#{goodsproperty,jdbcType=VARCHAR},#{managerstatus,jdbcType=VARCHAR},
+        #{unituse,jdbcType=VARCHAR},#{manager,jdbcType=VARCHAR},#{inputmessage,jdbcType=VARCHAR},#{inputdate,jdbcType=DATE},
+        #{auditor,jdbcType=VARCHAR},#{auditordate,jdbcType=DATE},#{authorizer,jdbcType=VARCHAR},#{authorizerdate,jdbcType=DATE},
+        #{picture,jdbcType=VARCHAR},#{usetype,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--登录验证-->
+    <select id="findAssetById" resultMap="MyResutlMap">
+        select
+        <include refid="MyCommonSql"/>
+        from t_asset
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <!--项目删除-->
+    <delete id="deleteAssetsById" parameterType="java.lang.Long">
+        DELETE from t_asset
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <!--根据项目信息更改-->
+    <update id="updateAssets">
+        update t_asset
+        <set>
+            <if test="id != null">
+                id= #{id,jdbcType=BIGINT},
+            </if>
+            <if test="storagedate != null">
+                storagedate= #{storagedate,jdbcType=DATE},
+            </if>
+            <if test="itemname != null">
+                itemname= #{itemname,jdbcType=VARCHAR},
+            </if>
+            <if test="coding != null">
+                coding= #{coding,jdbcType=VARCHAR},
+            </if>
+            <if test="standard != null">
+                standard= #{standard,jdbcType=VARCHAR},
+            </if>
+            <if test="model != null">
+                model= #{model,jdbcType=VARCHAR},
+            </if>
+            <if test="incount != null">
+                incount= #{incount,jdbcType=BIGINT},
+            </if>
+            <if test="unit != null">
+                unit= #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price= #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="value != null">
+                value= #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="propertyunit != null">
+                propertyunit= #{propertyunit,jdbcType=VARCHAR},
+            </if>
+            <if test="buydate != null">
+                buydate= #{buydate,jdbcType=DATE},
+            </if>
+            <if test="outdate != null">
+                outdate= #{outdate,jdbcType=DATE},
+            </if>
+            <if test="outcount != null">
+                outcount= #{outcount,jdbcType=BIGINT},
+            </if>
+            <if test="area != null">
+                area= #{area,jdbcType=VARCHAR},
+            </if>
+            <if test="goodstype != null">
+                goodstype= #{goodstype,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsproperty != null">
+                goodsproperty= #{goodsproperty,jdbcType=VARCHAR},
+            </if>
+            <if test="managerstatus != null">
+                managerstatus= #{managerstatus,jdbcType=VARCHAR},
+            </if>
+            <if test="unituse != null">
+                unituse= #{unituse,jdbcType=VARCHAR},
+            </if>
+            <if test="manager != null">
+                manager= #{manager,jdbcType=VARCHAR},
+            </if>
+            <if test="inputmessage != null">
+                inputmessage= #{inputmessage,jdbcType=VARCHAR},
+            </if>
+            <if test="inputdate != null">
+                inputdate= #{inputdate,jdbcType=DATE},
+            </if>
+            <if test="auditor != null">
+                auditor= #{auditor,jdbcType=VARCHAR},
+            </if>
+            <if test="auditordate != null">
+                auditordate= #{auditordate,jdbcType=DATE},
+            </if>
+            <if test="authorizer != null">
+                authorizer= #{authorizer,jdbcType=VARCHAR},
+            </if>
+            <if test="authorizerdate != null">
+                authorizerdate= #{authorizerdate,jdbcType=DATE},
+            </if>
+            <if test="picture != null">
+                picture= #{picture,jdbcType=VARCHAR},
+            </if>
+            <if test="usetype != null">
+                usetype= #{usetype,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark= #{remark,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 
 
+    <select id="findAll" resultMap="MyResutlMap">
+        select
+        <include refid="MyCommonSql" />
+        from t_asset
+    </select>
 
-
-    <!--</resultMap>-->
-
-    <!--<sql id="MyCommonSql" >-->
-        <!--id,username,nickname,password-->
-    <!--</sql>-->
-
-    <!--&lt;!&ndash;用户注册&ndash;&gt;-->
-    <!--<insert id="addUser" parameterType="com.qianyuan.common.domain.User">-->
-        <!--insert into t_user-->
-        <!--(null,username,nickname,password)-->
-        <!--values-->
-        <!--(#{username,jdbcType=VARCHAR},#{nickname,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})-->
-    <!--</insert>-->
-
-    <!--&lt;!&ndash;登录验证&ndash;&gt;-->
-    <!--<select id="findUser" resultMap="MyResutlMap">-->
-         <!--select-->
-         <!--<include refid="MyCommonSql" />-->
-         <!--from t_user-->
-         <!--where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}-->
-    <!--</select>-->
-
-    <!--&lt;!&ndash;用户删除&ndash;&gt;-->
-    <!--<delete id="deleteUser" parameterType="java.lang.Long">-->
-        <!--DELETE from t_user-->
-        <!--where id = #{id,jdbcType=BIGINT}-->
-    <!--</delete>-->
-
-    <!--&lt;!&ndash;根据用户信息更改&ndash;&gt;-->
-    <!--<update id="updateUser">-->
-        <!--update t_user-->
-        <!--<set >-->
-            <!--<if test="nickname != null" >-->
-                <!--nickname = #{nickname,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="username != null" >-->
-                <!--username = #{username,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="password != null" >-->
-                <!--password = #{password,jdbcType=BIGINT},-->
-            <!--</if>-->
-        <!--</set>-->
-        <!--where id = #{id,jdbcType=BIGINT}-->
-    <!--</update>-->
+    <select id="findByContent" resultMap="MyResutlMap">
+        SELECT
+        <include refid="MyCommonSql" />
+        from t_asset
+        <where>
+            <if test="findContent != null and findContent !='' " >
+                LOWER(itemName) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or coding = #{findContent,jdbcType=VARCHAR}
+                or model = #{findContent,jdbcType=VARCHAR}
+                or propertyUnit = #{findContent,jdbcType=VARCHAR}
+                or LOWER(area) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(goodsType) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(goodsProperty) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(managerStatus) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(unitUse) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(manager) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(auditor) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(inputMessage) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(authorizer) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(useType) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
+    </select>
 
 </mapper>
 

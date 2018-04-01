@@ -19,4 +19,11 @@ public class CommonController {
     public String error(){
         return "config/error";
     }
+
+
+    @RequestMapping("main")
+    public String main(){
+        return "config/main";
+    }
+
 }
