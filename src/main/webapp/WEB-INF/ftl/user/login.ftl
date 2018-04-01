@@ -1,43 +1,104 @@
-<#--登录-->
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <title>登录界面</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/login/reset.css"/>
-    <link rel="stylesheet" href="/css/login/supersized.css"/>
-    <link rel="stylesheet" href="/css/login/style.css"/>
-    <style>
-        canvas {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-        }
-        body{
-            background-image: url("/css/img/backgrounds/1.jpg");
-            background-color: #333366;
-        }
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login Page|</title>
+
+    <!-- Bootstrap -->
+    <link href="/common/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/common/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/common/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="/common/animate.css/animate.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/css/custom/custom.min.css" rel="stylesheet">
 </head>
-<body id="body">
-<script>
-</script>
-<div class="page-container">
-    <h1>Login</h1>
-    <form id="_form" action="/user/loginDo" method="post" autocomplete="off">
-        <input type="text" name="username" id="username" class="username" id="username" placeholder="Account">
-        <input type="password" name="password" class="password" id="password" placeholder="Password">
-        <button type="button" id="login">login</button>
-        <button type="button" id="register" class="register">Register</button>
-        <div class="error"><span>+</span></div>
-    </form>
+
+<body class="login" >
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form>
+                    <h1>登 录</h1>
+                    <div>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="账 号" autocomplete="off" />
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="密 码" autocomplete="off"  />
+                    </div>
+                    <div>
+                        <button class="btn btn-default submit" type="button" id="login">登 录</button>
+                        <a class="reset_pass" href="#">忘 记 密 码 ?</a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">新用户?
+                            <a href="#signup" class="to_register"> 创 建 用 户 </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <br />
+
+                        <div>
+                            <p>©2018 河南省乾元水资源开发利用有限公司</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+            <section class="login_content">
+                <form action="/user/registerDo" method="post">
+                    <h1>新用户</h1>
+                    <div>
+                        <input type="text" class="form-control" placeholder="用 户 名" name="username" required="" />
+                    </div>
+                    <div>
+                        <input type="email" class="form-control" placeholder="昵 称" name="nickname" required="" />
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="密 码" name="password" required="" />
+                    </div>
+
+                    <div>
+                        <input type="submit" value="提交"/>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">已经有账户?
+                            <a href="#signin" class="to_register"> 登 录  </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br />
+
+                        <div>
+                            <p>©2018 河南省乾元水资源开发利用有限公司</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
 </div>
 <!-- Javascript -->
 <script src="/js/common/jquery/jquery1.8.3.min.js"></script>
 <script src="/js/common/layer/layer.js"></script>
 <script src="/js/common/jquery-form.js"></script>
-<script src="/js/common/iconfont.js"></script>
 <script>
 
     jQuery(document).ready(function() {
@@ -57,28 +118,20 @@
             var username = $('#username').val();
             var password = $('#password').val();
             var lenu = username.length;
-            if (username == '' || (lenu < 3 || lenu > 8)) {
-                $('.error').fadeOut('fast', function () {
-                    $('.error').css('top', '27px').show();
-                });
-                $('.error').fadeIn('fast', function () {
-                    $('.username').focus();
-                });
+            // if (username == '' || (lenu < 3 || lenu > 11)) {
+            if (username == '') {
+                layer.msg("账号不能为空/格式不正确对..")
+                $('#username').focus();
                 return false;
             }
             if (password == '') {
-                $('.error').fadeOut('fast', function () {
-                    $('.error').css('top', '96px').show();
-                });
-                $(this).find('.error').fadeIn('fast', function () {
-                    $('.password').focus();
-                });
+                layer.msg("密码不能为空")
+                $('#password').focus();
                 return false;
             }
             var pswd = password;
             data = {password: pswd, username: username};
             var load = layer.load();
-
             $.ajax({
                 url: "/user/loginDo",
                 data: data,
@@ -88,40 +141,37 @@
                     layer.msg('正在登陆，请注意信息提示。');
                 },
                 success: function (result) {
-                    console.log(result);
+                    console.log(result.msg);
+
+
                     layer.close(load);
                     if (result && result.status != 200) {
+                        window.location.href ="main";
                         layer.msg("账号密码错误！");
-                        $('.password').val('');
+                        $('#password').val('');
                         return;
                     } else {
+                        window.location.href ="main";
                         layer.msg('登录成功！');
                         setTimeout(function () {
                             //登录返回
-                            window.location.href ="main";
+
                         }, 1000)
                     }
                 },
                 error: function (e) {
-                    console.log(e, e.message);
                     layer.msg('请看后台Java控制台，是否报错', new Function());
                 }
             });
         });
-        $('.page-container form .username, .page-container form .password').keyup(function () {
-            $(this).parent().find('.error').fadeOut('fast');
-        });
-
     });
 
 
     //注册
-    $("#register").click(function () {
-        window.location.href = "register";
-    });
+    // $("#register").click(function () {
+    //     window.location.href = "register";
+    // });
 
 </script>
 </body>
-
 </html>
-

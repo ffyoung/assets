@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>欢迎界面</title>
+    <title>资产列表</title>
 
     <!-- Bootstrap -->
     <link href="/common/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
         <#--vvvvvv以下为修改内容vvvvvv-->
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Welcome Page!!!</small></h3>
+                    <h3>资产列表</small></h3>
                 </div>
                 <div class="clearfix"></div>
             </div>

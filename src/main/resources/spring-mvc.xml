@@ -46,6 +46,13 @@
                 <!--格式化日期 end-->
                 <!--防止页面出现数字-->
                 <prop key="number_format">#</prop>
+
+                <!--自动引入<#macro>宏-->
+                <prop key="auto_import">
+                    <!-- 自动装载，引入Freemarker，用于Freemarker Macro引入 -->
+                    /config/common/top.ftl as _top,
+                    /config/common/left.ftl as _left
+                </prop>
             </props>
         </property>
 

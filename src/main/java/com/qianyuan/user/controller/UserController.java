@@ -8,10 +8,13 @@ import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,7 +31,7 @@ public class UserController extends CommonController{
      */
     @RequestMapping("login")
     public String login(){
-        return "test/login";
+        return "user/login";
     }
 
     /**
@@ -63,13 +66,22 @@ public class UserController extends CommonController{
     }
 
 
+//    /**
+//     * 跳转到主页面
+//     * @return
+//     */
+//    @RequestMapping(value = "main",method = RequestMethod.GET)
+//    public String main(){
+//        return "user/main";
+//    }
+
     /**
      * 跳转到主页面
      * @return
      */
     @RequestMapping(value = "main",method = RequestMethod.GET)
     public String main(){
-        return "user/main";
+        return "config/main";
     }
 
 }
