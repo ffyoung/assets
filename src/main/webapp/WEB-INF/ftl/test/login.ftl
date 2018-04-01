@@ -60,7 +60,7 @@
 
         <div id="register" class="animate form registration_form">
             <section class="login_content">
-                <form>
+                <form action="/user/registerDo" method="post">
                     <h1>新用户</h1>
                     <div>
                         <input type="text" class="form-control" placeholder="用 户 名" name="username" required="" />
@@ -71,11 +71,9 @@
                     <div>
                         <input type="password" class="form-control" placeholder="密 码" name="password" required="" />
                     </div>
+
                     <div>
-                        <input type="password" class="form-control" placeholder="确 认 密 码" name="repassword" required="" />
-                    </div>
-                    <div>
-                        <a class="btn btn-default submit" href="index.html">提 交</a>
+                    <input type="submit" value="提交"/>
                     </div>
 
                     <div class="clearfix"></div>
@@ -143,26 +141,36 @@
                 },
                 success: function (result) {
                     console.log(result.msg);
+
+
                     layer.close(load);
                     if (result && result.status != 200) {
+                        window.location.href ="main";
                         layer.msg("账号密码错误！");
-                        $('.password').val('');
+                        $('#password').val('');
                         return;
                     } else {
+                        window.location.href ="main";
                         layer.msg('登录成功！');
                         setTimeout(function () {
                             //登录返回
-                            window.location.href ="main";
+
                         }, 1000)
                     }
                 },
                 error: function (e) {
-                    console.log(e, e.message);
                     layer.msg('请看后台Java控制台，是否报错', new Function());
                 }
             });
         });
     });
+
+
+    //注册
+    // $("#register").click(function () {
+    //     window.location.href = "register";
+    // });
+
 </script>
 </body>
 </html>
