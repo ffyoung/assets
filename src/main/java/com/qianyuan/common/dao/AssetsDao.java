@@ -50,7 +50,7 @@ public interface AssetsDao {
     List<Assets> findAll();
 
 
-    List<Assets> findByContent(String findContent);
+    List<Assets> findByContent(@Param("findContent") String findContent);
 
 
 

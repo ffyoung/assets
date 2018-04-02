@@ -50,6 +50,7 @@ public class AssetsController {
     public String findbyCont( Model model,
                                @RequestParam(value = "findContent",required = false)  String findContent,
                                @RequestParam(value = "pageNow",required = false) Integer pageNow){
+
         model.addAttribute("results",false);
         PageInfo<Assets> assetsPageInfo = assetsService.findByContent(findContent,pageNow);
         if(null != assetsPageInfo) {
