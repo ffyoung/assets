@@ -101,8 +101,8 @@
                             <td>${list.propertyUnit}</td>
                             <td>${list.buyDate?date}</td>
                             <td>${list.outDate?date}</td>
-                              <td>${list.outCount}</td>
-                              <td>${list.inCount - list.outCount}</td>
+                          <td>${list.outCount}</td>
+                          <td>${list.inCount - list.outCount}</td>
                             <td>${list.area}</td>
                             <td class="alert-danger">${list.goodsType}</td>
                             <td>${list.goodsProperty}</td>
