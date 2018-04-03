@@ -68,7 +68,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button type="submit" id="subId" class="btn btn-success">确认</button>
+                                        <button type="button" id="sub" class="btn btn-success">确认</button>
                                     </div>
                                 </div>
                             </form>
