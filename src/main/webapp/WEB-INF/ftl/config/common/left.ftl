@@ -9,13 +9,14 @@
 
          <!-- menu profile quick info -->
          <div class="profile clearfix">
-             <div class="profile_pic">
-                 <img src="" alt="..." class="img-circle profile_img">
-             </div>
-             <div class="profile_info">
-                 <span>欢迎你,</span>
-                 <h2></h2>
-             </div>
+             <#--图片添加-->
+             <#--<div class="profile_pic">-->
+                 <#--<img src="" alt="..." class="img-circle profile_img">-->
+             <#--</div>-->
+             <#--<div class="profile_info">-->
+                 <#--<span>欢迎你,</span>-->
+                 <#--<h2></h2>-->
+             <#--</div>-->
          </div>
          <!-- /menu profile quick info -->
 
@@ -33,14 +34,10 @@
                              <li><a href="index3.html">Dashboard3</a></li>
                          </ul>
                      </li>
-                     <li><a><i class="fa fa-edit"></i> 角色表 <span class="fa fa-chevron-down"></span></a>
+                     <li><a><i class="fa fa-edit"></i> 角色管理 <span class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
-                             <li><a href="form.html">General Form</a></li>
-                             <li><a href="form_advanced.html">Advanced Components</a></li>
-                             <li><a href="form_validation.html">Form Validation</a></li>
-                             <li><a href="form_wizards.html">Form Wizard</a></li>
-                             <li><a href="form_upload.html">Form Upload</a></li>
-                             <li><a href="form_buttons.html">Form Buttons</a></li>
+                             <li><a href="/role/all?pageNow=1">角色列表</a></li>
+                             <li><a href="/role/assign?pageNow=1">用户角色分配</a></li>
                          </ul>
                      </li>
                      <li><a><i class="fa fa-desktop"></i> 权限表 <span

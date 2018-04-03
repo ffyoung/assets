@@ -65,5 +65,8 @@
 <!-- Custom Theme Scripts -->
 <script src="/js/common/dist/custom.min.js"></script>
 
+<script src="/js/common/layer/layer.js"></script>
+<script src="/js/common/jquery-form.js"></script>
+
 </body>
 </html>

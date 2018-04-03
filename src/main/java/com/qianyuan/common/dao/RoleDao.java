@@ -1,5 +1,10 @@
 package com.qianyuan.common.dao;
 
+import com.qianyuan.common.domain.Role;
+
+import java.util.List;
+import java.util.Set;
+
 /**
  * - - - - - - - - - - -
  * |    By   R o c k   |
@@ -9,7 +14,19 @@ package com.qianyuan.common.dao;
 public interface RoleDao {
 
 
+    Set<String> findRoleByUserId(Long id);
 
+    List<Role> findAll();
+
+    Role findbyRoleNOT(String content);
+
+    int addRole(Role role);
+
+    Role findById(Long id);
+
+    int updateByRoleInfo(Role role);
+
+    int deleteById(Long id);
 
 
 }

@@ -87,5 +87,5 @@
         <property name="order" value="1" />
     </bean>
 
-    <!--<bean name="springContextUtil" class="com.qianyuan.common.utils.SpringContextUtil" scope="singleton" />-->
+    <bean name="springContextUtil" class="com.qianyuan.common.util.SpringContextUtil" scope="singleton" />
 </beans>

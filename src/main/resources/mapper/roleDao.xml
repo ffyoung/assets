@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianyuan.common.dao.RoleDao">
+
+    <resultMap id="MyMapResult" type="com.qianyuan.common.domain.Role">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--sql 语句-->
+    <sql id="Base_Column_List">
+        id,name,type
+    </sql>
+
+    <sql id="where_all">
+        <where>
+            <if test="findContent != null and findContent !='' " >
+                and (
+                LOWER(name) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%") or
+                LOWER(type) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
+                )
+            </if>
+        </where>
+    </sql>
+
+
+    <!--查询所有角色信息-->
+    <select id="findAll" resultMap="MyMapResult">
+        SELECT
+        <include refid="Base_Column_List" />
+        from t_role
+    </select>
+
+    <!--通过userId查找角色-->
+    <select id="findRoleByUserId" resultType="java.lang.String">
+        select r.type
+        from t_role r,t_user_role ur
+        where ur.rid = r.id and ur.uid = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <!--根据角色名称或者类型查询-->
+    <select id="findbyRoleNOT" resultMap="MyMapResult">
+        select
+        <include refid="Base_Column_List" />
+        from t_role
+        where
+        name = #{content,jdbcType=VARCHAR} or type = #{content,jdbcType=VARCHAR}
+    </select>
+
+    <!--添加权限-->
+    <insert id="addRole" useGeneratedKeys="true" parameterType="com.qianyuan.common.domain.Role">
+        insert into t_role (id,name,type)
+        values
+        (null,#{name,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR})
+    </insert>
+
+    <!--根据ID查询-->
+    <select id="findById" resultMap="MyMapResult">
+        SELECT
+        <include refid="Base_Column_List" />
+        from t_role
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <!--根据跟新内容跟新-->
+    <update id="updateByRoleInfo">
+        update t_role
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!--根据Id删除权限-->
+    <delete id="deleteById"  parameterType="java.lang.Long" >
+        delete from t_role
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+
+</mapper>

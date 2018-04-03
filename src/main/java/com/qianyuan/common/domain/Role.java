@@ -1,6 +1,7 @@
 package com.qianyuan.common.domain;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 角色实体类

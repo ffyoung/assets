@@ -15,15 +15,6 @@ public class Permission {
      * 权限资源
      */
     private String url;
-    private List<Role> rolesList;
-
-    public List<Role> getRolesList() {
-        return rolesList;
-    }
-
-    public void setRolesList(List<Role> rolesList) {
-        this.rolesList = rolesList;
-    }
 
     public Long getId() {
         return id;

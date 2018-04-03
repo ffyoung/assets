@@ -1,6 +1,8 @@
 package com.qianyuan.core.freemarker;
 
+import com.qianyuan.common.domain.User;
 import com.qianyuan.common.util.LoggerUtils;
+import com.qianyuan.core.shiro.token.manager.TokenManager;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,11 @@ public class FreeMarkerViewExtend extends FreeMarkerView {
             LoggerUtils.fmtError(FreeMarkerViewExtend.class,e, "FreeMarkerViewExtend 加载父类出现异常。请检查。");
         }
         /** 待添加*/
+        User user = TokenManager.getToken();
+        if(TokenManager.isLogin()){
+//            UUser user = TokenManager.getToken();
+            model.put("user",user);
+        }
         model.put("basePath", request.getContextPath());//base目录。
     }
 }

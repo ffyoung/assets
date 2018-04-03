@@ -1,7 +1,11 @@
 package com.qianyuan.common.dao;
 
 import com.qianyuan.common.domain.User;
+import com.qianyuan.role.bo.RoleBo;
+import com.qianyuan.role.bo.UserRoleAssignBo;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  *
@@ -37,6 +41,27 @@ public interface UserDao {
      * @return
      */
      User updateUser(Long id);
+
+    /**
+     * 查询用户角色
+     * @return
+     */
+    List<UserRoleAssignBo> findUserAndRole();
+
+
+    /**
+     * 根据用户id查询角色
+     * @param id
+     * @return
+     */
+    List<RoleBo> selectRoleByUserId(Long id);
+
+    /**
+     * 根据用户名查询用户
+     * @param username
+     * @return
+     */
+    User findByAccount(String username);
 
 }
 

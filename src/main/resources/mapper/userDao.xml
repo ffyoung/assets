@@ -54,6 +54,35 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
+
+
+    <!--给用户分配角色-->
+    <select id="findUserAndRole" resultType="com.qianyuan.role.bo.UserRoleAssignBo">
+        select u.id,u.nickname,group_concat(ur.name) roleNames,group_concat(ur.id)roleIds from
+        t_user u
+        left join t_user_role uur on uur.uid = u.id
+        left join t_role ur on ur.id = uur.rid
+        group by u.id
+    </select>
+
+
+    <!-- 选择角色给用户 ，checkbox 列表-->
+    <select id="selectRoleByUserId" resultType="com.qianyuan.role.bo.RoleBo">
+        select tr.id,tr.name,tr.type,ifnull(tur.uid,0) marker
+        from t_role tr
+        left join(select * from t_user_role where uid=#{id,jdbcType=BIGINT}) tur
+        on tur.rid = tr.id
+    </select>
+
+    <!-- 根据邮箱|帐号查询 -->
+    <select id="findByAccount" resultMap="MyResutlMap" >
+        select
+        <include refid="MyCommonSql" />
+        from t_user
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+
+
 </mapper>
 
 
