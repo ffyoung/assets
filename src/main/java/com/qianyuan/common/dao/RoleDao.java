@@ -1,6 +1,8 @@
 package com.qianyuan.common.dao;
 
 import com.qianyuan.common.domain.Role;
+import com.qianyuan.permission.bo.PermissionBo;
+import com.qianyuan.permission.bo.RolePermissionAssignBo;
 
 import java.util.List;
 import java.util.Set;
@@ -27,6 +29,22 @@ public interface RoleDao {
     int updateByRoleInfo(Role role);
 
     int deleteById(Long id);
+
+    /**
+     * 查询角色权限
+     *
+     * @return
+     */
+    List<RolePermissionAssignBo> findRoleAndPermission();
+
+    /**
+     * 根据用户id查询角色
+     *
+     * @param id
+     * @return
+     */
+    List<PermissionBo> selectPermissionByRoleId(Long id);
+
 
 
 }

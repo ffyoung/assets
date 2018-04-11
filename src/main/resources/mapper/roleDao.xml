@@ -86,6 +86,19 @@
         delete from t_role
         where id = #{id,jdbcType=BIGINT}
     </delete>
-
-
+    <!--给角色分配权限-->
+    <select id="findRoleAndPermission" resultType="com.qianyuan.permission.bo.RolePermissionAssignBo">
+       select r.id,r.name,group_concat(p.url) permissionNames,group_concat(p.id)permissionIds from
+        t_role r
+        left join t_role_permission rp on rp.rid = r.id
+        left join t_permission p on p.id = rp.pid
+        group by r.id
+    </select>
+    <!-- 选择权限给角色 ，checkbox 列表-->
+    <select id="selectPermissionByRoleId" resultType="com.qianyuan.permission.bo.PermissionBo">
+        select tp.id,tp.name,tp.url,ifnull(trp.rid,0) marker
+        from t_permission tp
+        left join(select * from t_role_permission where rid=#{id,jdbcType=BIGINT}) trp
+        on trp.pid = tp.id
+    </select>
 </mapper>

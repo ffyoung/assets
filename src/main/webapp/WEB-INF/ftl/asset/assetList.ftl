@@ -38,6 +38,9 @@
             <div class="page-title">
                 <div class="title_left">
                     <h3>资产列表</small></h3>
+                    <div style="position: absolute;right: 1cm;">
+                        <a href="/asset/addAssetsIndex" class="btn btn-default">新增资产</a>
+                    </div>
                     <hr/>
                     <form id="formId" method="post" action="/asset/findByCont">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
@@ -104,7 +107,7 @@
                           <td>${list.outCount}</td>
                           <td>${list.inCount - list.outCount}</td>
                             <td>${list.area}</td>
-                            <td class="alert-danger">${list.goodsType}</td>
+                              <td>${list.goodsType}</td>
                             <td>${list.goodsProperty}</td>
                             <td>${list.managerStatus}</td>
                             <td>${list.unitUse}</td>

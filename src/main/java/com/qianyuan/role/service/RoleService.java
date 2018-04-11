@@ -2,8 +2,11 @@ package com.qianyuan.role.service;
 
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.common.domain.Role;
+import com.qianyuan.permission.bo.PermissionBo;
+import com.qianyuan.permission.bo.RolePermissionAssignBo;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -67,12 +70,30 @@ public interface RoleService {
      * @return
      */
     int deleteById(Long id);
-
     /**
-     * 查询分配权限
+     * 用户分配角色，联合查询列表
      * @param pageNo
      * @param pageSize
      * @return
      */
-//    PageInfo<RolePermissionAllocationBo> findRoleAndPermission(Integer pageNo, Integer pageSize);
+    PageInfo<RolePermissionAssignBo> findRoleAndPermission(Integer pageNo, Integer pageSize);
+
+    /**
+     * 根据角色Id查询权限
+     *
+     * @param id
+     * @return
+     */
+    List<PermissionBo> selectPermissionByRoleId(Long id);
+
+    /**
+     * 给角色添加权限保存操作
+     *
+     * @param userId
+     * @param ids
+     * @return
+     */
+    Map<String, Object> addPermissiontoRole(Long userId, String ids);
+
+
 }

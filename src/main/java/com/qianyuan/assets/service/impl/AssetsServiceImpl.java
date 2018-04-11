@@ -56,4 +56,9 @@ public class AssetsServiceImpl implements AssetsService {
         return page;
     }
 
+    @Override
+    public int addAssets(Assets assets) {
+        return assetsDao.addAssets(assets);
+    }
+
 }

@@ -4,11 +4,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.common.dao.RoleDao;
 import com.qianyuan.common.domain.Role;
+import com.qianyuan.permission.bo.PermissionBo;
+import com.qianyuan.permission.bo.RolePermissionAssignBo;
 import com.qianyuan.role.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -81,6 +84,28 @@ public class RoleServiceImpl implements RoleService {
     public int deleteById(Long id) {
         return roleDao.deleteById(id);
     }
+
+    @Override
+    public PageInfo<RolePermissionAssignBo> findRoleAndPermission(Integer pageNo, Integer pageSize) {
+        pageNo = pageNo == null ? 1 : pageNo;
+        pageSize = pageSize == null ? 10 : pageSize;
+        PageHelper.startPage(pageNo, pageSize);
+        List<RolePermissionAssignBo> list = roleDao.findRoleAndPermission();
+        PageInfo<RolePermissionAssignBo> page = new PageInfo<>(list);
+        return page;
+
+    }
+
+    @Override
+    public List<PermissionBo> selectPermissionByRoleId(Long id) {
+        return roleDao.selectPermissionByRoleId(id);
+    }
+
+    @Override
+    public Map<String, Object> addPermissiontoRole(Long userId, String ids) {
+        return null;
+    }
+
 
 //    @Override
 //    public PageInfo<RolePermissionAllocationBo> findRoleAndPermission(Integer pageNo, Integer pageSize) {

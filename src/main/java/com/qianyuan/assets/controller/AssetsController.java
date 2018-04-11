@@ -2,6 +2,7 @@ package com.qianyuan.assets.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.assets.service.AssetsService;
+import com.qianyuan.common.controller.CommonController;
 import com.qianyuan.common.domain.Assets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 /**
  *   前后端交互入口
@@ -19,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("asset")
-public class AssetsController {
+public class AssetsController extends CommonController {
 
     @Autowired
     private AssetsService assetsService;
@@ -60,6 +64,26 @@ public class AssetsController {
             model.addAttribute("results", true);
         }
         return "asset/assetList";
+    }
+
+    /**
+     * 权限添加执行
+     *
+     * @param assets
+     * @return
+     */
+    @RequestMapping("addAssets")
+    @ResponseBody
+    public Map<String, Object> addAssetsDo(Assets assets) {
+        resultMap.put("status", 400);
+        int temp = assetsService.addAssets(assets);
+        if (temp > 0) {
+            resultMap.put("status", 200);
+            resultMap.put("message", "添加成功");
+        } else {
+            resultMap.put("message", "添加失败");
+        }
+        return resultMap;
     }
 
 }

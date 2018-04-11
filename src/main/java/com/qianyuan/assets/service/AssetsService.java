@@ -40,5 +40,7 @@ public interface AssetsService {
      */
     PageInfo<Assets> findByContent(String findContent,Integer pageNow);
 
+    int addAssets(Assets assets);
+
 
 }
