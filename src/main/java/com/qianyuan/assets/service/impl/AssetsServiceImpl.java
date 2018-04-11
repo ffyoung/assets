@@ -35,11 +35,12 @@ public class AssetsServiceImpl implements AssetsService {
     /**
      * 分页显示all
      */
-    public PageInfo<Assets> findWithPage(Integer pageNow, Integer pageSize) {
+    public PageInfo<Assets> findWithPage(Integer pageNow, Integer pageSize,String findContent) {
         pageNow = (pageNow == null)?1:pageNow;
         pageSize = pageSize == null?10:pageSize;
+        findContent = findContent == null?"":findContent;
         PageHelper.startPage(pageNow,pageSize);
-        List<Assets> list =  assetsDao.findAll();
+        List<Assets> list =  assetsDao.findAll(findContent);
         PageInfo<Assets> page = new PageInfo<>(list);
         return page;
     }

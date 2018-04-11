@@ -45,8 +45,6 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-
-
     @Override
     public PageInfo<UserRoleAssignBo> findUserAndRole(Integer pageNo, Integer pageSize) {
         pageNo = pageNo == null?1:pageNo;

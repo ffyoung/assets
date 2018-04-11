@@ -47,7 +47,7 @@ public interface AssetsDao {
      * 查找所有
      * @return
      */
-    List<Assets> findAll();
+    List<Assets> findAll(@Param("findContent") String findContent);
 
 
     List<Assets> findByContent(@Param("findContent") String findContent);

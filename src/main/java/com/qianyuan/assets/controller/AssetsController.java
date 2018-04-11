@@ -33,36 +33,20 @@ public class AssetsController extends CommonController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "all", method = RequestMethod.GET)
-    public String findAll(Model model, @RequestParam("pageNow") Integer pageNow){
-        PageInfo<Assets> list = assetsService.findWithPage(pageNow,10);
-        int totalPage = (int)Math.ceil((float)list.getTotal()/10);
-        model.addAttribute("assetslist",list.getList());
-        model.addAttribute("totalPage",totalPage>0?totalPage:1);
-        model.addAttribute("results",true);
-        return "asset/assetList";
-    }
-
-    /**
-     * 根据输入内容查询
-     * @param model
-     * @param findContent
-     * @param pageNow
-     * @return
-     */
-    @RequestMapping("findByCont")
-    public String findbyCont( Model model,
-                               @RequestParam(value = "findContent",required = false)  String findContent,
-                               @RequestParam(value = "pageNow",required = false) Integer pageNow){
-
+    @RequestMapping(value = "all")
+    public String findAll(Model model, @RequestParam(value = "pageNow",required = false) Integer pageNow,
+                          @RequestParam(value = "findContent",required = false) String findContent){
         model.addAttribute("results",false);
-        PageInfo<Assets> assetsPageInfo = assetsService.findByContent(findContent,pageNow);
-        if(null != assetsPageInfo) {
-            model.addAttribute("assetslist", assetsPageInfo.getList());
-            int totalPage = (int) Math.ceil((float) assetsPageInfo.getTotal() / 10);
-            model.addAttribute("totalPage", totalPage > 0 ? totalPage : 1);
-            model.addAttribute("results", true);
+        PageInfo<Assets> list = assetsService.findWithPage(pageNow,10,findContent);
+        if(list.getList().size() >= 1){
+            model.addAttribute("results",true);
         }
+        Long totalPage = list.getTotal();
+        model.addAttribute("assetslist",list.getList());
+        model.addAttribute("totalPage",totalPage);
+        pageNow = pageNow == null?1:pageNow;
+        model.addAttribute("currentPage",pageNow);
+        model.addAttribute("findContent",findContent);
         return "asset/assetList";
     }
 

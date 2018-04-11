@@ -182,6 +182,24 @@
         select
         <include refid="MyCommonSql" />
         from t_asset
+        <where>
+            <if test="findContent !='' and findContent != null">
+                LOWER(itemName) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or coding = #{findContent,jdbcType=VARCHAR}
+                or model = #{findContent,jdbcType=VARCHAR}
+                or propertyUnit = #{findContent,jdbcType=VARCHAR}
+                or LOWER(area) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(goodsType) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(goodsProperty) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(managerStatus) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(unitUse) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(manager) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(auditor) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(inputMessage) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(authorizer) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(useType) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
     </select>
 
     <select id="findByContent" resultMap="MyResutlMap">

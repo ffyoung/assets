@@ -39,13 +39,14 @@
                 <div class="title_left">
                     <h3>资产列表</small></h3>
                     <div style="position: absolute;right: 1cm;">
-                        <a href="/asset/addAssetsIndex" class="btn btn-default">新增资产</a>
+                        <a href="/asset/all" class="btn btn-default">新增资产</a>
                     </div>
                     <hr/>
-                    <form id="formId" method="post" action="/asset/findByCont">
+                    <form id="formId" method="post" action="/asset/all" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for..." name="findContent" />
+                                <input type="text" class="form-control" placeholder="Search for..." name="findContent"
+                                value="${findContent?default('')}" id="findContent" />
                                 <span class="input-group-btn">
                                     <input class="btn btn-default" type="submit">Go!</input>
                                 </span>
@@ -54,9 +55,9 @@
                 </div>
                 <div>
                     <table class="table table-striped jambo_table bulk_action">
-
                         <tr>
-                            <td><input type="checkbox" id="check-all" class="flat"></td>
+                            <#--<td><input type="checkbox" id="check-all" class="flat"></td>-->
+                            <td>序号</td>
                             <td>入库日期</td>
                             <td>物品名称</td>
                             <td>编码</td>
@@ -88,10 +89,12 @@
                             <td>备注说明</td>
                         </tr>
                      <tr >
+                          <#if assetslist?size gt 0>
                           <#list assetslist as list>
-                         <td class="a-center ">
-                             <input type="checkbox" class="flat" name="table_records">
-                         </td>
+                         <#--<td class="a-center ">-->
+                             <#--<input type="checkbox" class="flat" name="table_records">-->
+                         <#--</td>-->
+                            <td>${(currentPage-1)*10+list_index+1}</td>
                             <td>${list.storageDate?date}</td>
                             <td>${list.itemName}</td>
                             <td>${list.coding}</td>
@@ -123,10 +126,14 @@
                             <td>${list.remark}</td>
                         </tr>
                     </#list>
+                    <#elseif !results>
+                    <tr>
+                        <td class="text-center danger" colspan="7">没有找到用户</td>
+                    </tr>
+                    </#if>
                 </table>
-
-                        <input id="page" name="pageNow" value="1" disabled />
-                    </form>
+                <div id="complete"></div>
+             </form>
             </div>
             </div>
         <#--^^^^^^^^^^^^^^^^^^^^^-->
@@ -153,6 +160,31 @@
 
 <!-- Custom Theme Scripts -->
 <script src="/js/common/dist/custom.min.js"></script>
-
+<script src="/js/common/page/pageDo.js"></script>
 </body>
+<script>
+
+    <#--分页-->
+    $(function () {
+        PagingManage($('#complete'),${totalPage},10, ${currentPage});
+    });
+
+
+    //分页跳转
+    function pageDo(page){
+        var wd = $("#findContent").val();
+        var url = "/asset/all?pageNow="+page+"&findContent="+wd;
+        window.location.href = url;
+    }
+
+
+
+
+</script>
+
+
+
+
+
+
 </html>

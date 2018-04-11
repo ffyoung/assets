@@ -30,7 +30,7 @@ public interface AssetsService {
      * @param pageSize
      * @return
      */
-    PageInfo<Assets> findWithPage(Integer pageNow, Integer pageSize);
+    PageInfo<Assets> findWithPage(Integer pageNow, Integer pageSize,String findContent);
 
 
     /**
