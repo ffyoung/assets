@@ -17,17 +17,12 @@ import java.util.Set;
  */
 public interface RoleService {
 
-    /**
-     * 查询所有
-     * @return
-     */
-    List<Role> findAll();
 
     /**
-     * 分页查询
+     * 分页查询所有
      * @return
      */
-    PageInfo<Role> findWithPage(Integer pageNo, Integer pageSize);
+    PageInfo<Role> findWithPage(Integer pageNow, Integer pageSize, String content);
 
     /**
      * 根据Id查询
@@ -41,7 +36,7 @@ public interface RoleService {
      * @param content
      * @return
      */
-    Role findbyRoleNOT(String content);
+    PageInfo<Role> findbyRoleNOT(String content, Integer pageNow);
 
     /**
      * 添加一个角色
@@ -71,12 +66,12 @@ public interface RoleService {
      */
     int deleteById(Long id);
     /**
-     * 用户分配角色，联合查询列表
+     * 角色分配权限，联合查询列表
      * @param pageNo
      * @param pageSize
      * @return
      */
-    PageInfo<RolePermissionAssignBo> findRoleAndPermission(Integer pageNo, Integer pageSize);
+    PageInfo<RolePermissionAssignBo> findRoleAndPermission(Integer pageNo, Integer pageSize, String content);
 
     /**
      * 根据角色Id查询权限
@@ -89,11 +84,11 @@ public interface RoleService {
     /**
      * 给角色添加权限保存操作
      *
-     * @param userId
+     * @param roleId
      * @param ids
      * @return
      */
-    Map<String, Object> addPermissiontoRole(Long userId, String ids);
+    Map<String, Object> addPermissiontoRole(Long roleId, String ids);
 
 
 }

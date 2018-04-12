@@ -16,31 +16,26 @@ public class PermissionServiceImpl implements PermissionService {
     @Autowired
     PermissionDao permissionDao;
 
-    @Override
-    /**
-     *查询权限
-     * @return
-     */
-    public List<Permission> findAll() {
-        return permissionDao.findAll();
-    }
+//    @Override
+//    /**
+//     *查询权限
+//     * @return
+//     */
+//    public List<Permission> findAll() {
+//        return permissionDao.findAll();
+//    }
 
-    /**
-     * 分页查询所有
-     *
-     * @param pageNo
-     * @param pageSize
-     * @return
-     */
     @Override
-    public PageInfo<Permission> findWithPage(Integer pageNo, Integer pageSize) {
-        pageNo = pageNo == null ? 1 : pageNo;
+    public PageInfo<Permission> findWithPage(Integer pageNow, Integer pageSize, String content) {
+        pageNow = (pageNow == null) ? 1 : pageNow;
         pageSize = pageSize == null ? 10 : pageSize;
-        PageHelper.startPage(pageNo, pageSize);
-        List<Permission> list = permissionDao.findAll();
+        content = content == null ? "" : content;
+        PageHelper.startPage(pageNow, pageSize);
+        List<Permission> list = permissionDao.findAll(content);
         PageInfo<Permission> page = new PageInfo<>(list);
         return page;
     }
+
 
     @Override
     public Set<String> findPermissionByRolerId(Long id) {
@@ -49,8 +44,12 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public Permission findbyPermissionNOT(String content) {
-        return permissionDao.findbyPermissionNOT(content);
+    public PageInfo<Permission> findByContent(String content, Integer pageNow) {
+        pageNow = (pageNow == null) ? 1 : pageNow;
+        PageHelper.startPage(pageNow, 10);
+        List<Permission> list = permissionDao.findByContent(content);
+        PageInfo<Permission> page = new PageInfo<>(list);
+        return page;
     }
 
 

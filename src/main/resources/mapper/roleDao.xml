@@ -17,10 +17,10 @@
 
     <sql id="where_all">
         <where>
-            <if test="findContent != null and findContent !='' " >
+            <if test="content != null and content !='' ">
                 and (
-                LOWER(name) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%") or
-                LOWER(type) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
+                LOWER(name) like CONCAT("%",#{content,jdbcType=VARCHAR},"%") or
+                LOWER(type) like CONCAT("%",#{content,jdbcType=VARCHAR},"%")
                 )
             </if>
         </where>
@@ -32,6 +32,7 @@
         SELECT
         <include refid="Base_Column_List" />
         from t_role
+        <include refid="where_all"/>
     </select>
 
     <!--通过userId查找角色-->
@@ -42,14 +43,14 @@
     </select>
 
 
-    <!--根据角色名称或者类型查询-->
-    <select id="findbyRoleNOT" resultMap="MyMapResult">
-        select
-        <include refid="Base_Column_List" />
-        from t_role
-        where
-        name = #{content,jdbcType=VARCHAR} or type = #{content,jdbcType=VARCHAR}
-    </select>
+    <!--&lt;!&ndash;根据角色名称或者类型查询&ndash;&gt;-->
+    <!--<select id="findbyRoleNOT" resultMap="MyMapResult">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from t_role-->
+    <!--where-->
+    <!--name = #{content,jdbcType=VARCHAR} or type = #{content,jdbcType=VARCHAR}-->
+    <!--</select>-->
 
     <!--添加权限-->
     <insert id="addRole" useGeneratedKeys="true" parameterType="com.qianyuan.common.domain.Role">
@@ -88,10 +89,15 @@
     </delete>
     <!--给角色分配权限-->
     <select id="findRoleAndPermission" resultType="com.qianyuan.permission.bo.RolePermissionAssignBo">
-       select r.id,r.name,group_concat(p.url) permissionNames,group_concat(p.id)permissionIds from
+        select r.id,r.name,group_concat(tp.name) permissionNames,group_concat(tp.id)permissionIds from
         t_role r
         left join t_role_permission rp on rp.rid = r.id
-        left join t_permission p on p.id = rp.pid
+        left join t_permission tp on tp.id = rp.pid
+        <where>
+            <if test="content!=null and content!=''">
+                LOWER(r.name) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
         group by r.id
     </select>
     <!-- 选择权限给角色 ，checkbox 列表-->

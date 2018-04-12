@@ -10,19 +10,19 @@ import java.util.Set;
 
 public interface PermissionService {
 
-    /**
-     * 查询所有
-     *
-     * @return
-     */
-    List<Permission> findAll();
+//    /**
+//     * 查询所有
+//     *
+//     * @return
+//     */
+//    List<Permission> findAll();
 
     /**
-     * 分页查询
+     * 分页查询所有
      *
      * @return
      */
-    PageInfo<Permission> findWithPage(Integer pageNo, Integer pageSize);
+    PageInfo<Permission> findWithPage(Integer pageNow, Integer pageSize, String content);
 
     /**
      * 根据Id查询
@@ -33,12 +33,11 @@ public interface PermissionService {
     Set<String> findPermissionByRolerId(Long id);
 
     /**
-     * 根据权限名称或者类型查询
-     *
+     * 根据内容信息分页查找
      * @param content
      * @return
      */
-    Permission findbyPermissionNOT(String content);
+    PageInfo<Permission> findByContent(String content, Integer pageNow);
 
     /**
      * 添加一个权限

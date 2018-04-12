@@ -46,11 +46,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageInfo<UserRoleAssignBo> findUserAndRole(Integer pageNo, Integer pageSize) {
-        pageNo = pageNo == null?1:pageNo;
+    public PageInfo<UserRoleAssignBo> findUserAndRole(Integer pageNow, Integer pageSize, String content) {
+        pageNow = pageNow == null ? 1 : pageNow;
         pageSize = pageSize == null?10:pageSize;
-        PageHelper.startPage(pageNo,pageSize);
-        List<UserRoleAssignBo> list =  userDao.findUserAndRole();
+        PageHelper.startPage(pageNow, pageSize);
+        List<UserRoleAssignBo> list = userDao.findUserAndRole(content);
         PageInfo<UserRoleAssignBo> page = new PageInfo<>(list);
         return page;
     }
@@ -66,6 +66,7 @@ public class UserServiceImpl implements UserService {
     public User findByAccount(String username) {
         return userDao.findByAccount(username);
     }
+
 
     @Override
     public Map<String, Object> addRole2User(Long userId, String ids) {

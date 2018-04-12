@@ -36,18 +36,27 @@ public class RoleController extends CommonController{
 
 
     /**
-     * 角色列表跳转页面
+     * 查询所有
+     * @param model
      * @return
      */
-    @RequestMapping(value = "all",method = RequestMethod.GET)
-    public String index(Model model, @RequestParam("pageNow") int pageNow){
-        PageInfo<Role> list = roleService.findWithPage(pageNow,10);
-        int totalPage = (int)Math.ceil((float)list.getTotal()/10);
-        model.addAttribute("roles",list.getList());
-        model.addAttribute("totalPage",totalPage>0?totalPage:1);
-        model.addAttribute("results",true);
+    @RequestMapping(value = "all")
+    public String findAll(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
+                          @RequestParam(value = "content", required = false) String content) {
+        model.addAttribute("results", false);
+        PageInfo<Role> list = roleService.findWithPage(pageNow, 10, content);
+        if (list.getList().size() >= 1) {
+            model.addAttribute("results", true);
+        }
+        Long totalPage = list.getTotal();
+        model.addAttribute("rolelist", list.getList());
+        model.addAttribute("totalPage", totalPage);
+        pageNow = pageNow == null ? 1 : pageNow;
+        model.addAttribute("currentPage", pageNow);
+        model.addAttribute("content", content);
         return "role/roleList";
     }
+
 
 
     /**
@@ -77,33 +86,6 @@ public class RoleController extends CommonController{
         }
         return resultMap;
     }
-
-    /**
-     * 根据角色名称或者类型进行查询
-     * @param model
-     * @param findContent
-     * @return
-     */
-    @RequestMapping(value = "findbyRoleNOT",method = RequestMethod.POST)
-    public String findbyRoleNOT(Model model,
-                                @RequestParam(value = "findContent",required = false)
-                                        String findContent){
-        model.addAttribute("results",false);
-        List<Role> roles = new ArrayList<>();
-        try {
-            Role role = roleService.findbyRoleNOT(findContent);
-            if(null != role){
-                roles.add(role);
-                model.addAttribute("results",true);
-            }
-        }catch (Exception e){
-            model.addAttribute("results",false);
-        }
-        model.addAttribute("roles",roles);
-        model.addAttribute("totalPage",-1);
-        return "role/roleList";
-    }
-
 
 
     /**
@@ -163,13 +145,20 @@ public class RoleController extends CommonController{
      * 角色分配页面跳转
      * @return
      */
-    @RequestMapping(value = "assign",method = RequestMethod.GET)
-    public String assJump(Model model,@RequestParam("pageNow") int pageNow){
-        PageInfo<UserRoleAssignBo> list = userService.findUserAndRole(pageNow,10);
-        int totalPage = (int)Math.ceil((float)list.getTotal()/10);
-        model.addAttribute("ulist",list.getList());
-        model.addAttribute("totalPage",totalPage>0?totalPage:1);
-        model.addAttribute("results",true);
+    @RequestMapping(value = "assign")
+    public String assJump(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
+                          @RequestParam(value = "content", required = false) String content) {
+        model.addAttribute("results", false);
+        PageInfo<UserRoleAssignBo> list = userService.findUserAndRole(pageNow, 10, content);
+        if (list.getList().size() >= 1) {
+            model.addAttribute("results", true);
+        }
+        Long totalPage = list.getTotal();
+        model.addAttribute("urlist", list.getList());
+        model.addAttribute("totalPage", totalPage);
+        pageNow = pageNow == null ? 1 : pageNow;
+        model.addAttribute("currentPage", pageNow);
+        model.addAttribute("content", content);
         return "role/rolesAssign";
     }
 

@@ -28,13 +28,11 @@ public interface UserService {
 
     /**
      * 用户分配角色，联合查询列表
-     * @param pageNo
+     * @param pageNow
      * @param pageSize
      * @return
      */
-    PageInfo<UserRoleAssignBo> findUserAndRole(Integer pageNo, Integer pageSize);
-
-
+    PageInfo<UserRoleAssignBo> findUserAndRole(Integer pageNow, Integer pageSize, String content);
     /**
      * 根据Id查询角色
      * @param id

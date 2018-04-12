@@ -6,7 +6,7 @@ import com.qianyuan.permission.bo.RolePermissionAssignBo;
 import java.util.List;
 import java.util.Map;
 
-public interface RolePermissiomDao {
+public interface RolePermissionDao {
     int insert(RolePermission record);
 
     int insertSelective(RolePermission record);

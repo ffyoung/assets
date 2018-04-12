@@ -42,16 +42,17 @@
                         <a href="/permission/addPermissionIndex" class="btn btn-default">新增权限</a>
                     </div>
                     <hr/>
-                    <form id="formId" method="post" action="/permission/findbyPermissionNOT">
+                    <form id="formId" method="post" action="/permission/all" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入权限名称/资源" name="findContent"/>
+                                <input type="text" class="form-control" placeholder="输入权限名称/资源" name="content"
+                                       value="${content?default('')}" id="content"/>
                                 <span class="input-group-btn">
                                     <input class="btn btn-default" type="submit" value="查询"/>
                                 </span>
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <div>
                     <table class="table table-striped jambo_table bulk_action">
@@ -61,10 +62,10 @@
                             <td>权限资源</td>
                             <td>操作</td>
                         </tr>
-                        <#if permissions?size gt 0>
-                            <#list permissions as list>
+                        <#if permissionlist?size gt 0>
+                            <#list permissionlist as list>
                         <tr>
-                            <td>${list_index+1}</td>
+                            <td>${(currentPage-1)*10+list_index+1}</td>
                             <td>${list.name}</td>
                             <td>${list.url}</td>
                             <td>
@@ -73,24 +74,14 @@
                             </td>
                         </tr>
                             </#list>
+                        <#elseif !results>
+                    <tr>
+                        <td class="text-center danger" colspan="7">没有找到</td>
+                    </tr>
                         </#if>
                     </table>
-                    <#if totalPage gt 0>
-                    <ul class="pagination" style=" width: auto;display: table;margin-left: auto;margin-right:auto">
-                        <li><a href="#">&laquo;</a></li>
-                        <#list 1..totalPage as it >
-                            <li>
-                                <a href=javascript:pageDo(${it})>${it}</a>
-                            </li>
-                        </#list>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                        <br>
-                    <#elseif !results>
-                    <tr>
-                        <td class="text-center danger" colspan="4">没有找到权限</td>
-                    </tr>
-                    </#if>
+                    <div id="complete"></div>
+                    </form>
                 </div>
             </div>
         <#--^^^^^^^^^^^^^^^^^^^^^-->
@@ -120,10 +111,19 @@
 
 <script src="/js/common/layer/layer.js"></script>
 <script src="/js/common/jquery-form.js"></script>
-
+<script src="/js/common/page/pageDo.js"></script>
 <script>
+
+    <#--分页-->
+    $(function () {
+        PagingManage($('#complete'),${totalPage}, 10, ${currentPage});
+    });
+
+
+    //分页跳转
     function pageDo(page) {
-        var url = "/permission/all?pageNow=" + page;
+        var wd = $("#content").val();
+        var url = "/permission/all?pageNow=" + page + "&content=" + wd;
         window.location.href = url;
     }
 

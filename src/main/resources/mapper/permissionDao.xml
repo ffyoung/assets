@@ -21,14 +21,26 @@
         SELECT
         <include refid="Base_Column_List"/>
         from t_permission
+        <where>
+            <if test="content !=null and content !=''">
+                LOWER(name) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+                OR
+                LOWER(url) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
     </select>
     <!--根据权限名称或资源查询-->
-    <select id="findbyPermissionNOT" resultMap="MyMapResult">
+    <select id="findByContent" resultMap="MyMapResult">
         SELECT
         <include refid="Base_Column_List"/>
         FROM t_permission
-        WHERE
-        NAME =#{content,jdbcType=VARCHAR} OR url = #{content,jdbcType=VARCHAR}
+        <where>
+            <if test="content !=null and content !=''">
+                LOWER(name) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+                OR
+                LOWER(url) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
 
     </select>
     <!--添加权限-->

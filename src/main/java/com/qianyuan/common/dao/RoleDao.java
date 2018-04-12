@@ -3,6 +3,7 @@ package com.qianyuan.common.dao;
 import com.qianyuan.common.domain.Role;
 import com.qianyuan.permission.bo.PermissionBo;
 import com.qianyuan.permission.bo.RolePermissionAssignBo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
@@ -18,9 +19,9 @@ public interface RoleDao {
 
     Set<String> findRoleByUserId(Long id);
 
-    List<Role> findAll();
+    List<Role> findAll(@Param("content") String content);
 
-    Role findbyRoleNOT(String content);
+    List<Role> findbyRoleNOT(@Param("content") String content);
 
     int addRole(Role role);
 
@@ -35,7 +36,7 @@ public interface RoleDao {
      *
      * @return
      */
-    List<RolePermissionAssignBo> findRoleAndPermission();
+    List<RolePermissionAssignBo> findRoleAndPermission(@Param("content") String content);
 
     /**
      * 根据用户id查询角色

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -39,16 +39,17 @@
                 <div class="title_left">
                     <h3>角色权限分配</small></h3>
                     <hr/>
-                    <form id="formId" method="post" action="">
+                    <form id="formId" method="post" action="/permission/assign" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入角色名查询" name="findContent"/>
+                                <input type="text" class="form-control" placeholder="输入角色名查询" name="content"
+                                       value="${content?default('')}" id="content"/>
                                 <span class="input-group-btn">
                                     <input class="btn btn-default" type="submit" value="查询"/>
                                 </span>
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <div>
                     <table class="table table-striped jambo_table bulk_action">
@@ -59,10 +60,10 @@
                             <td>拥有的权限</td>
                             <td>操作</td>
                         </tr>
-                        <#if ulist?size gt 0>
-                            <#list ulist as list>
+                        <#if rplist?size gt 0>
+                            <#list rplist as list>
                          <tr>
-                             <td>${list_index+1}</td>
+                             <td>${(currentPage-1)*10+list_index+1}</td>
                              <td>${list.name}</td>
                              <td permissionIds="${list.permissionIds?default('')}">${list.permissionNames?default('-')}</td>
                              <td>
@@ -73,32 +74,21 @@
                             </#list>
                         <#elseif !results>
                             <tr>
-                                <td class="text-center danger" colspan="4">没有找到权限</td>
+                                <td class="text-center danger" colspan="4">没有找到角色</td>
                             </tr>
                         </#if>
                     </table>
-                    <#if totalPage gt 0>
-                        <ul class="pagination" style=" width: auto;display: table;margin-left: auto;margin-right:auto">
-                            <li><a href="#">&laquo;</a></li>
-                            <#list 1..totalPage as it >
-                                <li>
-                                    <a href=javascript:pageDo(${it})>${it}</a>
-                                </li>
-                            </#list>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                        <br>
-                    </#if>
+                    </form>
                 </div>
             </div>
-            <div class="modal fade bs-example-modal-sm" id="selectRole" tabindex="-1" role="dialog"
-                 aria-labelledby="selectRoleLabel">
+            <div class="modal fade bs-example-modal-sm" id="selectPermission" tabindex="-1" role="dialog"
+                 aria-labelledby="selectPermissionLabel">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="selectRoleLabel">添加权限</h4>
+                            <h4 class="modal-title" id="selectPermissionLabel">添加权限</h4>
                         </div>
                         <div class="modal-body">
                             <form id="boxPermissionForm">
@@ -112,9 +102,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
-    <#--^^^^^^^^^^^^^^^^^^^^^-->
     </div>
+<#--^^^^^^^^^^^^^^^^^^^^^-->
+</div>
 </div>
 </div>
 
@@ -143,9 +135,18 @@
 <script src="/js/common/jquery-form.js"></script>
 <#--Shiro.js-->
 <script src="/js/shiro.js"></script>
+<script src="/js/common/page/pageDo.js"></script>
 <script>
+    <#--分页-->
+    $(function () {
+        PagingManage($('#complete'),${totalPage}, 10, ${currentPage});
+    });
+
+
+    //分页跳转
     function pageDo(page) {
-        var url = "/permission/assign?pageNow=" + page;
+        var wd = $("#content").val();
+        var url = "/permission/assgin?pageNow=" + page + "&content=" + wd;
         window.location.href = url;
     }
 
@@ -154,13 +155,16 @@
         var ids = [], names = [];
         $.each(checked, function () {
             ids.push(this.id);
-            /*name 权限名称*/
+            /*name 角色名称*/
             names.push($.trim($(this).attr('name')));
         });
         var index = layer.confirm("确定操作？", function () {
         <#--loding-->
             var load = layer.load();
-            $.post('/role/addRole2User', {ids: ids.join(','), userId: $('#selectUserId').val()}, function (result) {
+            $.post('/permission/addPermissionToRole', {
+                ids: ids.join(','),
+                roleId: $('#selectRoleId').val()
+            }, function (result) {
                 layer.close(load);
                 if (result && result.status != 200) {
                     return layer.msg(result.message, so.default), !1;

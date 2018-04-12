@@ -39,7 +39,7 @@
                 <div class="title_left">
                     <h3>资产列表</small></h3>
                     <div style="position: absolute;right: 1cm;">
-                        <a href="/asset/all" class="btn btn-default">新增资产</a>
+                        <a href="/asset/addAssetsIndex" class="btn btn-default">新增资产</a>
                     </div>
                     <hr/>
                     <form id="formId" method="post" action="/asset/all" autocomplete="off">

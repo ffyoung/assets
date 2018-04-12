@@ -51,7 +51,17 @@ public class AssetsController extends CommonController {
     }
 
     /**
-     * 权限添加执行
+     * 添加资产页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("addAssetsIndex")
+    public String addAssetsIndex() {
+        return "asset/insertAssets";
+    }
+
+    /**
+     * 资产添加执行
      *
      * @param assets
      * @return

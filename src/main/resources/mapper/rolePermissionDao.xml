@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qianyuan.common.dao.RolePermissiomDao">
+<mapper namespace="com.qianyuan.common.dao.RolePermissionDao">
     <resultMap id="BaseMap" type="com.qianyuan.common.domain.RolePermission">
         <result column="rid" property="rid" jdbcType="BIGINT"/>
         <result column="pid" property="pid" jdbcType="BIGINT"/>
@@ -13,4 +13,23 @@
     <delete id="deleteByRoleId">
         delete from t_role_permission where rid =  #{id,jdbcType=BIGINT}
     </delete>
+    <insert id="insertSelective" parameterType="com.qianyuan.common.domain.RolePermission">
+        insert into t_role_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rid != null">
+                rid,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rid != null">
+                #{rid,jdbcType=BIGINT},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
 </mapper>

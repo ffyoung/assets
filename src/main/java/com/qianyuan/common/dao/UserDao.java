@@ -46,7 +46,7 @@ public interface UserDao {
      * 查询用户角色
      * @return
      */
-    List<UserRoleAssignBo> findUserAndRole();
+    List<UserRoleAssignBo> findUserAndRole(@Param("content") String content);
 
 
     /**

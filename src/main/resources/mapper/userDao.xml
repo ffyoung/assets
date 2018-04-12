@@ -62,7 +62,13 @@
         t_user u
         left join t_user_role uur on uur.uid = u.id
         left join t_role ur on ur.id = uur.rid
+        <where>
+            <if test="content !=null and content !=''">
+                LOWER(u.nickname) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
         group by u.id
+
     </select>
 
 

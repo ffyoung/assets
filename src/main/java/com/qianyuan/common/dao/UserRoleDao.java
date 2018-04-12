@@ -24,7 +24,6 @@ public interface UserRoleDao {
 
     List<Long> findUserIdByRoleId(Long id);
 
-    List<UserRoleAssignBo> findbyUserRole(String content);
 
 
 

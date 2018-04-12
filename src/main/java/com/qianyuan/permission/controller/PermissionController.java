@@ -27,17 +27,24 @@ public class PermissionController extends CommonController {
     RoleService roleService;
 
     /**
-     * 权限列表跳转页面
-     *
+     * 查询所有
+     * @param model
      * @return
      */
-    @RequestMapping(value = "all", method = RequestMethod.GET)
-    public String index(Model model, @RequestParam("pageNow") int pageNow) {
-        PageInfo<Permission> list = permissionService.findWithPage(pageNow, 10);
-        int totalPage = (int) Math.ceil((float) list.getTotal() / 10);
-        model.addAttribute("permissions", list.getList());
-        model.addAttribute("totalPage", totalPage > 0 ? totalPage : 1);
-        model.addAttribute("results", true);
+    @RequestMapping(value = "all")
+    public String findAll(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
+                          @RequestParam(value = "content", required = false) String content) {
+        model.addAttribute("results", false);
+        PageInfo<Permission> list = permissionService.findWithPage(pageNow, 10, content);
+        if (list.getList().size() >= 1) {
+            model.addAttribute("results", true);
+        }
+        Long totalPage = list.getTotal();
+        model.addAttribute("permissionlist", list.getList());
+        model.addAttribute("totalPage", totalPage);
+        pageNow = pageNow == null ? 1 : pageNow;
+        model.addAttribute("currentPage", pageNow);
+        model.addAttribute("content", content);
         return "permission/permissionList";
     }
 
@@ -71,32 +78,6 @@ public class PermissionController extends CommonController {
         return resultMap;
     }
 
-    /**
-     * 根据权限名称或者资源进行查询
-     *
-     * @param model
-     * @param findContent
-     * @return
-     */
-    @RequestMapping(value = "findbyPermissionNOT", method = RequestMethod.POST)
-    public String findbyPermissionNOT(Model model,
-                                      @RequestParam(value = "findContent", required = false)
-                                              String findContent) {
-        model.addAttribute("results", false);
-        List<Permission> permissions = new ArrayList<>();
-        try {
-            Permission permission = permissionService.findbyPermissionNOT(findContent);
-            if (null != permission) {
-                permissions.add(permission);
-                model.addAttribute("results", true);
-            }
-        } catch (Exception e) {
-            model.addAttribute("results", false);
-        }
-        model.addAttribute("permissions", permissions);
-        model.addAttribute("totalPage", -1);
-        return "permission/permissionList";
-    }
 
     /**
      * 修改权限信息页面
@@ -156,13 +137,20 @@ public class PermissionController extends CommonController {
      *
      * @return
      */
-    @RequestMapping(value = "assign", method = RequestMethod.GET)
-    public String assJump(Model model, @RequestParam("pageNow") int pageNow) {
-        PageInfo<RolePermissionAssignBo> list = roleService.findRoleAndPermission(pageNow, 10);
-        int totalPage = (int) Math.ceil((float) list.getTotal() / 10);
-        model.addAttribute("ulist", list.getList());
-        model.addAttribute("totalPage", totalPage > 0 ? totalPage : 1);
-        model.addAttribute("results", true);
+    @RequestMapping(value = "assign")
+    public String assJump(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
+                          @RequestParam(value = "content", required = false) String content) {
+        model.addAttribute("results", false);
+        PageInfo<RolePermissionAssignBo> list = roleService.findRoleAndPermission(pageNow, 10, content);
+        if (list.getList().size() >= 1) {
+            model.addAttribute("results", true);
+        }
+        Long totalPage = list.getTotal();
+        model.addAttribute("rplist", list.getList());
+        model.addAttribute("totalPage", totalPage);
+        pageNow = pageNow == null ? 1 : pageNow;
+        model.addAttribute("currentPage", pageNow);
+        model.addAttribute("content", content);
         return "permission/permissionsAssign";
     }
 
@@ -177,6 +165,12 @@ public class PermissionController extends CommonController {
     public List<PermissionBo> selectPermissionByRoleId(Long id) {
         List<PermissionBo> permissionBos = roleService.selectPermissionByRoleId(id);
         return permissionBos;
+    }
+
+    @RequestMapping(value = "addPermissionToRole")
+    @ResponseBody
+    public Map<String, Object> addPermissionToRole(Long roleId, String ids) {
+        return roleService.addPermissiontoRole(roleId, ids);
     }
 
 }

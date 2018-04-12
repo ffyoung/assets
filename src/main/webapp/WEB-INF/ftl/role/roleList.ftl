@@ -42,54 +42,46 @@
                         <a href="/role/addRoleIndex" class="btn btn-default">新增角色</a>
                     </div>
                     <hr/>
-                    <form id="formId" method="post" action="/role/findbyRoleNOT">
+                    <form id="formId" method="post" action="/role/all" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入角色名称/类型" name="findContent"/>
+                                <input type="text" class="form-control" placeholder="输入角色名称/类型" name="content"
+                                       value="${content?default('')}" id="content"/>
                                 <span class="input-group-btn">
-                                    <input class="btn btn-default" type="submit" value="查询" />
+                                    <input class="btn btn-default" type="submit" value="查询"/>
                                 </span>
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <div>
                     <table class="table table-striped jambo_table bulk_action">
                         <tr>
                             <td>序号</td>
                             <td>角色名称</td>
-                            <td>类型</td>
+                            <td>角色类型</td>
                             <td>操作</td>
                         </tr>
-                        <#if roles?size gt 0>
-                        <#list roles as list>
+                        <#if rolelist?size gt 0>
+                            <#list rolelist as list>
                         <tr>
-                              <td>${list_index+1}</td>
-                              <td>${list.name}</td>
-                              <td>${list.type}</td>
-                              <td>
-                                  <a href="javascript:updateMsg(${list.id})"+ class="btn btn-default">修改</a>
-                                  <a class="btn btn-default" href="javascript: deleteById(${list.id});">删除</a>
-                              </td>
+                            <td>${(currentPage-1)*10+list_index+1}</td>
+                            <td>${list.name}</td>
+                            <td>${list.type}</td>
+                            <td>
+                                <a href="javascript:updateMsg(${list.id})" + class="btn btn-default">修改</a>
+                                <a class="btn btn-default" href="javascript: deleteById(${list.id});">删除</a>
+                            </td>
                         </tr>
-                        </#list>
+                            </#list>
+                        <#elseif !results>
+                    <tr>
+                        <td class="text-center danger" colspan="7">没有找到</td>
+                    </tr>
                         </#if>
                     </table>
-                    <#if totalPage gt 0>
-                    <ul class="pagination" style=" width: auto;display: table;margin-left: auto;margin-right:auto">
-                        <li><a href="#">&laquo;</a></li>
-                        <#list 1..totalPage as it >
-                            <li>
-                                <a href=javascript:pageDo(${it})>${it}</a>
-                            </li>
-                        </#list>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul><br>
-                    <#elseif !results>
-                    <tr>
-                        <td class="text-center danger" colspan="4">没有找到角色</td>
-                    </tr>
-                    </#if>
+                    <div id="complete"></div>
+                    </form>
                 </div>
             </div>
         <#--^^^^^^^^^^^^^^^^^^^^^-->
@@ -119,17 +111,26 @@
 
 <script src="/js/common/layer/layer.js"></script>
 <script src="/js/common/jquery-form.js"></script>
-
+<script src="/js/common/page/pageDo.js"></script>
 <script>
+
+    <#--分页-->
+    $(function () {
+        PagingManage($('#complete'),${totalPage}, 10, ${currentPage});
+    });
+
+
+    //分页跳转
     function pageDo(page){
-        var url = "/role/all?pageNow="+page;
+        var wd = $("#content").val();
+        var url = "/role/all?pageNow=" + page + "&content=" + wd;
         window.location.href = url;
     }
 
 
     /*更改信息页面跳转*/
     function updateMsg(id) {
-        var url = "/role/updateDo/"+id;
+        var url = "/role/updateDo/" + id;
         window.location.href = url;
     }
 
@@ -137,21 +138,21 @@
     /*删除操作*/
     function deleteById(id) {
         var load = layer.load();
-        var url = "/role/delete/"+id;
+        var url = "/role/delete/" + id;
         console.log(url);
         layer.confirm('确定删除此信息？', {
-                    btn: ['是','否'] //按钮
-                }, function(){
-                    layer.msg('正在删除..',function(){
+                    btn: ['是', '否'] //按钮
+                }, function () {
+                    layer.msg('正在删除..', function () {
                         $.ajax({
-                            type:"post",
-                            url:url,
-                            success:function(result){
+                            type: "post",
+                            url: url,
+                            success: function (result) {
                                 layer.close(load);
-                                if(result && result.status !=200){
+                                if (result && result.status != 200) {
                                     layer.msg(result.message);
-                                } else{
-                                    layer.msg("操作成功",function(){
+                                } else {
+                                    layer.msg("操作成功", function () {
                                         window.location.reload();
                                     });
                                 }
@@ -159,10 +160,10 @@
                         });
                     });
                 }
-                , function(){
+                , function () {
                     layer.close(load);
                     layer.msg('请继续操作..');
-                } );
+                });
     }
 
 

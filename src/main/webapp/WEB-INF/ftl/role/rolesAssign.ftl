@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -39,16 +39,17 @@
                 <div class="title_left">
                     <h3>用户角色分配</small></h3>
                     <hr/>
-                    <form id="formId" method="post" action="/role/findbyUserRole">
+                    <form id="formId" method="post" action="/role/assign" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入用户名查询" name="findContent"/>
+                                <input type="text" class="form-control" placeholder="输入用户名查询" name="content"
+                                       value="${content?default('')}" id="content"/>
                                 <span class="input-group-btn">
-                                    <input class="btn btn-default" type="submit" value="查询" />
+                                    <input class="btn btn-default" type="submit" value="查询"/>
                                 </span>
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <div>
                     <table class="table table-striped jambo_table bulk_action">
@@ -59,8 +60,8 @@
                             <td>拥有的角色</td>
                             <td>操作</td>
                         </tr>
-                        <#if ulist?size gt 0>
-                            <#list ulist as list>
+                        <#if urlist?size gt 0>
+                            <#list urlist as list>
                          <tr>
                              <td>${list_index+1}</td>
                              <td>${list.nickname}</td>
@@ -77,24 +78,16 @@
                             </tr>
                         </#if>
                     </table>
-                    <#if totalPage gt 0>
-                        <ul class="pagination" style=" width: auto;display: table;margin-left: auto;margin-right:auto">
-                            <li><a href="#">&laquo;</a></li>
-                            <#list 1..totalPage as it >
-                                <li>
-                                    <a href=javascript:pageDo(${it})>${it}</a>
-                                </li>
-                            </#list>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul><br>
-                    </#if>
+                    </form>
                 </div>
             </div>
-            <div class="modal fade bs-example-modal-sm"  id="selectRole" tabindex="-1" role="dialog" aria-labelledby="selectRoleLabel">
+            <div class="modal fade bs-example-modal-sm" id="selectRole" tabindex="-1" role="dialog"
+                 aria-labelledby="selectRoleLabel">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="selectRoleLabel">添加角色</h4>
                         </div>
                         <div class="modal-body">
@@ -109,10 +102,12 @@
                     </div>
                 </div>
             </div>
+
         </div>
-        <#--^^^^^^^^^^^^^^^^^^^^^-->
         </div>
-    </div>
+<#--^^^^^^^^^^^^^^^^^^^^^-->
+</div>
+</div>
 </div>
 
 <!-- jQuery -->
@@ -140,51 +135,61 @@
 <script src="/js/common/jquery-form.js"></script>
 <#--Shiro.js-->
 <script src="/js/shiro.js"></script>
+<script src="/js/common/page/pageDo.js"></script>
 <script>
+    <#--分页-->
+    $(function () {
+        PagingManage($('#complete'),${totalPage}, 10, ${currentPage});
+    });
+
+
+    //分页跳转
     function pageDo(page){
-        var url = "/role/assign?pageNow="+page;
+        var wd = $("#content").val();
+        var url = "/role/assgin?pageNow=" + page + "&content=" + wd;
         window.location.href = url;
     }
 
-    function selectRole(){
+    function selectRole() {
         var checked = $("#boxRoleForm  :checked");
-        var ids=[],names=[];
-        $.each(checked,function(){
+        var ids = [], names = [];
+        $.each(checked, function () {
             ids.push(this.id);
             /*name 角色名称*/
             names.push($.trim($(this).attr('name')));
         });
-        var index = layer.confirm("确定操作？",function(){
+        var index = layer.confirm("确定操作？", function () {
         <#--loding-->
             var load = layer.load();
-            $.post('/role/addRole2User',{ids:ids.join(','),userId:$('#selectUserId').val()},function(result){
+            $.post('/role/addRole2User', {ids: ids.join(','), userId: $('#selectUserId').val()}, function (result) {
                 layer.close(load);
-                if(result && result.status != 200){
-                    return layer.msg(result.message,so.default),!1;
+                if (result && result.status != 200) {
+                    return layer.msg(result.message, so.default), !1;
                 }
                 layer.msg('添加成功。');
-                setTimeout(function(){
+                setTimeout(function () {
                     window.location.href = "assign?pageNow=1";
-                },1000);
-            },'json');
+                }, 1000);
+            }, 'json');
         });
     }
+
     /*
     *根据角色ID选择权限，分配权限操作。
     */
-    function selectRoleById(id){
+    function selectRoleById(id) {
         var load = layer.load();
-        $.post("/role/selectRoleByUserId",{id:id},function(result){
+        $.post("/role/selectRoleByUserId", {id: id}, function (result) {
             console.log(result);
             layer.close(load);
-            if(result && result.length){
-                var html =[];
-                $.each(result,function(){
+            if (result && result.length) {
+                var html = [];
+                $.each(result, function () {
                     html.push("<div class='checkbox'><label>");
                     html.push("<input type='checkbox' id='");
                     html.push(this.id);
                     html.push("'");
-                    if(this.check){
+                    if (this.check) {
                         html.push(" checked='checked'");
                     }
                     html.push("name='");
@@ -193,11 +198,11 @@
                     html.push(this.name);
                     html.push('</label></div>');
                 });
-                return so.id('boxRoleForm').html(html.join('')) & $('#selectRole').modal(),$('#selectUserId').val(id),!1;
-            }else{
-                return layer.msg('没有获取到用户数据，请先注册数据。',so.default);
+                return so.id('boxRoleForm').html(html.join('')) & $('#selectRole').modal(), $('#selectUserId').val(id), !1;
+            } else {
+                return layer.msg('没有获取到用户数据，请先注册数据。', so.default);
             }
-        },'json');
+        }, 'json');
     }
     <#--</@shiro.hasPermission>-->
 </script>
