@@ -312,6 +312,13 @@
         </dependency>
         <!--poiEXCEL导入导出 End-->
 
+        <!--date格式-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.3</version>
+        </dependency>
+
     </dependencies>
 
 

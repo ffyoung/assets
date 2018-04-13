@@ -56,338 +56,256 @@
                             <br/>
                             <form id="assetsform" data-parsley-validate class="form-horizontal form-label-left">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">入库日期 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
+                                        <input type="date" id="storageDate" name="storageDate" required="required"
                                                class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">物品名称 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
+                                        <input type="text" id="itemName" name="itemName" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="aaa"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">编码 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="coding" name="coding" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="asca"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">规格 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="standard" name="standard" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="asdda"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">型号 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="model" name="model" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="asdw"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">数量 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="inCount" name="inCount" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">单位 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="unit" name="unit" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="ada"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">价格 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="price" name="price" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="122"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">价值 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="value" name="value" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="23131"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">产权单位 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="propertyUnit" name="propertyUnit" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="wda"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">购置日期 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="date" id="buyDate" name="buyDate" required="required"
                                                class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">出库日期 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
+                                        <input type="date" id="outDate" name="outDate" required="required"
                                                class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">出库数量 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
+                                        <input type="text" id="outCount" name="outCount" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">产地 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="area" name="area" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="tryr"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">物品分类 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="goodsType" name="goodsType" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="cs"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">物品属性 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="goodsProperty" name="goodsProperty" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="sada"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">管理状态 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="managerStatus" name="managerStatus" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="xzcxv"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">使用单位 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="unitUse" name="unitUse" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="mjm"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">管理责任人
+                                        <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="manager" name="manager" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="bnyuik"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">信息录入 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="inputMessage" name="inputMessage" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="vhnyh"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">录入日期 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="date" id="inputDate" name="inputDate" required="required"
                                                class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">审核人 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
+                                        <input type="text" id="auditor" name="auditor" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="uiu"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">审核日期 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="date" id="auditorDate" name="auditorDate" required="required"
                                                class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">核准人 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
+                                        <input type="text" id="authorizer" name="authorizer" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="cxvx"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">核准日期 <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="date" id="authorizerDate" name="authorizerDate" required="required"
                                                class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">附图 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
+                                        <input type="text" id="picture" name="picture" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="i9oi9"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">用途 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
+                                        <input type="text" id="useType" name="useType" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="iouiku"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">备注说明 <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限名称 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="name" name="name" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">权限资源 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="url" name="url" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
+                                        <input type="text" id="remark" name="remark" required="required"
+                                               class="form-control col-md-7 col-xs-12" value="qssad"/>
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>

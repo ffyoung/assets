@@ -1,5 +1,7 @@
 package com.qianyuan.common.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -15,6 +17,7 @@ public class Assets {
     /**
      * 存储日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date storageDate;
     /**
      * 物品名称
@@ -55,10 +58,12 @@ public class Assets {
     /**
      * 购置日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date buyDate;
     /**
      * 出库日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date outDate;
 
     /**
@@ -96,6 +101,7 @@ public class Assets {
     /**
      * 录入日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date inputDate;
     /**
      * 审核人
@@ -104,6 +110,7 @@ public class Assets {
     /**
      * 审核日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date auditorDate;
     /**
      * 核准人
@@ -112,6 +119,7 @@ public class Assets {
     /**
      * 核准日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date authorizerDate;
     /**
      * 附图（链接）

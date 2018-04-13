@@ -60,6 +60,7 @@ public class AssetsServiceImpl implements AssetsService {
     @Override
     public int addAssets(Assets assets) {
 
+
         return assetsDao.addAssets(assets);
     }
 

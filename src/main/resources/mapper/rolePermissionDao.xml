@@ -10,7 +10,7 @@
         values (#{rid,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT})
 </insert>
     <!-- 根据角色ID删除-->
-    <delete id="deleteByRoleId">
+    <delete id="deleteByRoleId" parameterType="java.lang.Long">
         delete from t_role_permission where rid =  #{id,jdbcType=BIGINT}
     </delete>
     <insert id="insertSelective" parameterType="com.qianyuan.common.domain.RolePermission">

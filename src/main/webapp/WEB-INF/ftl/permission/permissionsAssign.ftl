@@ -53,7 +53,7 @@
                 </div>
                 <div>
                     <table class="table table-striped jambo_table bulk_action">
-                        <input type="hidden" id="selectPermissionId">
+                        <input type="hidden" id="selectRoleId">
                         <tr>
                             <td>序号</td>
                             <td>角色名</td>

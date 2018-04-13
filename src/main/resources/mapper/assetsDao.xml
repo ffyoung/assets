@@ -52,19 +52,19 @@
     <insert id="addAssets" parameterType="com.qianyuan.common.domain.Assets">
         insert into t_asset
         (id,storageDate,itemName,coding,standard,model,inCount,unit,
-          price,value,propertyUnit,propertyUnit,buyDate,outDate,outCount,
+        price,value,propertyUnit,buyDate,outDate,outCount,
           area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
           inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
         )
         VALUES
-        ( null,#{storagedate,jdbcType=DATE},#{itemname,jdbcType=VARCHAR},
-        #{coding,jdbcType=VARCHAR},#{standard,jdbcType=VARCHAR},#{model,jdbcType=VARCHAR},#{incount,jdbcType=BIGINT},
-        #{unit,jdbcType=VARCHAR},#{price,jdbcType=DOUBLE},#{value,jdbcType=VARCHAR},#{propertyunit,jdbcType=VARCHAR},
-        #{propertyunit,jdbcType=VARCHAR},#{buydate,jdbcType=DATE},#{outdate,jdbcType=DATE},#{outcount,jdbcType=BIGINT},
-        #{area,jdbcType=VARCHAR},#{goodstype,jdbcType=VARCHAR},#{goodsproperty,jdbcType=VARCHAR},#{managerstatus,jdbcType=VARCHAR},
-        #{unituse,jdbcType=VARCHAR},#{manager,jdbcType=VARCHAR},#{inputmessage,jdbcType=VARCHAR},#{inputdate,jdbcType=DATE},
-        #{auditor,jdbcType=VARCHAR},#{auditordate,jdbcType=DATE},#{authorizer,jdbcType=VARCHAR},#{authorizerdate,jdbcType=DATE},
-        #{picture,jdbcType=VARCHAR},#{usetype,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}
+        ( null,#{storageDate,jdbcType=DATE},#{itemName,jdbcType=VARCHAR},
+        #{coding,jdbcType=VARCHAR},#{standard,jdbcType=VARCHAR},#{model,jdbcType=VARCHAR},#{inCount,jdbcType=BIGINT},
+        #{unit,jdbcType=VARCHAR},#{price,jdbcType=DOUBLE},#{value,jdbcType=VARCHAR},#{propertyUnit,jdbcType=VARCHAR},
+        #{buyDate,jdbcType=DATE},#{outDate,jdbcType=DATE},#{outCount,jdbcType=BIGINT},
+        #{area,jdbcType=VARCHAR},#{goodsType,jdbcType=VARCHAR},#{goodsProperty,jdbcType=VARCHAR},#{managerStatus,jdbcType=VARCHAR},
+        #{unitUse,jdbcType=VARCHAR},#{manager,jdbcType=VARCHAR},#{inputMessage,jdbcType=VARCHAR},#{inputDate,jdbcType=DATE},
+        #{auditor,jdbcType=VARCHAR},#{auditorDate,jdbcType=DATE},#{authorizer,jdbcType=VARCHAR},#{authorizerDate,jdbcType=DATE},
+        #{picture,jdbcType=VARCHAR},#{useType,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}
         )
     </insert>
 
