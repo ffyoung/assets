@@ -74,7 +74,7 @@
 
     <!-- 选择角色给用户 ，checkbox 列表-->
     <select id="selectRoleByUserId" resultType="com.qianyuan.role.bo.RoleBo">
-        select tr.id,tu.id userId,tr.name,tr.type,ifnull(tur.uid,0) marker
+        select tr.id,tu.id userId,tr.name,tr.type,ifnull(tu.id,0) marker
         from t_role tr
         left join t_user_role tur on tur.rid = tr.id
         LEFT join (select id from t_user where id = #{id,jdbcType=BIGINT}) tu on tu.id = tur.uid

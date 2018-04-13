@@ -70,7 +70,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="itemName" name="itemName" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="aaa"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -79,7 +79,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="coding" name="coding" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="asca"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -88,7 +88,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="standard" name="standard" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="asdda"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -97,7 +97,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="model" name="model" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="asdw"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -106,7 +106,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="inCount" name="inCount" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="12"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -115,7 +115,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="unit" name="unit" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="ada"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -124,7 +124,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="price" name="price" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="122"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -133,7 +133,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="value" name="value" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="23131"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -142,7 +142,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="propertyUnit" name="propertyUnit" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="wda"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -169,7 +169,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="outCount" name="outCount" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="12"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -178,7 +178,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="area" name="area" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="tryr"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -187,7 +187,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="goodsType" name="goodsType" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="cs"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -196,7 +196,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="goodsProperty" name="goodsProperty" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="sada"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -205,7 +205,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="managerStatus" name="managerStatus" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="xzcxv"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -214,7 +214,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="unitUse" name="unitUse" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="mjm"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -224,7 +224,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="manager" name="manager" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="bnyuik"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -233,7 +233,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="inputMessage" name="inputMessage" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="vhnyh"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -251,7 +251,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="auditor" name="auditor" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="uiu"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -269,7 +269,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="authorizer" name="authorizer" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="cxvx"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -287,7 +287,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="picture" name="picture" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="i9oi9"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -296,7 +296,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="useType" name="useType" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="iouiku"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -305,7 +305,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="remark" name="remark" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="qssad"/>
+                                               class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>
