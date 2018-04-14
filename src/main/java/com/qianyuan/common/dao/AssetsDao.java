@@ -1,9 +1,6 @@
 package com.qianyuan.common.dao;
 
-
-import com.github.pagehelper.Page;
 import com.qianyuan.common.domain.Assets;
-import com.qianyuan.common.domain.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -45,12 +42,16 @@ public interface AssetsDao {
 
 
     /**
-     * 查找所有
+     * 查找所有第二代查询
      * @return
      */
     List<Assets> findAll(@Param("findContent") String findContent);
 
 
+    /**
+     * @param findContent
+     * @return
+     */
     List<Assets> findByContent(@Param("findContent") String findContent);
 
     List<Assets> selectBystorageDate(@Param("starttime") Date startdate, @Param("endtime") Date enddate);

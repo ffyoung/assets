@@ -22,6 +22,9 @@
     <link href="/css/common/green.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="/css/custom/custom.min.css" rel="stylesheet">
+
+    <!-- bootstrap-daterangepicker -->
+    <link href="/css/common/daterangepicker.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -41,7 +44,46 @@
                     <div style="position: absolute;right: 1cm;">
                         <a href="/asset/addAssetsIndex" class="btn btn-default">新增资产</a>
                     </div>
+                        <div>
+                            <span id="shouqi" style="display: none;">点击收起</span>
+                            <span id="zhankai">点击展开</span>
+                        </div>
                     <hr/>
+                    <div id="showDate" style="width: auto;height: 200px; display: none;">
+                        <form action="/asset/findByStore" method="post">
+                            <div>
+                                <h4>入库日期</h4>
+                                <label>开始时间</label>
+                            <#--<td>${it.time?string('yyyy-MM-dd HH:mm')}</td>-->
+                                <input type="date" id="starttime" name="starttime" />
+                                <label>结束时间</label>
+                                <input type="date" id="endtime" name="endtime"/>
+                                <input type="submit" value="提交" />
+                            </div>
+                        </form>
+                    <#------------------------------------------------------>
+                        <form action="/asset/findByBuy" method="post">
+                            <div>
+                                <h4>购置日期</h4>
+                                <label>开始时间</label>
+                                <input type="date" id="starttime" name="starttime" />
+                                <label>结束时间</label>
+                                <input type="date" id="endtime" name="endtime"/>
+                                <input type="submit" value="提交" />
+                            </div>
+                        </form>
+                        <#------------------------------------------------------>
+                        <form action="/asset/findByOut" method="post">
+                            <div>
+                                <h4>出库日期</h4>
+                                <label>开始时间</label>
+                                <input type="date" id="starttime" name="starttime" />
+                                <label>结束时间</label>
+                                <input type="date" id="endtime" name="endtime"/>
+                                <input type="submit" value="提交" />
+                            </div>
+                        </form>
+                    </div>
                     <form id="formId" method="post" action="/asset/all" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
@@ -57,9 +99,9 @@
                     <table class="table table-striped jambo_table bulk_action">
                         <tr>
                             <#--<td><input type="checkbox" id="check-all" class="flat"></td>-->
-                            <td>序号</td>
-                            <td>入库日期</td>
-                            <td>物品名称</td>
+                            <td >序号</td>
+                            <td >入库日期</td>
+                            <td >物品名称</td>
                             <td>编码</td>
                             <td>规格</td>
                             <td>型号</td>
@@ -165,8 +207,15 @@
 <!-- Custom Theme Scripts -->
 <script src="/js/common/dist/custom.min.js"></script>
 <script src="/js/common/page/pageDo.js"></script>
+
+<!-- bootstrap-daterangepicker -->
+<script src="/js/common/dist/moment.min.js"></script>
+<script src="/js/common/dist/daterangepicker.js"></script>
 </body>
 <script>
+
+
+
 
     <#--分页-->
     $(function () {
@@ -181,6 +230,17 @@
         window.location.href = url;
     }
 
+    $("#shouqi").click(function () {
+        $("#shouqi").css('display','none');
+        $("#showDate").css('display','none');
+        $("#zhankai").css('display','block');
+    });
+
+    $("#zhankai").click(function () {
+        $("#zhankai").css('display','none');
+        $("#showDate").css('display','block');
+        $("#shouqi").css('display','block');
+    });
 
 
 

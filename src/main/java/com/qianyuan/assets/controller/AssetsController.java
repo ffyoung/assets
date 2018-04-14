@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -89,28 +90,58 @@ public class AssetsController extends CommonController {
         }
         return resultMap;
     }
-//    /**
-//     * 根据时间查询
-//     * @param model
-//     * @return
-//     */
-//    @RequestMapping(value = "date")
-//    public String findByDate(Model model, @RequestParam(value = "pageNow",required = false) Integer pageNow,
-//                          @RequestParam(value = "startTime",required = false) Date startTime,
-//                             @RequestParam(value = "endTime",required = false) Date endTime){
-//        model.addAttribute("results",false);
-//        PageInfo<Assets> list = assetsService.findBystorageDate(startTime,endTime,pageNow,10);
-//        if(list.getList().size() >= 1){
-//            model.addAttribute("results",true);
-//        }
-//        Long totalPage = list.getTotal();
-//        model.addAttribute("assetslist",list.getList());
-//        model.addAttribute("totalPage",totalPage);
-//        pageNow = pageNow == null?1:pageNow;
-//        model.addAttribute("currentPage",pageNow);
-//        model.addAttribute("startTime",startTime);
-//        model.addAttribute("endTime",endTime);
-//        return "asset/assetList";
-//    }
+
+    /**
+     * 入库时间查询
+     * @param model
+     * @param starttime
+     * @param endTime
+     * @return
+     */
+    @RequestMapping(value = "findByStore",method = RequestMethod.POST)
+    public String findByStore(Model model, @RequestParam("starttime")java.sql.Date starttime,
+                              @RequestParam("endtime")java.sql.Date endtime){
+
+        List<Assets> list = assetsService.selectBystorageDate(starttime,endtime);
+        model.addAttribute("assetslist",list);
+        model.addAttribute("totalPage",1);
+        model.addAttribute("currentPage",1);
+        return "asset/assetList";
+    }
+
+    /**
+     * 购置时间查询
+     * @param model
+     * @param starttime
+     * @param endTime
+     * @return
+     */
+    @RequestMapping(value = "findByBuy",method = RequestMethod.POST)
+    public String findByBuy(Model model, @RequestParam("starttime")java.sql.Date starttime,
+                              @RequestParam("endtime")java.sql.Date endtime){
+        List<Assets> list = assetsService.selectBybuyDate(starttime,endtime);
+        model.addAttribute("assetslist",list);
+        model.addAttribute("totalPage",1);
+        model.addAttribute("currentPage",1);
+        return "asset/assetList";
+    }
+
+    /**
+     * 出库时间查询
+     * @param model
+     * @param starttime
+     * @param endTime
+     * @return
+     */
+    @RequestMapping(value = "findByOut",method = RequestMethod.POST)
+    public String findByOut(Model model, @RequestParam("starttime")java.sql.Date starttime,
+                              @RequestParam("endtime")java.sql.Date endtime){
+        List<Assets> list = assetsService.selectByoutDate(starttime,endtime);
+        model.addAttribute("assetslist",list);
+        model.addAttribute("totalPage",1);
+        model.addAttribute("currentPage",1);
+        return "asset/assetList";
+    }
+
 
 }
