@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.common.domain.Assets;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +42,12 @@ public interface AssetsService {
     PageInfo<Assets> findByContent(String findContent,Integer pageNow);
 
     int addAssets(Assets assets);
+
+    List<Assets> selectBystorageDate(Date starttime, Date endtinme);
+
+    List<Assets> selectBybuyDate(Date starttime, Date endtinme);
+
+    List<Assets> selectByoutDate(Date starttime, Date endtinme);
 
 
 }

@@ -87,6 +87,7 @@
                             <td>附图</td>
                             <td>用途</td>
                             <td>备注说明</td>
+                                <td>操作</td>
                         </tr>
                      <tr >
                           <#if assetslist?size gt 0>
@@ -124,6 +125,9 @@
                             <td>${list.picture}</td>
                             <td>${list.useType}</td>
                             <td>${list.remark}</td>
+                          <td>
+                              <a href="javascript:updateMsg(${list.id})" + class="btn btn-default">修改</a>
+                          </td>
                         </tr>
                     </#list>
                     <#elseif !results>

@@ -9,6 +9,7 @@ import com.qianyuan.common.domain.Assets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,6 +63,21 @@ public class AssetsServiceImpl implements AssetsService {
 
 
         return assetsDao.addAssets(assets);
+    }
+
+    @Override
+    public List<Assets> selectBystorageDate(Date starttime, Date endtinme) {
+        return assetsDao.selectBystorageDate(starttime, endtinme);
+    }
+
+    @Override
+    public List<Assets> selectBybuyDate(Date starttime, Date endtinme) {
+        return assetsDao.selectBybuyDate(starttime, endtinme);
+    }
+
+    @Override
+    public List<Assets> selectByoutDate(Date starttime, Date endtinme) {
+        return assetsDao.selectByoutDate(starttime, endtinme);
     }
 
 }

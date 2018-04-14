@@ -89,5 +89,28 @@ public class AssetsController extends CommonController {
         }
         return resultMap;
     }
+//    /**
+//     * 根据时间查询
+//     * @param model
+//     * @return
+//     */
+//    @RequestMapping(value = "date")
+//    public String findByDate(Model model, @RequestParam(value = "pageNow",required = false) Integer pageNow,
+//                          @RequestParam(value = "startTime",required = false) Date startTime,
+//                             @RequestParam(value = "endTime",required = false) Date endTime){
+//        model.addAttribute("results",false);
+//        PageInfo<Assets> list = assetsService.findBystorageDate(startTime,endTime,pageNow,10);
+//        if(list.getList().size() >= 1){
+//            model.addAttribute("results",true);
+//        }
+//        Long totalPage = list.getTotal();
+//        model.addAttribute("assetslist",list.getList());
+//        model.addAttribute("totalPage",totalPage);
+//        pageNow = pageNow == null?1:pageNow;
+//        model.addAttribute("currentPage",pageNow);
+//        model.addAttribute("startTime",startTime);
+//        model.addAttribute("endTime",endTime);
+//        return "asset/assetList";
+//    }
 
 }

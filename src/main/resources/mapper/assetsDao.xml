@@ -225,7 +225,42 @@
             </if>
         </where>
     </select>
-
+    <select id="selectBystorageDate" resultMap="MyResutlMap">
+        SELECT
+        <include refid="MyCommonSql"/>
+        FROM t_asset
+        <where>
+            storageDate
+            between
+            <if test="starttime!=null and endtime!=null">
+                #{starttime,jdbcType=DATE} and #{endtime,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
+    <select id="selectBybuyDate" resultMap="MyResutlMap">
+        SELECT
+        <include refid="MyCommonSql"/>
+        FROM t_asset
+        <where>
+            buyDate
+            between
+            <if test="starttime!=null and endtime!=null">
+                #{starttime,jdbcType=DATE} and #{endtime,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
+    <select id="selectByoutDate" resultMap="MyResutlMap">
+        SELECT
+        <include refid="MyCommonSql"/>
+        FROM t_asset
+        <where>
+            outDate
+            between
+            <if test="starttime!=null and endtime!=null">
+                #{starttime,jdbcType=DATE} and #{endtime,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
 </mapper>
 
 

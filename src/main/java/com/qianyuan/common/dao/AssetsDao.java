@@ -6,6 +6,7 @@ import com.qianyuan.common.domain.Assets;
 import com.qianyuan.common.domain.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,6 +53,11 @@ public interface AssetsDao {
 
     List<Assets> findByContent(@Param("findContent") String findContent);
 
+    List<Assets> selectBystorageDate(@Param("starttime") Date startdate, @Param("endtime") Date enddate);
+
+    List<Assets> selectBybuyDate(@Param("starttime") Date startdate, @Param("endtime") Date enddate);
+
+    List<Assets> selectByoutDate(@Param("starttime") Date startdate, @Param("endtime") Date enddate);
 
 
 
