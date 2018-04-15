@@ -102,11 +102,10 @@
     </select>
     <!-- 选择权限给角色 ，checkbox 列表-->
     <select id="selectPermissionByRoleId" resultType="com.qianyuan.permission.bo.PermissionBo">
-        select tp.id,tr.id roleId,tp.name,tp.url,ifnull(tr.id,0) marker
+       select tp.id,tp.name,tp.url,trp.rid roleId,ifnull(trp.rid,0) marker
         from t_permission tp
-        left join t_role_permission trp on trp.pid = tp.id
-        LEFT join (select id from t_role where id = #{id,jdbcType=BIGINT}) tr on tr .id = trp.rid
-        group by tp.id
+        LEFT join (select * from t_role_permission where rid =#{id,jdbcType=BIGINT})
+        trp on trp.pid = tp.id
 
     </select>
 </mapper>

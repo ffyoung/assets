@@ -192,7 +192,7 @@
                     html.push("<input type='checkbox' id='");
                     html.push(this.id);
                     html.push("'");
-                    if (this.check) {
+                    if (this.checked) {
                         html.push(" checked='checked'");
                     }
                     html.push("name='");
