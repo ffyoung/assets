@@ -9,7 +9,6 @@
 
     <title>资产列表</title>
 
-
     <!-- Bootstrap -->
     <link href="/common/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -50,6 +49,7 @@
                         </div>
                     <hr/>
                     <div id="showDate" style="width: auto;height: 200px; display: none;">
+
                         <form action="/asset/findByStore" method="post">
                             <div>
                                 <h4>入库日期</h4>
@@ -84,18 +84,19 @@
                             </div>
                         </form>
                     </div>
-                    <form id="formId" method="post" action="/asset/all" autocomplete="off">
+
+            <form id="formId" method="post" action="/asset/all" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search for..." name="findContent"
-                                value="${findContent?default('')}" id="findContent" />
+                                       value="${findContent?default('')}" id="findContent" />
                                 <span class="input-group-btn">
                                     <input class="btn btn-default" type="submit">Go!</input>
                                 </span>
-                          </div>
-                       </div>
+                            </div>
+                        </div>
                 </div>
-                <div>
+            </div>
                     <table class="table table-striped jambo_table bulk_action">
                         <tr>
                             <#--<td><input type="checkbox" id="check-all" class="flat"></td>-->
@@ -129,11 +130,11 @@
                             <td>附图</td>
                             <td>用途</td>
                             <td>备注说明</td>
-                                <td>操作</td>
+                            <td>操作</td>
                         </tr>
-                     <tr >
-                          <#if assetslist?size gt 0>
-                          <#list assetslist as list>
+                         <#if assetslist?size gt 0>
+                             <#list assetslist as list>
+                        <tr>
                          <#--<td class="a-center ">-->
                              <#--<input type="checkbox" class="flat" name="table_records">-->
                          <#--</td>-->
@@ -150,10 +151,10 @@
                             <td>${list.propertyUnit}</td>
                             <td>${list.buyDate?date}</td>
                             <td>${list.outDate?date}</td>
-                          <td>${list.outCount}</td>
-                          <td>${list.inCount - list.outCount}</td>
+                            <td>${list.outCount}</td>
+                            <td>${list.inCount - list.outCount}</td>
                             <td>${list.area}</td>
-                              <td>${list.goodsType}</td>
+                            <td>${list.goodsType}</td>
                             <td>${list.goodsProperty}</td>
                             <td>${list.managerStatus}</td>
                             <td>${list.unitUse}</td>
@@ -171,19 +172,17 @@
                               <a href="javascript:updateMsg(${list.id})" + class="btn btn-default">修改</a>
                           </td>
                         </tr>
-                    </#list>
+                             </#list>
                     <#elseif !results>
                     <tr>
-                        <td class="text-center danger" colspan="7">没有找到用户</td>
+                        <td class="text-center danger" colspan="31">没有找到用户</td>
                     </tr>
                     </#if>
-                </table>
-                <div id="complete"></div>
-             </form>
-            </div>
-            </div>
-        <#--^^^^^^^^^^^^^^^^^^^^^-->
+                    </table>
+                    <div id="complete"></div>
+                    </form>
         </div>
+        <#--^^^^^^^^^^^^^^^^^^^^^-->
     </div>
 </div>
 
@@ -245,10 +244,5 @@
 
 
 </script>
-
-
-
-
-
 
 </html>

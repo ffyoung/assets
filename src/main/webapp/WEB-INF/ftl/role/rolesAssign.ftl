@@ -62,6 +62,7 @@
                         </tr>
                         <#if urlist?size gt 0>
                             <#list urlist as list>
+
                          <tr>
                              <td>${list_index+1}</td>
                              <td>${list.nickname}</td>
@@ -179,7 +180,7 @@
     */
     function selectRoleById(id) {
         var load = layer.load();
-        $.post("/role/selectRoleByUserId", {id: id}, function (result) {
+        $.post("/role/selectRoleByUserId", {id:id},function(result) {
             console.log(result);
             layer.close(load);
             if (result && result.length) {
@@ -192,7 +193,7 @@
                     if (this.check) {
                         html.push(" checked='checked'");
                     }
-                    html.push("name='");
+                    html.push(" name='");
                     html.push(this.name);
                     html.push("'/>");
                     html.push(this.name);
