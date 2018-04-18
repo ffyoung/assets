@@ -41,7 +41,9 @@
                 <div class="title_left">
                     <h3>资产列表</small></h3>
                     <div style="position: absolute;right: 1cm;">
-                        <a href="/asset/addAssetsIndex" class="btn btn-default">新增资产</a>
+                        <@shiro.hasAnyRoles name="11111">
+                            <a href="/asset/addAssetsIndex" class="btn btn-default">新增资产</a>
+                        </@shiro.hasAnyRoles>
                     </div>
                         <div>
                             <span id="shouqi" style="display: none;">点击收起</span>
@@ -130,7 +132,9 @@
                             <td>附图</td>
                             <td>用途</td>
                             <td>备注说明</td>
+                            <@shiro.hasAnyRoles name="22222,99999,33333">
                             <td>操作</td>
+                            </@shiro.hasAnyRoles>
                         </tr>
                          <#if assetslist?size gt 0>
                              <#list assetslist as list>
@@ -168,9 +172,11 @@
                             <td>${list.picture}</td>
                             <td>${list.useType}</td>
                             <td>${list.remark}</td>
+                                 <@shiro.hasAnyRoles name="22222,99999,33333">
                           <td>
                               <a href="javascript:updateMsg(${list.id})" + class="btn btn-default">修改</a>
                           </td>
+                                 </@shiro.hasAnyRoles>
                         </tr>
                              </#list>
                     <#elseif !results>

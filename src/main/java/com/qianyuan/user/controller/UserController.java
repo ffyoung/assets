@@ -2,6 +2,8 @@ package com.qianyuan.user.controller;
 
 import com.qianyuan.common.controller.CommonController;
 import com.qianyuan.common.domain.User;
+import com.qianyuan.core.shiro.token.ShiroToken;
+import com.qianyuan.core.shiro.token.manager.TokenManager;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -83,5 +85,13 @@ public class UserController extends CommonController{
     public String main(){
         return "config/main";
     }
+
+
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout() {
+        TokenManager.logout();
+        return "user/login";
+    }
+
 
 }

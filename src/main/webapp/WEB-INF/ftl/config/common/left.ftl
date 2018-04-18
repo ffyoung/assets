@@ -34,12 +34,14 @@
                              <li><a href="index3.html">Dashboard3</a></li>
                          </ul>
                      </li>
+                     <@shiro.hasAnyRoles name="99999">
                      <li><a><i class="fa fa-edit"></i> 角色管理 <span class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
                              <li><a href="/role/all?pageNow=1">角色列表</a></li>
                              <li><a href="/role/assign?pageNow=1">用户角色分配</a></li>
                          </ul>
                      </li>
+                     </@shiro.hasAnyRoles>
                      <li><a><i class="fa fa-desktop"></i> 权限管理 <span
                              class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
@@ -131,7 +133,7 @@
              <a data-toggle="tooltip" data-placement="top" title="Lock">
                  <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
              </a>
-             <a data-toggle="tooltip" data-placement="top" title="Logout" href="../test/login.ftl">
+             <a data-toggle="tooltip" data-placement="top" title="Logout" href="/user/logout">
                  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
              </a>
          </div>
