@@ -2,7 +2,7 @@
  <div class="col-md-3 left_col">
      <div class="left_col scroll-view">
          <div class="navbar nav_title" style="border: 0;">
-             <a href="main.ftl" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+             <a href="main.ftl" class="site_title"><i class="fa fa-leaf"></i> <span>乾元文化</span></a>
          </div>
 
          <div class="clearfix"></div>
@@ -25,13 +25,10 @@
          <!-- sidebar menu -->
          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
              <div class="menu_section">
-                 <h3>General</h3>
                  <ul class="nav side-menu">
                      <li><a><i class="fa fa-home"></i> 资产管理 <span class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
                              <li><a href="/asset/all?pageNow=1">列表</a></li>
-                             <li><a href="index2.html">Dashboard2</a></li>
-                             <li><a href="index3.html">Dashboard3</a></li>
                          </ul>
                      </li>
                      <@shiro.hasAnyRoles name="99999">
@@ -65,10 +62,10 @@
                              <li><a href="other_charts.html">Other Charts</a></li>
                          </ul>
                      </li>
-                     <li><a><i class="fa fa-clone"></i>用户角色表 <span class="fa fa-chevron-down"></span></a>
+                     <li><a><i class="fa fa-clone"></i>产品<span class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
-                             <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                             <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                             <li><a href="/product/all?pageNow=1">价格</a></li>
+                             <li><a href="#">价格B</a></li>
                          </ul>
                      </li>
                  </ul>

@@ -24,7 +24,6 @@ public class FreeMarkerViewExtend extends FreeMarkerView {
         /** 待添加*/
         User user = TokenManager.getToken();
         if(TokenManager.isLogin()){
-//            UUser user = TokenManager.getToken();
             model.put("user",user);
         }
         model.put("basePath", request.getContextPath());//base目录。

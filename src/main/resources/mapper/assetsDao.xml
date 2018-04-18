@@ -53,8 +53,8 @@
         insert into t_asset
         (id,storageDate,itemName,coding,standard,model,inCount,unit,
         price,value,propertyUnit,buyDate,outDate,outCount,
-          area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
-          inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
+        area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
+        inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
         )
         VALUES
         ( null,#{storageDate,jdbcType=DATE},#{itemName,jdbcType=VARCHAR},
@@ -83,17 +83,14 @@
     </delete>
 
     <!--根据项目信息更改-->
-    <update id="updateAssets">
+    <update id="updateAssets" parameterType="com.qianyuan.common.domain.Assets">
         update t_asset
         <set>
-            <if test="id != null">
-                id= #{id,jdbcType=BIGINT},
+            <if test="storageDate != null">
+                storageDate= #{storageDate,jdbcType=DATE},
             </if>
-            <if test="storagedate != null">
-                storagedate= #{storagedate,jdbcType=DATE},
-            </if>
-            <if test="itemname != null">
-                itemname= #{itemname,jdbcType=VARCHAR},
+            <if test="itemName != null">
+                itemName= #{itemName,jdbcType=VARCHAR},
             </if>
             <if test="coding != null">
                 coding= #{coding,jdbcType=VARCHAR},
@@ -104,8 +101,8 @@
             <if test="model != null">
                 model= #{model,jdbcType=VARCHAR},
             </if>
-            <if test="incount != null">
-                incount= #{incount,jdbcType=BIGINT},
+            <if test="inCount != null">
+                inCount= #{inCount,jdbcType=BIGINT},
             </if>
             <if test="unit != null">
                 unit= #{unit,jdbcType=VARCHAR},
@@ -116,59 +113,59 @@
             <if test="value != null">
                 value= #{value,jdbcType=VARCHAR},
             </if>
-            <if test="propertyunit != null">
-                propertyunit= #{propertyunit,jdbcType=VARCHAR},
+            <if test="propertyUnit != null">
+                propertyUnit= #{propertyUnit,jdbcType=VARCHAR},
             </if>
-            <if test="buydate != null">
-                buydate= #{buydate,jdbcType=DATE},
+            <if test="buyDate != null">
+                buyDate= #{buyDate,jdbcType=DATE},
             </if>
-            <if test="outdate != null">
-                outdate= #{outdate,jdbcType=DATE},
+            <if test="outDate != null">
+                outDate= #{outDate,jdbcType=DATE},
             </if>
-            <if test="outcount != null">
-                outcount= #{outcount,jdbcType=BIGINT},
+            <if test="outCount != null">
+                outCount= #{outCount,jdbcType=BIGINT},
             </if>
             <if test="area != null">
                 area= #{area,jdbcType=VARCHAR},
             </if>
-            <if test="goodstype != null">
-                goodstype= #{goodstype,jdbcType=VARCHAR},
+            <if test="goodsType != null">
+                goodsType= #{goodsType,jdbcType=VARCHAR},
             </if>
-            <if test="goodsproperty != null">
-                goodsproperty= #{goodsproperty,jdbcType=VARCHAR},
+            <if test="goodsProperty != null">
+                goodsProperty= #{goodsProperty,jdbcType=VARCHAR},
             </if>
-            <if test="managerstatus != null">
-                managerstatus= #{managerstatus,jdbcType=VARCHAR},
+            <if test="managerStatus != null">
+                managerStatus= #{managerStatus,jdbcType=VARCHAR},
             </if>
-            <if test="unituse != null">
-                unituse= #{unituse,jdbcType=VARCHAR},
+            <if test="unitUse != null">
+                unitUse= #{unitUse,jdbcType=VARCHAR},
             </if>
             <if test="manager != null">
                 manager= #{manager,jdbcType=VARCHAR},
             </if>
-            <if test="inputmessage != null">
-                inputmessage= #{inputmessage,jdbcType=VARCHAR},
+            <if test="inputMessage != null">
+                inputMessage= #{inputMessage,jdbcType=VARCHAR},
             </if>
-            <if test="inputdate != null">
-                inputdate= #{inputdate,jdbcType=DATE},
+            <if test="inputDate != null">
+                inputDate= #{inputDate,jdbcType=DATE},
             </if>
             <if test="auditor != null">
                 auditor= #{auditor,jdbcType=VARCHAR},
             </if>
-            <if test="auditordate != null">
-                auditordate= #{auditordate,jdbcType=DATE},
+            <if test="auditorDate != null">
+                auditorDate= #{auditorDate,jdbcType=DATE},
             </if>
             <if test="authorizer != null">
                 authorizer= #{authorizer,jdbcType=VARCHAR},
             </if>
-            <if test="authorizerdate != null">
-                authorizerdate= #{authorizerdate,jdbcType=DATE},
+            <if test="authorizerDate != null">
+                authorizerDate= #{authorizerDate,jdbcType=DATE},
             </if>
             <if test="picture != null">
                 picture= #{picture,jdbcType=VARCHAR},
             </if>
-            <if test="usetype != null">
-                usetype= #{usetype,jdbcType=VARCHAR},
+            <if test="useType != null">
+                useType= #{useType,jdbcType=VARCHAR},
             </if>
             <if test="remark != null">
                 remark= #{remark,jdbcType=VARCHAR}
@@ -180,7 +177,7 @@
 
     <select id="findAll" resultMap="MyResutlMap">
         select
-        <include refid="MyCommonSql" />
+        <include refid="MyCommonSql"/>
         from t_asset
         <where>
             <if test="findContent !='' and findContent != null">
@@ -204,10 +201,10 @@
 
     <select id="findByContent" resultMap="MyResutlMap">
         SELECT
-        <include refid="MyCommonSql" />
+        <include refid="MyCommonSql"/>
         from t_asset
         <where>
-            <if test="findContent != null and findContent !='' " >
+            <if test="findContent != null and findContent !='' ">
                 LOWER(itemName) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
                 or coding = #{findContent,jdbcType=VARCHAR}
                 or model = #{findContent,jdbcType=VARCHAR}

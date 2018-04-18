@@ -1,3 +1,4 @@
+<#--录入人员进行录入页面-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>资产添加</title>
+    <title>资产录入</title>
 
     <!-- Bootstrap -->
     <link href="/common/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +37,7 @@
         <#--vvvvvv以下为修改内容vvvvvv-->
             <div class="page-title">
                 <div class="title_left">
-                    <h3>资产信息添加</small></h3>
+                    <h3>资产信息录入</small></h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -47,7 +48,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>资产添加
+                            <h2>资产录入
                                 <small>^_^</small>
                             </h2>
                             <div class="clearfix"></div>
@@ -227,60 +228,56 @@
                                                class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">信息录入 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="inputMessage" name="inputMessage" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">录入日期 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="date" id="inputDate" name="inputDate" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">审核人 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="auditor" name="auditor" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">审核日期 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="date" id="auditorDate" name="auditorDate" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">核准人 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="authorizer" name="authorizer" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">核准日期 <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="date" id="authorizerDate" name="authorizerDate" required="required"
-                                               class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
+
+                                <#--信息录入-->
+                                <input type="text" id="inputMessage" name="inputMessage" hidden="hidden"
+                                 value="${user.username}" readonly="readonly"/>
+                                <#--录入日期-->
+                                <input type="date" id="inputDate" name="inputDate" readonly="readonly" hidden="hidden"
+                                value="${dateNow?string("yyyy-MM-dd")}"/>
+
+                                <#--<div class="form-group">-->
+                                    <#--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">审核人 <span-->
+                                            <#--class="required">*</span>-->
+                                    <#--</label>-->
+                                    <#--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                                        <#--<input type="text" id="auditor" name="auditor" required="required"-->
+                                               <#--class="form-control col-md-7 col-xs-12"/>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+
+
+                                <#--<div class="form-group">-->
+                                    <#--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">审核日期 <span-->
+                                            <#--class="required">*</span>-->
+                                    <#--</label>-->
+                                    <#--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                                        <#--<input type="date" id="auditorDate" name="auditorDate" required="required"-->
+                                               <#--class="form-control col-md-7 col-xs-12"/>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+
+
+                                <#--<div class="form-group">-->
+                                    <#--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">核准人 <span-->
+                                            <#--class="required">*</span>-->
+                                    <#--</label>-->
+                                    <#--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                                        <#--<input type="text" id="authorizer" name="authorizer" required="required"-->
+                                               <#--class="form-control col-md-7 col-xs-12"/>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+
+                                <#--<div class="form-group">-->
+                                    <#--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">核准日期 <span-->
+                                            <#--class="required">*</span>-->
+                                    <#--</label>-->
+                                    <#--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                                        <#--<input type="date" id="authorizerDate" name="authorizerDate" required="required"-->
+                                               <#--class="form-control col-md-7 col-xs-12"/>-->
+                                    <#--</div>-->
+                                <#--</div>-->
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">附图 <span
                                             class="required">*</span>

@@ -31,7 +31,7 @@ public interface AssetsDao {
      * @param assets
      * @return
      */
-    Assets updateAssets(Assets assets);
+    int updateAssets(Assets assets);
 
     /**
      * 查询项目信息  by Id

@@ -41,13 +41,43 @@ public interface AssetsService {
      */
     PageInfo<Assets> findByContent(String findContent,Integer pageNow);
 
+    /**
+     * 资产添加
+     * @param assets
+     * @return
+     */
     int addAssets(Assets assets);
 
+    /**
+     * 根据存储时间查询
+     * @param starttime
+     * @param endtinme
+     * @return
+     */
     List<Assets> selectBystorageDate(Date starttime, Date endtinme);
 
+    /**
+     * 根据购入日期查询
+     * @param starttime
+     * @param endtinme
+     * @return
+     */
     List<Assets> selectBybuyDate(Date starttime, Date endtinme);
 
+    /**
+     * 根据出库日期查询
+     * @param starttime
+     * @param endtinme
+     * @return
+     */
     List<Assets> selectByoutDate(Date starttime, Date endtinme);
+
+    /**
+     * 根据内容修修改
+     * @param assets
+     * @return
+     */
+    int updateAssets(Assets assets);
 
 
 }

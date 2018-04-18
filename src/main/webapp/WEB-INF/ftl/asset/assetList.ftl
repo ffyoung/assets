@@ -108,7 +108,7 @@
                             <td>编码</td>
                             <td>规格</td>
                             <td>型号</td>
-                            <td>数量</td>
+                            <td>入库数量</td>
                             <td>单位</td>
                             <td>价格(元)</td>
                             <td>估值</td>
@@ -132,7 +132,7 @@
                             <td>附图</td>
                             <td>用途</td>
                             <td>备注说明</td>
-                            <@shiro.hasAnyRoles name="22222,99999,33333">
+                            <@shiro.hasAnyRoles name="22222,33333">
                             <td>操作</td>
                             </@shiro.hasAnyRoles>
                         </tr>
@@ -163,20 +163,39 @@
                             <td>${list.managerStatus}</td>
                             <td>${list.unitUse}</td>
                             <td>${list.manager}</td>
+                             <#--录入员-->
                             <td>${list.inputMessage}</td>
                             <td>${list.inputDate?date}</td>
-                            <td>${list.auditor}</td>
-                            <td>${list.auditorDate?date}</td>
-                            <td>${list.authorizer}</td>
-                            <td>${list.authorizerDate?date}</td>
+
+                             <#--审核员-->
+                            <td>${list.auditor?default("")}</td>
+                            <#--<td>${list.auditor?length}</td>-->
+                            <td>${(list.auditorDate?date)!}</td>
+
+                            <#--批准员-->
+                            <td>${list.authorizer?default("")}</td>
+                            <#--<td>${(list.authorizer?length)?default(0)}</td>-->
+                            <td>${(list.authorizerDate?date)!}</td>
+
                             <td>${list.picture}</td>
                             <td>${list.useType}</td>
                             <td>${list.remark}</td>
-                                 <@shiro.hasAnyRoles name="22222,99999,33333">
-                          <td>
-                              <a href="javascript:updateMsg(${list.id})" + class="btn btn-default">修改</a>
-                          </td>
-                                 </@shiro.hasAnyRoles>
+
+
+                             <#--审批员-->
+                             <#--<@shiro.hasAnyRoles name="22222,99999">-->
+                             <@shiro.hasAnyRoles name="22222">
+                                 <#if (list.auditor?length)?default(0) == 0>
+                             <td><a href="javascript:updateMsg(${list.id})" class="btn btn-default">审核</a></td>
+                                 </#if>
+                             </@shiro.hasAnyRoles>
+
+                             <#--批准员-->
+                            <@shiro.hasAnyRoles name="33333">
+                            <#if (list.authorizer?length)?default(0) == 0>
+                            <td><a href="javascript:updateMsg(${list.id})" class="btn btn-default">修改</a></td>
+                            </#if>
+                            </@shiro.hasAnyRoles>
                         </tr>
                              </#list>
                     <#elseif !results>
@@ -226,6 +245,12 @@
     $(function () {
         PagingManage($('#complete'),${totalPage},10, ${currentPage});
     });
+
+    /*更改信息页面跳转*/
+    function updateMsg(id) {
+        var url = "/asset/updateDo/" + id;
+        window.location.href = url;
+    }
 
 
     //分页跳转

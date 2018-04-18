@@ -130,7 +130,7 @@
 
     /*更改信息页面跳转*/
     function updateMsg(id) {
-        var url = "/role/updateShenheIndex/" + id;
+        var url = "/role/updateDo/" + id;
         window.location.href = url;
     }
 

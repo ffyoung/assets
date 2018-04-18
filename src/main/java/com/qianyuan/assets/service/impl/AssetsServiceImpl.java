@@ -60,8 +60,6 @@ public class AssetsServiceImpl implements AssetsService {
 
     @Override
     public int addAssets(Assets assets) {
-
-
         return assetsDao.addAssets(assets);
     }
 
@@ -79,5 +77,11 @@ public class AssetsServiceImpl implements AssetsService {
     public List<Assets> selectByoutDate(Date starttime, Date endtinme) {
         return assetsDao.selectByoutDate(starttime, endtinme);
     }
+
+    @Override
+    public int updateAssets(Assets assets) {
+        return assetsDao.updateAssets(assets);
+    }
+
 
 }

@@ -39,14 +39,11 @@
                     </div>
                     <div>
                         <button class="btn btn-default submit" type="button" id="login">登 录</button>
-                        <a class="reset_pass" href="#">忘 记 密 码 ?</a>
                     </div>
                     <div class="clearfix"></div>
 
                     <div class="separator">
-                        <p class="change_link">新用户?
-                            <a href="#signup" class="to_register"> 创 建 用 户 </a>
-                        </p>
+                            <a href="#signup" class="to_register" hidden> 创 建 用 户 </a>
                         <div class="clearfix"></div>
                         <br />
 
@@ -125,7 +122,7 @@
                 return false;
             }
             if (password == '') {
-                layer.msg("密码不能为空")
+                layer.msg("密码不能为空");
                 $('#password').focus();
                 return false;
             }
