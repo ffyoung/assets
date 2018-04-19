@@ -2,6 +2,8 @@ package com.qianyuan.user.service;
 
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.common.domain.User;
+import com.qianyuan.depart.bo.DepartBo;
+import com.qianyuan.depart.bo.UserDepartAssign;
 import com.qianyuan.role.bo.RoleBo;
 import com.qianyuan.role.bo.UserRoleAssignBo;
 
@@ -33,6 +35,16 @@ public interface UserService {
      * @return
      */
     PageInfo<UserRoleAssignBo> findUserAndRole(Integer pageNow, Integer pageSize, String content);
+
+    /**
+     * 用户分配部门，联合查询列表
+     *
+     * @param pageNow
+     * @param pageSize
+     * @return
+     */
+    PageInfo<UserDepartAssign> findUserAndDepart(Integer pageNow, Integer pageSize, String content);
+
     /**
      * 根据Id查询角色
      * @param id
@@ -41,12 +53,29 @@ public interface UserService {
     List<RoleBo> selectRoleByUserId(Long id);
 
     /**
+     * 根据Id查询角色
+     *
+     * @param id
+     * @return
+     */
+    List<DepartBo> selectDepartByUserId(Long id);
+
+    /**
      * 给用户添加权限保存操作
      * @param userId
      * @param ids
      * @return
      */
     Map<String, Object> addRole2User(Long userId, String ids);
+
+    /**
+     * 给用户添加部门保存操作
+     *
+     * @param userId
+     * @param ids
+     * @return
+     */
+    Map<String, Object> addDepartToUser(Long userId, String ids);
 
     /**
      * 根据用户名查询用户

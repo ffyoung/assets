@@ -1,6 +1,8 @@
 package com.qianyuan.core.shiro.token.manager;
 
+import com.qianyuan.common.dao.DepartDao;
 import com.qianyuan.common.dao.UserDao;
+import com.qianyuan.common.domain.Department;
 import com.qianyuan.common.domain.User;
 import com.qianyuan.common.util.SpringContextUtil;
 import com.qianyuan.core.shiro.token.ShiroRealm;
@@ -8,6 +10,8 @@ import com.qianyuan.core.shiro.token.ShiroToken;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.context.ApplicationContext;
+
+import java.util.List;
 
 /**
  * - - - - - - - - - - -
@@ -23,6 +27,7 @@ public class TokenManager {
     /** 解决工具类不能使用Dao层方法*/
     public static ApplicationContext appCtx = SpringContextUtil.getApplicationContext();
     public static UserDao userDao = (UserDao)appCtx.getBean(UserDao.class);
+    public static DepartDao departDao = (DepartDao) appCtx.getBean(DepartDao.class);
 
     /**
      * 获取当前登录的用户User对象
@@ -30,6 +35,15 @@ public class TokenManager {
      */
     public static User getToken(){
         return userDao.findByAccount((String) SecurityUtils.getSubject().getPrincipal());
+    }
+
+    /**
+     * 获取当前部门对象
+     *
+     * @return
+     */
+    public static List<Department> getDepart() {
+        return departDao.selectDepartName();
     }
 
     /**

@@ -26,11 +26,18 @@
          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
              <div class="menu_section">
                  <ul class="nav side-menu">
+
                      <li><a><i class="fa fa-home"></i> 资产管理 <span class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
+                             <@shiro.hasAnyRoles name="99999">
                              <li><a href="/asset/all?pageNow=1">列表</a></li>
+                             </@shiro.hasAnyRoles>
+                             <#list departlist as list>
+                                 <li><a href="/asset/all?pageNow=1">${list.name}</a></li>
+                             </#list>
                          </ul>
                      </li>
+
                      <@shiro.hasAnyRoles name="99999">
                      <li><a><i class="fa fa-edit"></i> 角色管理 <span class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
@@ -46,10 +53,10 @@
                              <li><a href="/permission/assign?pageNow=1">角色权限分配</a></li>
                          </ul>
                      </li>
-                     <li><a><i class="fa fa-table"></i> 用户表 <span class="fa fa-chevron-down"></span></a>
+                     <li><a><i class="fa fa-table"></i> 部门管理 <span class="fa fa-chevron-down"></span></a>
                          <ul class="nav child_menu">
-                             <li><a href="tables.html">Tables</a></li>
-                             <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                             <li><a href="/depart/all?pageNow=1">部门列表</a></li>
+                             <li><a href="/depart/assign?pageNow=1">用户部门分配</a></li>
                          </ul>
                      </li>
                      <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span

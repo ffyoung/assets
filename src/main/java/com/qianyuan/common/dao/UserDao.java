@@ -1,6 +1,8 @@
 package com.qianyuan.common.dao;
 
 import com.qianyuan.common.domain.User;
+import com.qianyuan.depart.bo.DepartBo;
+import com.qianyuan.depart.bo.UserDepartAssign;
 import com.qianyuan.role.bo.RoleBo;
 import com.qianyuan.role.bo.UserRoleAssignBo;
 import org.apache.ibatis.annotations.Param;
@@ -48,13 +50,26 @@ public interface UserDao {
      */
     List<UserRoleAssignBo> findUserAndRole(@Param("content") String content);
 
-
+    /**
+     * 查询用户部门
+     *
+     * @return
+     */
+    List<UserDepartAssign> findUserAndDepart(@Param("content") String content);
     /**
      * 根据用户id查询角色
      * @param id
      * @return
      */
     List<RoleBo> selectRoleByUserId(Long id);
+
+    /**
+     * 根据用户id查询角色
+     *
+     * @param id
+     * @return
+     */
+    List<DepartBo> selectDepartByUserId(Long id);
 
     /**
      * 根据用户名查询用户

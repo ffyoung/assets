@@ -1,5 +1,6 @@
 package com.qianyuan.core.freemarker;
 
+import com.qianyuan.common.domain.Department;
 import com.qianyuan.common.domain.User;
 import com.qianyuan.common.util.LoggerUtils;
 import com.qianyuan.core.shiro.token.manager.TokenManager;
@@ -7,6 +8,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +28,10 @@ public class FreeMarkerViewExtend extends FreeMarkerView {
         if(TokenManager.isLogin()){
             model.put("user",user);
         }
+        List<Department> list = TokenManager.getDepart();
+        model.put("departlist", list);
         model.put("basePath", request.getContextPath());//base目录。
     }
+
+
 }

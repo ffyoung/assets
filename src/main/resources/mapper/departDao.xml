@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianyuan.common.dao.DepartDao">
+
+    <resultMap id="MyMapResult" type="com.qianyuan.common.domain.Department">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="number" property="number" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--sql 语句-->
+    <sql id="Base_Column_List">
+        id,name,number
+    </sql>
+    <!--查询所有部门名称-->
+    <select id="selectDepartName" resultMap="MyMapResult">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        from t_depart
+    </select>
+    <!--查询所有部门信息-->
+    <select id="findAll" resultMap="MyMapResult">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from t_depart
+        <where>
+            <if test="content !=null and content !=''">
+                LOWER(name) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+                OR
+                LOWER(number) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
+    </select>
+    <!--根据名称或编号查询-->
+    <select id="findByContent" resultMap="MyMapResult">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_depart
+        <where>
+            <if test="content !=null and content !=''">
+                LOWER(name) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+                OR
+                LOWER(number) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
+
+    </select>
+    <!--添加权限-->
+    <insert id="addDepart" parameterType="com.qianyuan.common.domain.Department">
+        insert into t_depart (id,name,number)
+        values
+        (null,#{name,jdbcType=VARCHAR},#{number,jdbcType=VARCHAR})
+    </insert>
+    <!--根据内容修改权限-->
+    <update id="updateByDepartInfo" parameterType="com.qianyuan.common.domain.Department">
+        UPDATE t_depart
+        <set>
+            <if test="name!= null">
+                NAME =#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="number!= null">
+                number = #{number,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <!--根据ID查询-->
+    <select id="findById" resultMap="MyMapResult">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from t_depart
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <!--根据Id删除权限-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from t_depart
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+</mapper>

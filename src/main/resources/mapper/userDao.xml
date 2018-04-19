@@ -71,13 +71,32 @@
 
     </select>
 
+    <select id="findUserAndDepart" resultType="com.qianyuan.depart.bo.UserDepartAssign">
+        select u.id,u.nickname,group_concat(td.name) departName,group_concat(td.id)departId from
+        t_user u
+        left join t_user_depart tud on tud.uid = u.id
+        left join t_depart td on td.id = tud.did
+        <where>
+            <if test="content !=null and content !=''">
+                LOWER(u.nickname) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
+        group by u.id
 
+    </select>
     <!-- 选择角色给用户 ，checkbox 列表-->
     <select id="selectRoleByUserId" resultType="com.qianyuan.role.bo.RoleBo">
 	select tr.id,tr.name,tr.type,tur.uid userId,ifnull(tur.uid,0) marker
 	from t_role tr
     left join ( select * from t_user_role where uid=#{id,jdbcType=BIGINT} )
     tur on tur.rid = tr.id
+    </select>
+    <!-- 选择部门给用户 ，checkbox 列表-->
+    <select id="selectDepartByUserId" resultType="com.qianyuan.depart.bo.DepartBo">
+        select td.id,td.name,td.number,tud.uid userId,ifnull(tud.uid,0) marker
+        from t_depart td
+        left join ( select * from t_user_depart where uid=#{id,jdbcType=BIGINT} )
+        tud on tud.did = td.id
     </select>
 
     <!-- 根据邮箱|帐号查询 -->
