@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianyuan.common.dao.DepartAssetDao" >
+    <resultMap id="BaseResultMap" type="com.qianyuan.common.domain.DepartAsset" >
+        <result column="did" property="did" jdbcType="BIGINT" />
+        <result column="aid" property="aid" jdbcType="BIGINT" />
+    </resultMap>
+
+
+    <!-- 根据用户ID删除-->
+    <delete id="deleteByAssetId">
+        delete from t_depart_asset
+        where aid =  #{aid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.qianyuan.common.domain.DepartAsset" >
+        insert into t_depart_asset (did,aid)
+        values(#{did,jdbcType=BIGINT},#{aid,jdbcType=BIGINT})
+    </insert>
+
+</mapper>

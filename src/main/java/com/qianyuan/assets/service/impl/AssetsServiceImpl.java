@@ -5,12 +5,19 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.assets.service.AssetsService;
 import com.qianyuan.common.dao.AssetsDao;
+import com.qianyuan.common.dao.DepartAssetDao;
 import com.qianyuan.common.domain.Assets;
+import com.qianyuan.common.domain.DepartAsset;
+import com.qianyuan.common.domain.UserRole;
+import com.qianyuan.core.shiro.token.manager.TokenManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *  资产管理实现（业务）类
@@ -24,6 +31,10 @@ public class AssetsServiceImpl implements AssetsService {
 
     @Autowired
     private AssetsDao assetsDao;
+
+    @Autowired
+    private DepartAssetDao departAssetDao;
+
 
 
 
@@ -81,6 +92,23 @@ public class AssetsServiceImpl implements AssetsService {
     @Override
     public int updateAssets(Assets assets) {
         return assetsDao.updateAssets(assets);
+    }
+
+    @Override
+    public Map<String, Object> addAsset2Depart(Long aid, Long did) {
+        Map<String,Object> resultMap = new HashMap<String, Object>();
+        try {
+            //先删除原有的。
+            int temp = departAssetDao.deleteByAssetId(aid);
+            DepartAsset entity = new DepartAsset(did, aid);
+            int count = departAssetDao.insertSelective(entity);
+            resultMap.put("status", 200);
+            resultMap.put("message", "操作成功");
+        } catch (Exception e) {
+            resultMap.put("status", 400);
+            resultMap.put("message", "操作失败，请重试！");
+        }
+        return resultMap;
     }
 
 

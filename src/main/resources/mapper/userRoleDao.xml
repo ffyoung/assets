@@ -43,14 +43,4 @@
         </trim>
     </insert>
 
-
-    <select id="findbyUserRole" resultType="com.qianyuan.role.bo.UserRoleAssignBo">
-        select u.id,u.nickname,group_concat(ur.name) roleNames,group_concat(ur.id)roleIds from
-        t_user u
-        left join t_user_role uur on uur.uid = u.id
-        left join t_role ur on ur.id = uur.rid
-        where
-        LOWER(u.nickname) like LOWER(CONCAT("%",#{content,jdbcType=VARCHAR},"%"))
-        group by u.id
-    </select>
 </mapper>

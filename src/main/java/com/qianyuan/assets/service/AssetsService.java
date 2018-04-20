@@ -6,6 +6,7 @@ import com.qianyuan.common.domain.Assets;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * AssetsService 资产管理服务类
@@ -78,6 +79,12 @@ public interface AssetsService {
      * @return
      */
     int updateAssets(Assets assets);
+
+
+    /**
+     *
+     */
+    Map<String, Object>  addAsset2Depart(Long aid,Long did);
 
 
 }
