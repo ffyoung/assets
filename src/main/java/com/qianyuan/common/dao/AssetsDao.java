@@ -60,6 +60,8 @@ public interface AssetsDao {
 
     List<Assets> selectByoutDate(@Param("starttime") Date startdate, @Param("endtime") Date enddate);
 
+    List<Assets> selectAssetByDepartName(@Param("name") String name, @Param("findContent") String findContent);
+
 
 
 

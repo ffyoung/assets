@@ -79,5 +79,12 @@ public interface AssetsService {
      */
     int updateAssets(Assets assets);
 
+    /**
+     * 根据部门查询产品信息
+     *
+     * @return
+     */
+    PageInfo<Assets> selectAssetByDepartName(Integer pageNow, Integer pageSize, String findContent, String name);
+
 
 }

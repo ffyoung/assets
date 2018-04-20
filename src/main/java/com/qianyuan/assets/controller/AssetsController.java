@@ -6,6 +6,7 @@ import com.qianyuan.common.controller.CommonController;
 import com.qianyuan.common.domain.Assets;
 import com.qianyuan.common.domain.Role;
 import com.qianyuan.core.shiro.token.ShiroToken;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -164,6 +165,25 @@ public class AssetsController extends CommonController {
         model.addAttribute("totalPage",1);
         model.addAttribute("currentPage",1);
         return "asset/assetList";
+    }
+
+    @RequestMapping(value = "depart")
+    public String selectAssetByDepartName(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
+                                          @RequestParam(value = "findContent", required = false) String findContent,
+                                          @RequestParam(value = "name", required = false) String name) {
+        model.addAttribute("results", false);
+        PageInfo<Assets> list = assetsService.selectAssetByDepartName(pageNow, 10, findContent, name);
+        if (list.getList().size() >= 1) {
+            model.addAttribute("results", true);
+        }
+        Long totalPage = list.getTotal();
+        model.addAttribute("departassetlist", list.getList());
+        model.addAttribute("totalPage", totalPage);
+        pageNow = pageNow == null ? 1 : pageNow;
+        model.addAttribute("currentPage", pageNow);
+        model.addAttribute("name", name);
+        model.addAttribute("findContent", findContent);
+        return "asset/asset";
     }
 
     /**

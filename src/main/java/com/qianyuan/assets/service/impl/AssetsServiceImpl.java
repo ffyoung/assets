@@ -83,5 +83,16 @@ public class AssetsServiceImpl implements AssetsService {
         return assetsDao.updateAssets(assets);
     }
 
+    @Override
+    public PageInfo<Assets> selectAssetByDepartName(Integer pageNow, Integer pageSize, String findContent, String name) {
+        pageNow = (pageNow == null) ? 1 : pageNow;
+        pageSize = pageSize == null ? 10 : pageSize;
+        findContent = findContent == null ? "" : findContent;
+        PageHelper.startPage(pageNow, pageSize);
+        List<Assets> list = assetsDao.selectAssetByDepartName(findContent, name);
+        PageInfo<Assets> page = new PageInfo<>(list);
+        return page;
+    }
+
 
 }

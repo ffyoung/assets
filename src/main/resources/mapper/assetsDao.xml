@@ -18,7 +18,6 @@
         <result property="price" column="price" jdbcType="DOUBLE"/>
         <result property="value" column="value" jdbcType="VARCHAR"/>
         <result property="propertyUnit" column="propertyUnit" jdbcType="VARCHAR"/>
-        <result property="propertyUnit" column="propertyUnit" jdbcType="VARCHAR"/>
         <result property="buyDate" column="buyDate" jdbcType="DATE"/>
         <result property="outDate" column="outDate" jdbcType="DATE"/>
         <result property="outCount" column="outCount" jdbcType="BIGINT"/>
@@ -43,7 +42,7 @@
 
     <sql id="MyCommonSql">
         id,storageDate,itemName,coding,standard,model,inCount,unit,
-          price,value,propertyUnit,propertyUnit,buyDate,outDate,outCount,
+        price,value,propertyUnit,buyDate,outDate,outCount,
           area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
           inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
     </sql>
@@ -257,6 +256,15 @@
                 #{starttime,jdbcType=DATE} and #{endtime,jdbcType=DATE}
             </if>
         </where>
+    </select>
+    <select id="selectAssetByDepartName" parameterType="java.lang.String">
+        SELECT td.name,td.number from t_depart td
+        LEFT JOIN t_depart_asset tda on tda.did= td.id
+        INNER JOIN(SELECT
+        <include refid="MyCommonSql"/>
+        from t_asset) ta on ta.id=tda.aid
+        where td.name=#{name,jdbcType=VARCHAR}
+        GROUP BY ta.id
     </select>
 </mapper>
 
