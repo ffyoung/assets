@@ -191,9 +191,9 @@
                              </@shiro.hasAnyRoles>
 
                              <#--批准员-->
-                            <@shiro.hasAnyRoles name="33333">
+                            <@shiro.hasAnyRoles name="33333,99999">
                             <#if (list.authorizer?length)?default(0) == 0>
-                            <td><a href="javascript:updateMsg(${list.id})" class="btn btn-default">修改</a></td>
+                            <td><a href="javascript:Pizhun(${list.id})" class="btn btn-default">修改</a></td>
                             </#if>
                             </@shiro.hasAnyRoles>
                         </tr>
@@ -251,6 +251,14 @@
         var url = "/asset/updateDo/" + id;
         window.location.href = url;
     }
+
+    /*更改信息页面跳转*/
+    function Pizhun(id) {
+        var url = "/asset/pizhunDo/" + id;
+        window.location.href = url;
+    }
+
+
 
 
     //分页跳转

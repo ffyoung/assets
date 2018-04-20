@@ -1,5 +1,7 @@
 package com.qianyuan.common.domain;
 
+import net.sf.json.JSONObject;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,5 +63,8 @@ public class Role {
 
     public void setType(String type) {
         this.type = type;
+    }
+    public String toString(){
+        return JSONObject.fromObject(this).toString();
     }
 }

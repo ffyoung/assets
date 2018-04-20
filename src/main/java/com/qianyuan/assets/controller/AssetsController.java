@@ -89,6 +89,7 @@ public class AssetsController extends CommonController {
         resultMap.put("status", 400);
         resultMap.put("message", "添加失败");
         String username = SecurityUtils.getSubject().getPrincipal().toString();
+        //录入人信息
         String person = assets.getInputMessage();
         if(person != null && person.trim().length()>0){
             if(username.equals(person)){
@@ -216,6 +217,16 @@ public class AssetsController extends CommonController {
     }
 
 
+    @RequestMapping(value = "pizhunDo/{id}", method = RequestMethod.GET)
+    public String pizhunDo(@PathVariable Long id, Model model) {
+        Assets assets = assetsService.findAssetById(id);
+        Date dateNow = new Date();
+        model.addAttribute("assets", assets);
+        model.addAttribute("dateNow", dateNow);
+        return "asset/assignList";
+    }
+
+
 
 
 
@@ -242,6 +253,33 @@ public class AssetsController extends CommonController {
                 }
             }
 
+        }
+        return resultMap;
+    }
+
+
+    /**
+     * 分配产品到部门
+     *
+     * @param assets
+     * @return
+     */
+    @RequestMapping("assignAssetToDepart")
+    @ResponseBody
+    public Map<String, Object> assignAssetToDepart(Assets assets,
+                                                   @RequestParam("departId") Long departId) {
+
+        resultMap.put("status", 400);
+        resultMap.put("message", "分配失败");
+        String username = SecurityUtils.getSubject().getPrincipal().toString();
+        String authorizer = assets.getAuthorizer();
+        if (authorizer != null && authorizer.trim().length() > 0) {
+            if (username.equals(authorizer)) {
+                int temp = assetsService.updateAssets(assets);
+                if (temp > 0) {
+                    return assetsService.addAsset2Depart(assets.getId(), departId);
+                }
+            }
         }
         return resultMap;
     }
