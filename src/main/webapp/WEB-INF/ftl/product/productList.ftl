@@ -58,102 +58,35 @@
                 <#--<td><input type="checkbox" id="check-all" class="flat"></td>-->
                     <td >序号</td>
                     <td >物品名称</td>
-                    <#--<td>编码</td>-->
-                    <#--<td>规格</td>-->
-                    <#--<td>型号</td>-->
-                    <#--<td>入库数量</td>-->
-                    <#--<td>单位</td>-->
                     <td>价格(元)</td>
-                    <#--<td>估值</td>-->
-                    <#--<td>产权单位(人)</td>-->
-                    <#--<td>购置日期</td>-->
-                    <#--<td>出库日期</td>-->
-                    <#--<td>出库数量</td>-->
-                    <#--<td>库存</td>-->
-                    <#--<td>产地</td>-->
-                    <#--<td>物品分类</td>-->
-                    <#--<td>物品属性</td>-->
-                    <#--<td>管理状态</td>-->
-                    <#--<td>使用单位(人)</td>-->
-                    <#--<td>管理责任人</td>-->
-                    <#--<td>信息录入</td>-->
-                    <#--<td>录入日期</td>-->
-                    <#--<td>审核人</td>-->
-                    <#--<td>审核日期</td>-->
-                    <#--<td>核准人</td>-->
-                    <#--<td>核准日期</td>-->
-                    <#--<td>附图</td>-->
-                    <#--<td>用途</td>-->
-                    <#--<td>备注说明</td>-->
-                    <@shiro.hasAnyRoles name="22222,33333">
-                    <td>操作</td>
+                </tr>
+                 <#if assetslist?size gt 0>
+                     <#list assetslist as list>
+                <tr>
+                    <td>${(currentPage-1)*10+list_index+1}</td>
+                    <td>${list.itemName}</td>
+
+                    <#--业务员-->
+                    <@shiro.hasAnyRoles name="99999,88888">
+                    <td>${list.price+500}</td>
+                    </@shiro.hasAnyRoles>
+
+                    <#--销售人员-->
+                    <@shiro.hasAnyRoles name="55555">
+                    <td>${list.price+1000}</td>
+                    </@shiro.hasAnyRoles>
+
+                    <#--业务员-->
+                    <@shiro.hasAnyRoles name="66666">
+                    <td>${list.price+500}</td>
                     </@shiro.hasAnyRoles>
                 </tr>
-                         <#if assetslist?size gt 0>
-                             <#list assetslist as list>
-                        <tr>
-                        <#--<td class="a-center ">-->
-                        <#--<input type="checkbox" class="flat" name="table_records">-->
-                        <#--</td>-->
-                            <td>${(currentPage-1)*10+list_index+1}</td>
-                            <#--<td>${list.storageDate?date}</td>-->
-                            <td>${list.itemName}</td>
-                            <#--<td>${list.coding}</td>-->
-                            <#--<td>${list.standard}</td>-->
-                            <#--<td>${list.model}</td>-->
-                            <#--<td>${list.inCount}</td>-->
-                            <#--<td>${list.unit}</td>-->
-                            <td>${list.price}</td>
-                            <#--<td>${list.value}</td>-->
-                            <#--<td>${list.propertyUnit}</td>-->
-                            <#--<td>${list.buyDate?date}</td>-->
-                            <#--<td>${list.outDate?date}</td>-->
-                            <#--<td>${list.outCount}</td>-->
-                            <#--<td>${list.inCount - list.outCount}</td>-->
-                            <#--<td>${list.area}</td>-->
-                            <#--<td>${list.goodsType}</td>-->
-                            <#--<td>${list.goodsProperty}</td>-->
-                            <#--<td>${list.managerStatus}</td>-->
-                            <#--<td>${list.unitUse}</td>-->
-                            <#--<td>${list.manager}</td>-->
-                        <#--录入员-->
-                            <#--<td>${list.inputMessage}</td>-->
-                            <#--<td>${list.inputDate?date}</td>-->
-
-                        <#--审核员-->
-                            <#--<td>${list.auditor?default("")}</td>-->
-                        <#--<td>${list.auditor?length}</td>-->
-                            <#--<td>${(list.auditorDate?date)!}</td>-->
-
-                        <#--批准员-->
-                            <#--<td>${list.authorizer?default("")}</td>-->
-                        <#--<td>${(list.authorizer?length)?default(0)}</td>-->
-                            <#--<td>${(list.authorizerDate?date)!}</td>-->
-
-                            <#--<td>${list.picture}</td>-->
-                            <#--<td>${list.useType}</td>-->
-                            <#--<td>${list.remark}</td>-->
-                        <#--审批员-->
-                        <#--<@shiro.hasAnyRoles name="22222,99999">-->
-                             <@shiro.hasAnyRoles name="22222">
-                                 <#if (list.auditor?length)?default(0) == 0>
-                             <td><a href="javascript:updateMsg(${list.id})" class="btn btn-default">审核</a></td>
-                                 </#if>
-                             </@shiro.hasAnyRoles>
-
-                        <#--批准员-->
-                            <@shiro.hasAnyRoles name="33333">
-                                <#if (list.authorizer?length)?default(0) == 0>
-                            <td><a href="javascript:updateMsg(${list.id})" class="btn btn-default">修改</a></td>
-                                </#if>
-                            </@shiro.hasAnyRoles>
-                        </tr>
-                             </#list>
-                         <#elseif !results>
-                    <tr>
-                        <td class="text-center danger" colspan="31">没有找到用户</td>
-                    </tr>
-                         </#if>
+                     </#list>
+                 <#elseif !results>
+                <tr>
+                    <td class="text-center danger" colspan="3">没有找产品</td>
+                </tr>
+                     </#if>
             </table>
             <div id="complete"></div>
             </form>

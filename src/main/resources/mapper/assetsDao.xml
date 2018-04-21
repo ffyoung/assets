@@ -6,7 +6,6 @@
 
 
     <resultMap id="MyResutlMap" type="com.qianyuan.common.domain.Assets">
-
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="storageDate" column="storageDate" jdbcType="DATE"/>
         <result property="itemName" column="itemName" jdbcType="VARCHAR"/>
@@ -45,6 +44,13 @@
         price,value,propertyUnit,buyDate,outDate,outCount,
           area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
           inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
+    </sql>
+
+    <sql id="MCommonSql">
+        ta.storageDate,ta.itemName,ta.coding,ta.standard,ta.model,ta.inCount,ta.unit,
+        ta.price,ta.value,ta.propertyUnit,ta.buyDate,ta.outDate,ta.outCount,
+        ta.area,ta.goodsType,ta.goodsProperty,ta.managerStatus,ta.unitUse,ta.manager,ta.inputMessage,
+        ta.inputDate,ta.auditor,ta.auditorDate,ta.authorizer,ta.authorizerDate,ta.picture,ta.useType,ta.remark
     </sql>
 
     <!--产品插入-->
@@ -257,15 +263,101 @@
             </if>
         </where>
     </select>
-    <select id="selectAssetByDepartName" parameterType="java.lang.String">
-        SELECT td.name,td.number from t_depart td
-        LEFT JOIN t_depart_asset tda on tda.did= td.id
-        INNER JOIN(SELECT
-        <include refid="MyCommonSql"/>
-        from t_asset) ta on ta.id=tda.aid
-        where td.name=#{name,jdbcType=VARCHAR}
-        GROUP BY ta.id
+
+    <!--<select id="selectAssetByDepartName" resultMap="MyResutlMap">-->
+        <!--SELECT-->
+        <!--ta.storageDate storageDate,-->
+        <!--ta.itemName itemName,-->
+        <!--ta.coding coding,-->
+        <!--ta.standard standard,-->
+        <!--ta.model model,-->
+        <!--ta.inCount inCount,-->
+        <!--ta.unit unit,-->
+        <!--ta.price price,-->
+        <!--ta.value value,-->
+        <!--ta.propertyUnit propertyUnit,-->
+        <!--ta.buyDate buyDate,-->
+        <!--ta.outDate outDate,-->
+        <!--ta.outCount outCount,-->
+        <!--ta.area area,-->
+        <!--ta.goodsType goodsType,-->
+        <!--ta.goodsProperty goodsProperty,-->
+        <!--ta.managerStatus managerStatus,-->
+        <!--ta.unitUse unitUse,-->
+        <!--ta.manager manager,-->
+        <!--ta.inputMessage inputMessage,-->
+        <!--ta.inputDate inputDate,-->
+        <!--ta.auditor auditor,-->
+        <!--ta.auditorDate auditorDate,-->
+        <!--ta.authorizer authorizer,-->
+        <!--ta.authorizerDate authorizerDate,-->
+        <!--ta.picture picture,-->
+        <!--ta.useType useType,-->
+        <!--ta.remark remark-->
+        <!--from t_depart td-->
+        <!--LEFT JOIN t_depart_asset tda on tda.did= td.id-->
+        <!--INNER JOIN(SELECT *-->
+        <!--from t_asset) ta on ta.id=tda.aid-->
+        <!--where td.name=#{name,jdbcType=VARCHAR}-->
+        <!--GROUP BY ta.id-->
+    <!--</select>-->
+
+
+    <select id="selectAssetByDepartName" resultMap="MyResutlMap">
+    SELECT
+        ta.storageDate storageDate,
+        ta.itemName itemName,
+        ta.coding coding,
+        ta.standard standard,
+        ta.model model,
+        ta.inCount inCount,
+        ta.unit unit,
+        ta.price price,
+        ta.value value,
+        ta.propertyUnit propertyUnit,
+        ta.buyDate buyDate,
+        ta.outDate outDate,
+        ta.outCount outCount,
+        ta.area area,
+        ta.goodsType goodsType,
+        ta.goodsProperty goodsProperty,
+        ta.managerStatus managerStatus,
+        ta.unitUse unitUse,
+        ta.manager manager,
+        ta.inputMessage inputMessage,
+        ta.inputDate inputDate,
+        ta.auditor auditor,
+        ta.auditorDate auditorDate,
+        ta.authorizer authorizer,
+        ta.authorizerDate authorizerDate,
+        ta.picture picture,
+        ta.useType useType,
+        ta.remark remark
+    from t_asset ta
+    right JOIN t_depart_asset tda on tda.aid= ta.id
+    right JOIN (select id from t_depart where id = #{partId,jdbcType=BIGINT}) td on td.id=tda.did
+        <where>
+            <if test="findContent != null and findContent !='' ">
+                LOWER(ta.itemName) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or ta.coding = #{findContent,jdbcType=VARCHAR}
+                or ta.model = #{findContent,jdbcType=VARCHAR}
+                or ta.propertyUnit = #{findContent,jdbcType=VARCHAR}
+                or LOWER(ta.area) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.goodsType) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.goodsProperty) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.managerStatus) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.unitUse) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.manager) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.auditor) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.inputMessage) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.authorizer) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+                or LOWER(ta.useType) like LOWER(CONCAT("%",#{findContent,jdbcType=VARCHAR},"%"))
+            </if>
+        </where>
     </select>
+
+
+
 </mapper>
 
 

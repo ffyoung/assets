@@ -1,5 +1,6 @@
 package com.qianyuan.common.dao;
 
+import com.qianyuan.assets.bo.AssetsBo;
 import com.qianyuan.common.domain.Assets;
 import org.apache.ibatis.annotations.Param;
 
@@ -60,7 +61,7 @@ public interface AssetsDao {
 
     List<Assets> selectByoutDate(@Param("starttime") Date startdate, @Param("endtime") Date enddate);
 
-    List<Assets> selectAssetByDepartName(@Param("name") String name, @Param("findContent") String findContent);
+    List<Assets> selectAssetByDepartName(@Param("findContent") String findContent,@Param("partId") Long partId);
 
 
 

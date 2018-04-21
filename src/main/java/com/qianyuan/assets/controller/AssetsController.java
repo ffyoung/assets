@@ -1,6 +1,7 @@
 package com.qianyuan.assets.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.qianyuan.assets.bo.AssetsBo;
 import com.qianyuan.assets.service.AssetsService;
 import com.qianyuan.common.controller.CommonController;
 import com.qianyuan.common.domain.Assets;
@@ -169,11 +170,12 @@ public class AssetsController extends CommonController {
     }
 
     @RequestMapping(value = "depart")
-    public String selectAssetByDepartName(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
+    public String selectAssetByDepartName(Model model,
+                                          @RequestParam(value = "pageNow", required = false) Integer pageNow,
                                           @RequestParam(value = "findContent", required = false) String findContent,
-                                          @RequestParam(value = "name", required = false) String name) {
+                                          @RequestParam(value = "partId", required = false) Long partId) {
         model.addAttribute("results", false);
-        PageInfo<Assets> list = assetsService.selectAssetByDepartName(pageNow, 10, findContent, name);
+        PageInfo<Assets> list = assetsService.selectAssetByDepartName(pageNow, 10, findContent, partId);
         if (list.getList().size() >= 1) {
             model.addAttribute("results", true);
         }
@@ -182,7 +184,6 @@ public class AssetsController extends CommonController {
         model.addAttribute("totalPage", totalPage);
         pageNow = pageNow == null ? 1 : pageNow;
         model.addAttribute("currentPage", pageNow);
-        model.addAttribute("name", name);
         model.addAttribute("findContent", findContent);
         return "asset/asset";
     }

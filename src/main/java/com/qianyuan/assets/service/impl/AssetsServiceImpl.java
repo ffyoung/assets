@@ -3,6 +3,7 @@ package com.qianyuan.assets.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.qianyuan.assets.bo.AssetsBo;
 import com.qianyuan.assets.service.AssetsService;
 import com.qianyuan.common.dao.AssetsDao;
 import com.qianyuan.common.dao.DepartAssetDao;
@@ -95,12 +96,12 @@ public class AssetsServiceImpl implements AssetsService {
     }
 
     @Override
-    public PageInfo<Assets> selectAssetByDepartName(Integer pageNow, Integer pageSize, String findContent, String name) {
+    public PageInfo<Assets> selectAssetByDepartName(Integer pageNow, Integer pageSize, String findContent, Long partId) {
         pageNow = (pageNow == null) ? 1 : pageNow;
         pageSize = pageSize == null ? 10 : pageSize;
         findContent = findContent == null ? "" : findContent;
         PageHelper.startPage(pageNow, pageSize);
-        List<Assets> list = assetsDao.selectAssetByDepartName(findContent, name);
+        List<Assets> list = assetsDao.selectAssetByDepartName(findContent,partId);
         PageInfo<Assets> page = new PageInfo<>(list);
         return page;
         }

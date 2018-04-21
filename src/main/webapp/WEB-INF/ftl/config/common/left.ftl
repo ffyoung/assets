@@ -33,7 +33,7 @@
                              <li><a href="/asset/all?pageNow=1">列表</a></li>
                              </@shiro.hasAnyRoles>
                              <#list departlist as list>
-                                 <li><a href="/asset/depart?pageNow=1&name=${list.name}">${list.name}</a></li>
+                                 <li><a href="/asset/depart?pageNow=1&partId=${list.id}">${list.name}</a></li>
                              </#list>
                          </ul>
                      </li>

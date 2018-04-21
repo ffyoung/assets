@@ -2,6 +2,7 @@ package com.qianyuan.assets.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import com.qianyuan.assets.bo.AssetsBo;
 import com.qianyuan.common.domain.Assets;
 
 import java.util.Date;
@@ -85,7 +86,7 @@ public interface AssetsService {
      *
      * @return
      */
-    PageInfo<Assets> selectAssetByDepartName(Integer pageNow, Integer pageSize, String findContent, String name);
+    PageInfo<Assets> selectAssetByDepartName(Integer pageNow, Integer pageSize, String findContent, Long partId);
 
 
     /**
