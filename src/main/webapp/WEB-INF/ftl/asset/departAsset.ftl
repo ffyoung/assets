@@ -52,22 +52,24 @@
                     <hr/>
                     <div id="showDate" style="width: auto;height: 200px; display: none;">
 
-                        <form action="/asset/findByStore" method="post">
+                        <form action="/asset/selectByStore" method="post">
                             <div>
                                 <h4>入库日期</h4>
                                 <label>开始时间</label>
                             <#--<td>${it.time?string('yyyy-MM-dd HH:mm')}</td>-->
                                 <input type="date" id="starttime" name="starttime"/>
+                                <input type="text" id="partId" name="partId" value="${partId}" hidden/>
                                 <label>结束时间</label>
                                 <input type="date" id="endtime" name="endtime"/>
                                 <input type="submit" value="提交"/>
                             </div>
                         </form>
                     <#------------------------------------------------------>
-                        <form action="/asset/findByBuy" method="post">
+                        <form action="/asset/selectByBuy" method="post">
                             <div>
                                 <h4>购置日期</h4>
                                 <label>开始时间</label>
+                                <input type="text" id="partId" name="partId" value="${partId}" hidden/>
                                 <input type="date" id="starttime" name="starttime"/>
                                 <label>结束时间</label>
                                 <input type="date" id="endtime" name="endtime"/>
@@ -75,10 +77,11 @@
                             </div>
                         </form>
                     <#------------------------------------------------------>
-                        <form action="/asset/findByOut" method="post">
+                        <form action="/asset/selectByOut" method="post">
                             <div>
                                 <h4>出库日期</h4>
                                 <label>开始时间</label>
+                                <input type="text" id="partId" name="partId" value="${partId}" hidden/>
                                 <input type="date" id="starttime" name="starttime"/>
                                 <label>结束时间</label>
                                 <input type="date" id="endtime" name="endtime"/>
@@ -90,6 +93,7 @@
                     <form id="formId" method="post" action="/asset/depart" autocomplete="off">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
+                                <input type="text" id="partId" name="partId" value="${partId}" hidden/>
                                 <input type="text" class="form-control" placeholder="Search for..." name="findContent"
                                        value="${findContent?default('')}" id="findContent"/>
                                 <span class="input-group-btn">

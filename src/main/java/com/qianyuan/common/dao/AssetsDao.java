@@ -63,6 +63,14 @@ public interface AssetsDao {
 
     List<Assets> selectAssetByDepartName(@Param("findContent") String findContent,@Param("partId") Long partId);
 
+    List<Assets> selectAssetByStoraDate(@Param("partId") Long partId, @Param("starttime") Date startdate,
+                                        @Param("endtime") Date enddate);
+
+    List<Assets> selectAssetByBuyDate(@Param("partId") Long partId, @Param("starttime") Date startdate,
+                                      @Param("endtime") Date enddate);
+
+    List<Assets> selectAssetByOutDate(@Param("partId") Long partId, @Param("starttime") Date startdate,
+                                      @Param("endtime") Date enddate);
 
 
 

@@ -46,13 +46,6 @@
           inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark
     </sql>
 
-    <sql id="MCommonSql">
-        ta.storageDate,ta.itemName,ta.coding,ta.standard,ta.model,ta.inCount,ta.unit,
-        ta.price,ta.value,ta.propertyUnit,ta.buyDate,ta.outDate,ta.outCount,
-        ta.area,ta.goodsType,ta.goodsProperty,ta.managerStatus,ta.unitUse,ta.manager,ta.inputMessage,
-        ta.inputDate,ta.auditor,ta.auditorDate,ta.authorizer,ta.authorizerDate,ta.picture,ta.useType,ta.remark
-    </sql>
-
     <!--产品插入-->
     <insert id="addAssets" parameterType="com.qianyuan.common.domain.Assets">
         insert into t_asset
@@ -264,6 +257,7 @@
         </where>
     </select>
 
+
     <!--<select id="selectAssetByDepartName" resultMap="MyResutlMap">-->
         <!--SELECT-->
         <!--ta.storageDate storageDate,-->
@@ -356,8 +350,129 @@
         </where>
     </select>
 
-
-
+    <select id="selectAssetByStoraDate" resultMap="MyResutlMap">
+        SELECT
+        ta.storageDate storageDate,
+        ta.itemName itemName,
+        ta.coding coding,
+        ta.standard standard,
+        ta.model model,
+        ta.inCount inCount,
+        ta.unit unit,
+        ta.price price,
+        ta.value value,
+        ta.propertyUnit propertyUnit,
+        ta.buyDate buyDate,
+        ta.outDate outDate,
+        ta.outCount outCount,
+        ta.area area,
+        ta.goodsType goodsType,
+        ta.goodsProperty goodsProperty,
+        ta.managerStatus managerStatus,
+        ta.unitUse unitUse,
+        ta.manager manager,
+        ta.inputMessage inputMessage,
+        ta.inputDate inputDate,
+        ta.auditor auditor,
+        ta.auditorDate auditorDate,
+        ta.authorizer authorizer,
+        ta.authorizerDate authorizerDate,
+        ta.picture picture,
+        ta.useType useType,
+        ta.remark remark
+        from t_asset ta
+        right JOIN t_depart_asset tda on tda.aid= ta.id
+        right JOIN (select id from t_depart where id = #{partId,jdbcType=BIGINT}) td on td.id=tda.did
+        <where>
+            storageDate
+            between
+            <if test="starttime!=null and endtime!=null">
+                #{starttime,jdbcType=DATE} and #{endtime,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
+    <select id="selectAssetByBuyDate" resultMap="MyResutlMap">
+        SELECT
+        ta.storageDate storageDate,
+        ta.itemName itemName,
+        ta.coding coding,
+        ta.standard standard,
+        ta.model model,
+        ta.inCount inCount,
+        ta.unit unit,
+        ta.price price,
+        ta.value value,
+        ta.propertyUnit propertyUnit,
+        ta.buyDate buyDate,
+        ta.outDate outDate,
+        ta.outCount outCount,
+        ta.area area,
+        ta.goodsType goodsType,
+        ta.goodsProperty goodsProperty,
+        ta.managerStatus managerStatus,
+        ta.unitUse unitUse,
+        ta.manager manager,
+        ta.inputMessage inputMessage,
+        ta.inputDate inputDate,
+        ta.auditor auditor,
+        ta.auditorDate auditorDate,
+        ta.authorizer authorizer,
+        ta.authorizerDate authorizerDate,
+        ta.picture picture,
+        ta.useType useType,
+        ta.remark remark
+        from t_asset ta
+        right JOIN t_depart_asset tda on tda.aid= ta.id
+        right JOIN (select id from t_depart where id = #{partId,jdbcType=BIGINT}) td on td.id=tda.did
+        <where>
+            buyDate
+            between
+            <if test="starttime!=null and endtime!=null">
+                #{starttime,jdbcType=DATE} and #{endtime,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
+    <select id="selectAssetByOutDate" resultMap="MyResutlMap">
+        SELECT
+        ta.storageDate storageDate,
+        ta.itemName itemName,
+        ta.coding coding,
+        ta.standard standard,
+        ta.model model,
+        ta.inCount inCount,
+        ta.unit unit,
+        ta.price price,
+        ta.value value,
+        ta.propertyUnit propertyUnit,
+        ta.buyDate buyDate,
+        ta.outDate outDate,
+        ta.outCount outCount,
+        ta.area area,
+        ta.goodsType goodsType,
+        ta.goodsProperty goodsProperty,
+        ta.managerStatus managerStatus,
+        ta.unitUse unitUse,
+        ta.manager manager,
+        ta.inputMessage inputMessage,
+        ta.inputDate inputDate,
+        ta.auditor auditor,
+        ta.auditorDate auditorDate,
+        ta.authorizer authorizer,
+        ta.authorizerDate authorizerDate,
+        ta.picture picture,
+        ta.useType useType,
+        ta.remark remark
+        from t_asset ta
+        right JOIN t_depart_asset tda on tda.aid= ta.id
+        right JOIN (select id from t_depart where id = #{partId,jdbcType=BIGINT}) td on td.id=tda.did
+        <where>
+            outDate
+            between
+            <if test="starttime!=null and endtime!=null">
+                #{starttime,jdbcType=DATE} and #{endtime,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
 </mapper>
 
 

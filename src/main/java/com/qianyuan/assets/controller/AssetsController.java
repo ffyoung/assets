@@ -1,13 +1,9 @@
 package com.qianyuan.assets.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.qianyuan.assets.bo.AssetsBo;
 import com.qianyuan.assets.service.AssetsService;
 import com.qianyuan.common.controller.CommonController;
 import com.qianyuan.common.domain.Assets;
-import com.qianyuan.common.domain.Role;
-import com.qianyuan.core.shiro.token.ShiroToken;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -180,12 +176,13 @@ public class AssetsController extends CommonController {
             model.addAttribute("results", true);
         }
         Long totalPage = list.getTotal();
+        model.addAttribute("partId", partId);
         model.addAttribute("departassetlist", list.getList());
         model.addAttribute("totalPage", totalPage);
         pageNow = pageNow == null ? 1 : pageNow;
         model.addAttribute("currentPage", pageNow);
         model.addAttribute("findContent", findContent);
-        return "asset/asset";
+        return "asset/departAsset";
     }
 
     /**
@@ -285,7 +282,84 @@ public class AssetsController extends CommonController {
         return resultMap;
     }
 
+    /**
+     * 根据部门Id入库时间查询
+     *
+     * @param model
+     * @param partId
+     * @param starttime
+     * @param endtime
+     * @return
+     */
+    @RequestMapping(value = "selectByStore")
+    public String selectAssetByStoraDate(Model model, @RequestParam(value = "partId", required = false) Long partId,
+                                         @RequestParam(value = "starttime", required = false) java.sql.Date starttime,
+                                         @RequestParam(value = "endtime", required = false) java.sql.Date endtime) {
+        model.addAttribute("results", false);
+        if (starttime != null && endtime != null) {
+            List<Assets> list = assetsService.selectAssetByStoraDate(partId, starttime, endtime);
+            model.addAttribute("results", true);
+            model.addAttribute("departassetlist", list);
+            model.addAttribute("partId", partId);
+        } else {
+            return "config/error";
+        }
+        model.addAttribute("totalPage", 1);
+        model.addAttribute("currentPage", 1);
+        return "asset/departAsset";
+    }
 
+    /**
+     * 根据部门Id购买时间查询
+     *
+     * @param model
+     * @param partId
+     * @param starttime
+     * @param endtime
+     * @return
+     */
+    @RequestMapping(value = "selectByBuy")
+    public String selectAssetByBuyDate(Model model, @RequestParam(value = "partId", required = false) Long partId,
+                                       @RequestParam(value = "starttime", required = false) java.sql.Date starttime,
+                                       @RequestParam(value = "endtime", required = false) java.sql.Date endtime) {
+        model.addAttribute("results", false);
+        if (starttime != null && endtime != null) {
+            List<Assets> list = assetsService.selectAssetByBuyDate(partId, starttime, endtime);
+            model.addAttribute("results", true);
+            model.addAttribute("departassetlist", list);
+            model.addAttribute("partId", partId);
+        } else {
+            return "config/error";
+        }
+        model.addAttribute("totalPage", 1);
+        model.addAttribute("currentPage", 1);
+        return "asset/departAsset";
+    }
 
-
+    /**
+     * 根据部门Id出库时间查询
+     *
+     * @param model
+     * @param partId
+     * @param starttime
+     * @param endtime
+     * @return
+     */
+    @RequestMapping(value = "selectByOut")
+    public String selectAssetByOutDate(Model model, @RequestParam(value = "partId", required = false) Long partId,
+                                       @RequestParam(value = "starttime", required = false) java.sql.Date starttime,
+                                       @RequestParam(value = "endtime", required = false) java.sql.Date endtime) {
+        model.addAttribute("results", false);
+        if (starttime != null && endtime != null) {
+            List<Assets> list = assetsService.selectAssetByOutDate(partId, starttime, endtime);
+            model.addAttribute("results", true);
+            model.addAttribute("departassetlist", list);
+            model.addAttribute("partId", partId);
+        } else {
+            return "config/error";
+        }
+        model.addAttribute("totalPage", 1);
+        model.addAttribute("currentPage", 1);
+        return "asset/departAsset";
+    }
 }

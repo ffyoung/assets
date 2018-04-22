@@ -94,5 +94,33 @@ public interface AssetsService {
      */
     Map<String, Object> addAsset2Depart(Long aid, Long did);
 
+    /**
+     * 根据部门Id入库日期查询
+     *
+     * @param partId
+     * @param starttime
+     * @param endtinme
+     * @return
+     */
+    List<Assets> selectAssetByStoraDate(Long partId, Date starttime, Date endtinme);
 
+    /**
+     * 根据部门Id购买日期查询
+     *
+     * @param partId
+     * @param starttime
+     * @param endtinme
+     * @return
+     */
+    List<Assets> selectAssetByBuyDate(Long partId, Date starttime, Date endtinme);
+
+    /**
+     * 根据部门Id出库日期查询
+     *
+     * @param partId
+     * @param starttime
+     * @param endtinme
+     * @return
+     */
+    List<Assets> selectAssetByOutDate(Long partId, Date starttime, Date endtinme);
 }

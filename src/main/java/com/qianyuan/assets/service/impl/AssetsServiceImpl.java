@@ -104,10 +104,10 @@ public class AssetsServiceImpl implements AssetsService {
         List<Assets> list = assetsDao.selectAssetByDepartName(findContent,partId);
         PageInfo<Assets> page = new PageInfo<>(list);
         return page;
-        }
+    }
 
     @Override
-    public Map<String, Object> addAsset2Depart (Long aid, Long did) {
+    public Map<String, Object> addAsset2Depart(Long aid, Long did) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         try {
             //先删除原有的。
@@ -121,6 +121,21 @@ public class AssetsServiceImpl implements AssetsService {
             resultMap.put("message", "操作失败，请重试！");
         }
         return resultMap;
+    }
+
+    @Override
+    public List<Assets> selectAssetByStoraDate(Long partId, Date starttime, Date endtinme) {
+        return assetsDao.selectAssetByStoraDate(partId, starttime, endtinme);
+    }
+
+    @Override
+    public List<Assets> selectAssetByBuyDate(Long partId, Date starttime, Date endtinme) {
+        return assetsDao.selectAssetByBuyDate(partId, starttime, endtinme);
+    }
+
+    @Override
+    public List<Assets> selectAssetByOutDate(Long partId, Date starttime, Date endtinme) {
+        return assetsDao.selectAssetByOutDate(partId, starttime, endtinme);
     }
 
 }
