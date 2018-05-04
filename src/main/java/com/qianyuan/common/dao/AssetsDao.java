@@ -72,6 +72,5 @@ public interface AssetsDao {
     List<Assets> selectAssetByOutDate(@Param("partId") Long partId, @Param("starttime") Date startdate,
                                       @Param("endtime") Date enddate);
 
-
-
+    int addAssetList(List<Assets> assetList);
 }

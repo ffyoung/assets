@@ -473,6 +473,24 @@
             </if>
         </where>
     </select>
+    <insert id="addAssetList" parameterType="java.util.List">
+        insert into t_asset(id,storageDate,itemName,coding,standard,model,inCount,unit,
+        price,value,propertyUnit,buyDate,outDate,outCount,
+        area,goodsType,goodsProperty,managerStatus,unitUse,manager,inputMessage,
+        inputDate,auditor,auditorDate,authorizer,authorizerDate,picture,useType,remark)
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (null, #{item.storageDate,jdbcType=DATE},#{item.itemName,jdbcType=VARCHAR},
+            #{item.coding,jdbcType=VARCHAR},#{item.standard,jdbcType=VARCHAR},#{item.model,jdbcType=VARCHAR},#{item.inCount,jdbcType=BIGINT},
+            #{item.unit,jdbcType=VARCHAR},#{item.price,jdbcType=DOUBLE},#{item.value,jdbcType=VARCHAR},#{item.propertyUnit,jdbcType=VARCHAR},
+            #{item.buyDate,jdbcType=DATE},#{item.outDate,jdbcType=DATE},#{item.outCount,jdbcType=BIGINT},
+            #{item.area,jdbcType=VARCHAR},#{item.goodsType,jdbcType=VARCHAR},#{item.goodsProperty,jdbcType=VARCHAR},#{item.managerStatus,jdbcType=VARCHAR},
+            #{item.unitUse,jdbcType=VARCHAR},#{item.manager,jdbcType=VARCHAR},#{item.inputMessage,jdbcType=VARCHAR},#{item.inputDate,jdbcType=DATE},
+            #{item.auditor,jdbcType=VARCHAR},#{item.auditorDate,jdbcType=DATE},#{item.authorizer,jdbcType=VARCHAR},#{item.authorizerDate,jdbcType=DATE},
+            #{item.picture,jdbcType=VARCHAR},#{item.useType,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR})
+
+        </foreach>
+    </insert>
 </mapper>
 
 

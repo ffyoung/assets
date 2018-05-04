@@ -281,8 +281,9 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="picture" name="picture"required="required"
-                                    class="form-control col-md-7 col-xs-12" value="${assets.picture}"/>
+                                    <input type="text" id="picture" name="picture" required="required"
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${assets.picture?default("")}"/>
                                 </div>
                             </div>
 
@@ -291,8 +292,10 @@
                                      <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="useType"  name="useType" required="required"
-                                    class="form-control col-md-7 col-xs-12" value="${assets.useType}" />
+                                    <input type="text" id="useType" name="useType" required="required"
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${assets.useType?default("")}"/>
+
                                 </div>
                             </div>
 
@@ -302,7 +305,8 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="remark" name="remark" required="required"
-                                    class="form-control col-md-7 col-xs-12" value="${assets.remark}"/>
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${assets.remark?default("")}"/>
                                 </div>
                             </div>
 

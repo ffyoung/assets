@@ -53,13 +53,15 @@
                             <br/>
                             <form id="assetsform" data-parsley-validate class="form-horizontal form-label-left">
 
-                                <input type="text" id="id" name="id" required="required" hidden="hidden" readonly="readonly" value="${assets.id}"/>
+                                <input type="text" id="id" name="id" required="required" hidden="hidden"
+                                       readonly="readonly" value="${assets.id}"/>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">入库日期
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="date" id="storageDate" name="storageDate" required="required" class="form-control col-md-7 col-xs-12"
+                                        <input type="date" id="storageDate" name="storageDate" required="required"
+                                               class="form-control col-md-7 col-xs-12"
                                                value="${assets.storageDate?string("yyyy-MM-dd")}" readonly/>
                                     </div>
                                 </div>
@@ -70,7 +72,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="itemName" name="itemName" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.itemName}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.itemName}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -80,7 +83,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="coding" name="coding" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.coding}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.coding}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -90,7 +94,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="standard" name="standard" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.standard}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.standard}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -100,7 +105,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="model" name="model" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.model}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.model}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -110,7 +116,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="inCount" name="inCount" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.inCount}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.inCount}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -130,7 +137,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="price" name="price" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.price}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.price}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -140,7 +148,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="value" name="value" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.value}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.value}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -150,7 +159,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="propertyUnit" name="propertyUnit" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.propertyUnit}" readonly/>
+                                               class="form-control col-md-7 col-xs-12" value="${assets.propertyUnit}"
+                                               readonly/>
                                     </div>
                                 </div>
 
@@ -160,7 +170,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="date" id="buyDate" name="buyDate" required="required"
-                                           readonly    class="form-control col-md-7 col-xs-12" value="${assets.buyDate?string("yyyy-MM-dd")}"/>
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.buyDate?string("yyyy-MM-dd")}"/>
                                     </div>
                                 </div>
 
@@ -170,7 +181,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="date" id="outDate" name="outDate" required="required"
-                                           readonly    class="form-control col-md-7 col-xs-12" value="${assets.outDate?string("yyyy-MM-dd")}"/>
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.outDate?string("yyyy-MM-dd")}"/>
                                     </div>
                                 </div>
 
@@ -180,17 +192,18 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="outCount" name="outCount" required="required"
-                                           readonly    class="form-control col-md-7 col-xs-12" value="${assets.outCount}"/>
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.outCount}"/>
                                     </div>
                                 </div>
 
                                 <div class=" form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="first-name">产地
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">产地
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="area" name="area" required="required"
-                                          readonly     class="form-control col-md-7 col-xs-12" value="${assets.area}"/>
+                                               readonly class="form-control col-md-7 col-xs-12" value="${assets.area}"/>
                                     </div>
                                 </div>
 
@@ -200,7 +213,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="goodsType" name="goodsType" required="required"
-                                           readonly    class="form-control col-md-7 col-xs-12" value="${assets.goodsProperty}"/>
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.goodsProperty}"/>
                                     </div>
                                 </div>
 
@@ -209,8 +223,9 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="goodsProperty" name="goodsProperty"  required="required"
-                                          readonly     class="form-control col-md-7 col-xs-12"  value="${assets.goodsProperty}"/>
+                                        <input type="text" id="goodsProperty" name="goodsProperty" required="required"
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.goodsProperty}"/>
                                     </div>
                                 </div>
 
@@ -219,8 +234,9 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="managerStatus"  name="managerStatus" required="required"
-                                           readonly    class="form-control col-md-7 col-xs-12" value="${assets.managerStatus}"/>
+                                        <input type="text" id="managerStatus" name="managerStatus" required="required"
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.managerStatus}"/>
 
                                     </div>
                                 </div>
@@ -229,8 +245,9 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="unitUse" name="unitUse"  class="form-control col-md-7 col-xs-12"
-                                           readonly    value="${assets.unitUse}"/>
+                                        <input type="text" id="unitUse" name="unitUse"
+                                               class="form-control col-md-7 col-xs-12"
+                                               readonly value="${assets.unitUse}"/>
                                     </div>
                                 </div>
 
@@ -240,33 +257,38 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="manager" name="manager" required="required"
-                                            readonly   class="form-control col-md-7 col-xs-12" value="${assets.manager}"/>
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.manager}"/>
                                     </div>
                                 </div>
 
                             <#--信息录入-->
-                                <input type="text" id="inputMessage"  name="inputMessage"  required="required" readonly="readonly"
+                                <input type="text" id="inputMessage" name="inputMessage" required="required"
+                                       readonly="readonly"
                                        value="${assets.inputMessage}" hidden="hidden"/>
 
                                 <input type="date" id="inputDate" name="inputDate" readonly="readonly" hidden="hidden"
                                        required="required" value="${assets.inputDate?string("yyyy-MM-dd")}"/>
 
-                                <input type="text" id="auditor" name="auditor"  required="required" readonly
+                                <input type="text" id="auditor" name="auditor" required="required" readonly
                                        value="${assets.auditor}" hidden/>
-                                <input type="date" id="auditorDate" name="auditorDate" required="required" readonly="readonly"
-                                       hidden="hidden"  value="${assets.auditorDate?string("yyyy-MM-dd")}"/>
+                                <input type="date" id="auditorDate" name="auditorDate" required="required"
+                                       readonly="readonly"
+                                       hidden="hidden" value="${assets.auditorDate?string("yyyy-MM-dd")}"/>
 
-                                <input type="text" id="authorizer" name="authorizer"  required="required" readonly
+                                <input type="text" id="authorizer" name="authorizer" required="required" readonly
                                        value="${user.username?default('-')}" hidden/>
-                                <input type="date" id="authorizerDate" name="authorizerDate" required="required" readonly="readonly"
-                                       hidden="hidden"  value="${dateNow?string("yyyy-MM-dd")}"/>
+                                <input type="date" id="authorizerDate" name="authorizerDate" required="required"
+                                       readonly="readonly"
+                                       hidden="hidden" value="${dateNow?string("yyyy-MM-dd")}"/>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >附图
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">附图
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="picture" name="picture"required="required"
-                                          readonly     class="form-control col-md-7 col-xs-12" value="${assets.picture}"/>
+                                        <input type="text" id="picture" name="picture" required="required"
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.picture?default("")}"/>
                                     </div>
                                 </div>
 
@@ -275,23 +297,25 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" id="useType"  name="useType" required="required"
-                                           readonly    class="form-control col-md-7 col-xs-12" value="${assets.useType}" />
+                                        <input type="text" id="useType" name="useType" required="required"
+                                               readonly class="form-control col-md-7 col-xs-12"
+                                               value="${assets.useType?default("")}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >备注说明
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">备注说明
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="remark" name="remark" required="required"
-                                               class="form-control col-md-7 col-xs-12" value="${assets.remark}"/>
+                                               class="form-control col-md-7 col-xs-12"
+                                               value="${assets.remark?default("")}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >分配部门
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">分配部门
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">

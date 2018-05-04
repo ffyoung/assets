@@ -132,7 +132,7 @@
                             <td>附图</td>
                             <td>用途</td>
                             <td>备注说明</td>
-                            <@shiro.hasAnyRoles name="22222,33333">
+                            <@shiro.hasAnyRoles name="22222,33333,99999">
                             <td>操作</td>
                             </@shiro.hasAnyRoles>
                         </tr>
@@ -177,9 +177,9 @@
                             <#--<td>${(list.authorizer?length)?default(0)}</td>-->
                             <td>${(list.authorizerDate?date)!}</td>
 
-                            <td>${list.picture}</td>
-                            <td>${list.useType}</td>
-                            <td>${list.remark}</td>
+                             <td>${list.picture?default("")}</td>
+                             <td>${list.useType?default("")}</td>
+                             <td>${list.remark?default("")}</td>
 
 
                              <#--审批员-->
@@ -191,9 +191,9 @@
                              </@shiro.hasAnyRoles>
 
                              <#--批准员-->
-                            <@shiro.hasAnyRoles name="33333,99999">
-                            <#if (list.authorizer?length)?default(0) == 0>
-                            <td><a href="javascript:Pizhun(${list.id})" class="btn btn-default">修改</a></td>
+                            <@shiro.hasAnyRoles name="33333">
+                                <#if (list.authorizer?length)?default(0) == 0 && ((list.auditor?length)?default(0) > 0) >
+                            <td><a href="javascript:Pizhun(${list.id})" class="btn btn-default">分配</a></td>
                             </#if>
                             </@shiro.hasAnyRoles>
                         </tr>

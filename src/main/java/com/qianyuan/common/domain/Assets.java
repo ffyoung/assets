@@ -2,7 +2,7 @@ package com.qianyuan.common.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * 产品信息类

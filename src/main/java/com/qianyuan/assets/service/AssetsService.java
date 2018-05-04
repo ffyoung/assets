@@ -4,7 +4,11 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.assets.bo.AssetsBo;
 import com.qianyuan.common.domain.Assets;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -123,4 +127,6 @@ public interface AssetsService {
      * @return
      */
     List<Assets> selectAssetByOutDate(Long partId, Date starttime, Date endtinme);
+
+    void addAssetList(MultipartFile file) throws Exception;
 }

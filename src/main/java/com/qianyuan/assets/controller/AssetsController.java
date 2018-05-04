@@ -1,9 +1,11 @@
 package com.qianyuan.assets.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.assets.service.AssetsService;
 import com.qianyuan.common.controller.CommonController;
 import com.qianyuan.common.domain.Assets;
+import com.qianyuan.common.domain.User;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -11,7 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +39,8 @@ public class AssetsController extends CommonController {
     @Autowired
     private AssetsService assetsService;
 
+    @Autowired
+    private HttpServletRequest request;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -42,23 +52,24 @@ public class AssetsController extends CommonController {
 
     /**
      * 查询所有
+     *
      * @param model
      * @return
      */
     @RequestMapping(value = "all")
-    public String findAll(Model model, @RequestParam(value = "pageNow",required = false) Integer pageNow,
-                          @RequestParam(value = "findContent",required = false) String findContent){
-        model.addAttribute("results",false);
-        PageInfo<Assets> list = assetsService.findWithPage(pageNow,10,findContent);
-        if(list.getList().size() >= 1){
-            model.addAttribute("results",true);
+    public String findAll(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
+                          @RequestParam(value = "findContent", required = false) String findContent) {
+        model.addAttribute("results", false);
+        PageInfo<Assets> list = assetsService.findWithPage(pageNow, 10, findContent);
+        if (list.getList().size() >= 1) {
+            model.addAttribute("results", true);
         }
         Long totalPage = list.getTotal();
-        model.addAttribute("assetslist",list.getList());
-        model.addAttribute("totalPage",totalPage);
-        pageNow = pageNow == null?1:pageNow;
-        model.addAttribute("currentPage",pageNow);
-        model.addAttribute("findContent",findContent);
+        model.addAttribute("assetslist", list.getList());
+        model.addAttribute("totalPage", totalPage);
+        pageNow = pageNow == null ? 1 : pageNow;
+        model.addAttribute("currentPage", pageNow);
+        model.addAttribute("findContent", findContent);
         return "asset/assetList";
     }
 
@@ -70,7 +81,7 @@ public class AssetsController extends CommonController {
     @RequestMapping("addAssetsIndex")
     public String addAssetsIndex(Model model) {
         Date dateNow = new Date();
-        model.addAttribute("dateNow",dateNow);
+        model.addAttribute("dateNow", dateNow);
         return "asset/insertAssets";
     }
 
@@ -88,8 +99,8 @@ public class AssetsController extends CommonController {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
         //录入人信息
         String person = assets.getInputMessage();
-        if(person != null && person.trim().length()>0){
-            if(username.equals(person)){
+        if (person != null && person.trim().length() > 0) {
+            if (username.equals(person)) {
                 int temp = assetsService.addAssets(assets);
                 if (temp > 0) {
                     resultMap.put("status", 200);
@@ -102,66 +113,69 @@ public class AssetsController extends CommonController {
 
     /**
      * 入库时间查询
+     *
      * @param model
      * @param starttime
      * @param endtime
      * @return
      */
-    @RequestMapping(value = "findByStore",method = RequestMethod.POST)
-    public String findByStore(Model model, @RequestParam("starttime")java.sql.Date starttime,
-                              @RequestParam("endtime")java.sql.Date endtime){
+    @RequestMapping(value = "findByStore", method = RequestMethod.POST)
+    public String findByStore(Model model, @RequestParam("starttime") java.sql.Date starttime,
+                              @RequestParam("endtime") java.sql.Date endtime) {
 
-        if(starttime != null && endtime != null){
-            List<Assets> list = assetsService.selectBystorageDate(starttime,endtime);
-            model.addAttribute("assetslist",list);
-        }else {
+        if (starttime != null && endtime != null) {
+            List<Assets> list = assetsService.selectBystorageDate(starttime, endtime);
+            model.addAttribute("assetslist", list);
+        } else {
             return "config/error";
         }
 
-        model.addAttribute("totalPage",1);
-        model.addAttribute("currentPage",1);
+        model.addAttribute("totalPage", 1);
+        model.addAttribute("currentPage", 1);
         return "asset/assetList";
     }
 
     /**
      * 购置时间查询
+     *
      * @param model
      * @param starttime
      * @param endtime
      * @return
      */
-    @RequestMapping(value = "findByBuy",method = RequestMethod.POST)
-    public String findByBuy(Model model, @RequestParam("starttime")java.sql.Date starttime,
-                              @RequestParam("endtime")java.sql.Date endtime){
-        if(starttime != null && endtime != null){
-            List<Assets> list = assetsService.selectBybuyDate(starttime,endtime);
-            model.addAttribute("assetslist",list);
-        }else {
+    @RequestMapping(value = "findByBuy", method = RequestMethod.POST)
+    public String findByBuy(Model model, @RequestParam("starttime") java.sql.Date starttime,
+                            @RequestParam("endtime") java.sql.Date endtime) {
+        if (starttime != null && endtime != null) {
+            List<Assets> list = assetsService.selectBybuyDate(starttime, endtime);
+            model.addAttribute("assetslist", list);
+        } else {
             return "config/error";
         }
-        model.addAttribute("totalPage",1);
-        model.addAttribute("currentPage",1);
+        model.addAttribute("totalPage", 1);
+        model.addAttribute("currentPage", 1);
         return "asset/assetList";
     }
 
     /**
      * 出库时间查询
+     *
      * @param model
      * @param starttime
      * @param endtime
      * @return
      */
-    @RequestMapping(value = "findByOut",method = RequestMethod.POST)
-    public String findByOut(Model model, @RequestParam("starttime")java.sql.Date starttime,
-                              @RequestParam("endtime")java.sql.Date endtime){
-        if(starttime != null && endtime != null){
-            List<Assets> list = assetsService.selectByoutDate(starttime,endtime);
-            model.addAttribute("assetslist",list);
-        }else {
+    @RequestMapping(value = "findByOut", method = RequestMethod.POST)
+    public String findByOut(Model model, @RequestParam("starttime") java.sql.Date starttime,
+                            @RequestParam("endtime") java.sql.Date endtime) {
+        if (starttime != null && endtime != null) {
+            List<Assets> list = assetsService.selectByoutDate(starttime, endtime);
+            model.addAttribute("assetslist", list);
+        } else {
             return "config/error";
         }
-        model.addAttribute("totalPage",1);
-        model.addAttribute("currentPage",1);
+        model.addAttribute("totalPage", 1);
+        model.addAttribute("currentPage", 1);
         return "asset/assetList";
     }
 
@@ -187,30 +201,32 @@ public class AssetsController extends CommonController {
 
     /**
      * 审核页面跳转
+     *
      * @param model
      * @param id
      * @return
      */
-    @RequestMapping(value = "updateShenheIndex/{id}",method = RequestMethod.POST)
-    public String shenhe(Model model,@PathVariable("id") Long id){
+    @RequestMapping(value = "updateShenheIndex/{id}", method = RequestMethod.POST)
+    public String shenhe(Model model, @PathVariable("id") Long id) {
         Assets assets = assetsService.findAssetById(id);
-        model.addAttribute("assets",assets);
+        model.addAttribute("assets", assets);
         return "asset/shenhe_page";
     }
 
 
     /**
      * 修改信息页面
+     *
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "updateDo/{id}",method = RequestMethod.GET)
-    public String updateDo(@PathVariable Long id, Model model){
+    @RequestMapping(value = "updateDo/{id}", method = RequestMethod.GET)
+    public String updateDo(@PathVariable Long id, Model model) {
         Assets assets = assetsService.findAssetById(id);
         Date dateNow = new Date();
-        model.addAttribute("assets",assets);
-        model.addAttribute("dateNow",dateNow);
+        model.addAttribute("assets", assets);
+        model.addAttribute("dateNow", dateNow);
         return "asset/shenhe_page";
     }
 
@@ -225,12 +241,9 @@ public class AssetsController extends CommonController {
     }
 
 
-
-
-
-
     /**
      * 修改执行
+     *
      * @param assets
      * @return
      */
@@ -242,8 +255,8 @@ public class AssetsController extends CommonController {
         resultMap.put("message", "添加失败");
         String username = SecurityUtils.getSubject().getPrincipal().toString();
         String auditor = assets.getAuditor();
-        if( auditor != null && auditor.trim().length() > 0){
-            if(username.equals(auditor) ){
+        if (auditor != null && auditor.trim().length() > 0) {
+            if (username.equals(auditor)) {
                 int temp = assetsService.updateAssets(assets);
                 if (temp > 0) {
                     resultMap.put("status", 200);
@@ -361,5 +374,21 @@ public class AssetsController extends CommonController {
         model.addAttribute("totalPage", 1);
         model.addAttribute("currentPage", 1);
         return "asset/departAsset";
+    }
+
+    @RequestMapping("add")
+    public String add() {
+        return "asset/importAsset";
+    }
+
+    @RequestMapping("/import")
+    public String importExcel(HttpServletRequest request) throws Exception {
+
+        //获取上传的文件
+        MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
+        MultipartFile file = multipart.getFile("upfile");
+        //数据导入
+        assetsService.addAssetList(file);
+        return "config/success";
     }
 }
