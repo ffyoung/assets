@@ -41,7 +41,7 @@
                 <div class="title_left">
                     <h3>资产列表</small></h3>
                     <div style="position: absolute;right: 1cm;">
-                        <@shiro.hasAnyRoles name="11111">
+                        <@shiro.hasAnyRoles name="11111,99999">
                             <a href="/asset/addAssetsIndex" class="btn btn-default">新增资产</a>
                         </@shiro.hasAnyRoles>
                     </div>
@@ -87,19 +87,30 @@
                         </form>
                     </div>
 
-            <form id="formId" method="post" action="/asset/all" autocomplete="off">
+            <form id="formId" method="post" action="/asset/all" autocomplete="off" >
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group  top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for..." name="findContent"
+                                <input style="height: auto;width: 150px" type="text" class="form-control" placeholder="Search for..." name="findContent"
                                        value="${findContent?default('')}" id="findContent" />
                                 <span class="input-group-btn">
                                     <input class="btn btn-default" type="submit">Go!</input>
                                 </span>
+                                <span class="input-group-btn">
+                                    <input class="btn btn-default" type="button" onclick="abs()" value="导出数据" />
+                                </span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control" name="pageSize" style="width: 80px;height: auto; position:relative;right: -1050px;">
+                                        <option value="10" ${(pageSize==10)?string("selected","")}>10</option>
+                                        <option value="30" ${(pageSize==30)?string("selected","")}>30</option>
+                                        <option value="50" ${(pageSize==50)?string("selected","")}>50</option>
+                                        <option value="100" ${(pageSize==100)?string("selected","")}>100</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                </div>
+                  </div>
             </div>
-                    <table class="table table-striped jambo_table bulk_action">
+                    <table class="table table-striped jambo_table bulk_action" id="tableId">
                         <tr>
                             <#--<td><input type="checkbox" id="check-all" class="flat"></td>-->
                             <td >序号</td>
@@ -205,7 +216,7 @@
                     </#if>
                     </table>
                     <div id="complete"></div>
-                    </form>
+             </form>
         </div>
         <#--^^^^^^^^^^^^^^^^^^^^^-->
     </div>
@@ -243,7 +254,7 @@
 
     <#--分页-->
     $(function () {
-        PagingManage($('#complete'),${totalPage},10, ${currentPage});
+        PagingManage($('#complete'),${totalPage},${pageSize},${currentPage});
     });
 
     /*更改信息页面跳转*/
@@ -279,6 +290,91 @@
         $("#showDate").css('display','block');
         $("#shouqi").css('display','block');
     });
+
+
+    /*----------------------------------------------------------*/
+    var idTmr;
+
+    function getExplorer() {
+        var explorer = window.navigator.userAgent;
+        //ie
+        if (explorer.indexOf("MSIE") >= 0) {
+            return 'ie';
+        }
+        //firefox
+        else if (explorer.indexOf("Firefox") >= 0) {
+            return 'Firefox';
+        }
+        //Chrome
+        else if (explorer.indexOf("Chrome") >= 0) {
+            return 'Chrome';
+        }
+        //Opera
+        else if (explorer.indexOf("Opera") >= 0) {
+            return 'Opera';
+        }
+        //Safari
+        else if (explorer.indexOf("Safari") >= 0) {
+            return 'Safari';
+        }
+    }
+
+    function abs() {
+        var tableid = 'tableId';
+        if (getExplorer() == 'ie') {
+            var curTbl = document.getElementById('tableId');
+            var oXL = new ActiveXObject("Excel.Application");
+            var oWB = oXL.Workbooks.Add();
+            var xlsheet = oWB.Worksheets(1);
+            var sel = document.body.createTextRange();
+            sel.moveToElementText(curTbl);
+            sel.select();
+            sel.execCommand("Copy");
+            xlsheet.Paste();
+            oXL.Visible = true;
+
+            try {
+                var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
+            } catch (e) {
+                print("Nested catch caught " + e);
+            } finally {
+                oWB.SaveAs(fname);
+                oWB.Close(savechanges = false);
+                oXL.Quit();
+                oXL = null;
+                idTmr = window.setInterval("Cleanup();", 1);
+            }
+
+        }
+        else {
+            tableToExcel(tableid);
+        }
+
+    }
+
+    function Cleanup() {
+        window.clearInterval(idTmr);
+        CollectGarbage();
+    }
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,',
+                template = '<html><head><meta charset="UTF-8"></head><body><table>{table}</table></body></html>',
+                base64 = function (s) {
+                    return window.btoa(unescape(encodeURIComponent(s)));
+                },
+                format = function (s, c) {
+                    return s.replace(/{(\w+)}/g,
+                            function (m, p) {
+                                return c[p];
+                            });
+                };
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table);
+            var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML};
+            window.location.href = uri + base64(format(template, ctx));
+        };
+    })();
 
 
 

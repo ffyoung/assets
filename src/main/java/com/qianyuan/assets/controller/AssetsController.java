@@ -1,11 +1,9 @@
 package com.qianyuan.assets.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.qianyuan.assets.service.AssetsService;
 import com.qianyuan.common.controller.CommonController;
 import com.qianyuan.common.domain.Assets;
-import com.qianyuan.common.domain.User;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -17,9 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -57,19 +52,24 @@ public class AssetsController extends CommonController {
      * @return
      */
     @RequestMapping(value = "all")
-    public String findAll(Model model, @RequestParam(value = "pageNow", required = false) Integer pageNow,
-                          @RequestParam(value = "findContent", required = false) String findContent) {
-        model.addAttribute("results", false);
-        PageInfo<Assets> list = assetsService.findWithPage(pageNow, 10, findContent);
-        if (list.getList().size() >= 1) {
-            model.addAttribute("results", true);
+    public String findAll(Model model, @RequestParam(value = "pageNow",required = false) Integer pageNow,
+                          @RequestParam(value = "findContent",required = false) String findContent,
+                          @RequestParam(value = "pageSize",required = false) Integer pageSize){
+        model.addAttribute("results",false);
+        if(null == pageSize){
+            pageSize = 10;
+        }
+        PageInfo<Assets> list = assetsService.findWithPage(pageNow,pageSize,findContent);
+        if(list.getList().size() >= 1){
+            model.addAttribute("results",true);
         }
         Long totalPage = list.getTotal();
-        model.addAttribute("assetslist", list.getList());
-        model.addAttribute("totalPage", totalPage);
-        pageNow = pageNow == null ? 1 : pageNow;
-        model.addAttribute("currentPage", pageNow);
-        model.addAttribute("findContent", findContent);
+        model.addAttribute("assetslist",list.getList());
+        model.addAttribute("totalPage",totalPage);
+        pageNow = pageNow == null?1:pageNow;
+        model.addAttribute("currentPage",pageNow);
+        model.addAttribute("findContent",findContent);
+        model.addAttribute("pageSize",pageSize);
         return "asset/assetList";
     }
 
